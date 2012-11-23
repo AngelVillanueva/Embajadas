@@ -5,4 +5,5 @@ en:
   Embassyland: "Embassyland"
   site_description: "Embassyland, a world of Brand Ambassadors"
   Welcome to the Embassy: "Welcome to the Embassy"
+  Welcome to the Embassy of brand: "Welcome to the Embassy of %{brand}"
 
