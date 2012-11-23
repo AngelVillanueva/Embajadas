@@ -1,4 +1,6 @@
 Embajadas::Application.routes.draw do
+  filter :locale  #routing-filter gem, possible to exclude some resources as admin etc
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
