@@ -2,4 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  Embassyland: "Embassyland"
+  site_description: "Embassyland, a world of Brand Ambassadors"
+  Welcome to the Embassy: "Welcome to the Embassy"
+
