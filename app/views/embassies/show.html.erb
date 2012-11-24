@@ -1,1 +1,5 @@
 <% provide :title, t("Welcome to the Embassy of brand", brand: @embassy.name) %>
+
+<% @missions.each do |m| %>
+  <p><%= m.name %></p>
+<% end %>
