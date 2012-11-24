@@ -1,4 +1,4 @@
 class EmbassiesController < ApplicationController
-  def welcome
+  def show
   end
 end
