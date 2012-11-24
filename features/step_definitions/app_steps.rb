@@ -10,8 +10,5 @@ end
 
 Then /^I should see the Embassy welcome information$/ do
   page.should have_selector("title", text: I18n.t("Welcome to the Embassy"))
-end
-
-Then /^I should see the Embassy name$/ do
-  page.should have_content("Default")
+  page.should have_content("Brand example")
 end

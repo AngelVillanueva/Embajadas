@@ -4,4 +4,3 @@ Scenario: Access Embassy Homepage
   Given I am a loyal customer
   When I access the homepage for the "Brand example" Embassy
   Then I should see the Embassy welcome information
-    And I should see the Embassy name
