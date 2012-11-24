@@ -1,11 +1,13 @@
-Given /^I am a loyal customer$/ do
-  # do nothing
+Given /^the "(.*?)" Embassy exists$/ do |name|
+  FactoryGirl.create(:embassy, name: name)
 end
 
 When /^I access the homepage for the "(.*?)" Embassy$/ do |name|
-  embassy = FactoryGirl.create(:embassy, name: name)
   embassy_id = Embassy.find_by_name(name).id
   visit embassy_path(embassy_id)
+end
+
+When /^I access an Embassy homepage$/ do
 end
 
 Then /^I should see the Embassy welcome information$/ do
