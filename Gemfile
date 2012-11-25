@@ -10,6 +10,9 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'routing-filter' # to prepend locale to url; other uses (pagination, extension, uuid,...)
 
+# Devise
+gem 'devise'
+
 # Rails_Admin
 # gem 'rails_admin'
 

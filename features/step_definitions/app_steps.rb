@@ -43,5 +43,5 @@ Then /^I should see the available Missions$/ do
 end
 
 Then /^I should be redirected to the global homepage$/ do
-  current_path.should == '/'
+  current_path.should == root_path
 end

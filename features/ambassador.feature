@@ -4,7 +4,7 @@ Scenario: access the Embassy area is allowed to its Ambassadors
   Given I am an Ambassador
   When I access my Embassy homepage
   Then I should see the available Missions
-
+@wip
 Scenario: access the Embassy area is not allowed to Ambassadors from other Embassies
   Given I am an Ambassador
   When I access the homepage of another Embassy
