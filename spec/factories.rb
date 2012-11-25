@@ -7,6 +7,8 @@ FactoryGirl.define do
   end
   factory :ambassador do
     name "Inigo Montoya"
+    email "imontoya@example.com"
+    password "foobar"
     embassy
   end
 end
