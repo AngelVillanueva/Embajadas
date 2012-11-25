@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124201221) do
+ActiveRecord::Schema.define(:version => 20121125182103) do
+
+  create_table "ambassadors", :force => true do |t|
+    t.string   "name"
+    t.integer  "embassy_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "embassies", :force => true do |t|
     t.string   "name"

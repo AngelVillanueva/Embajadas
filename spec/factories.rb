@@ -5,4 +5,8 @@ FactoryGirl.define do
   factory :mission do
     name "Mission 1"
   end
+  factory :ambassador do
+    name "Inigo Montoya"
+    embassy
+  end
 end

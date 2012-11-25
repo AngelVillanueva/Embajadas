@@ -2,6 +2,12 @@ Given /^the "(.*?)" Embassy exists$/ do |name|
   FactoryGirl.create(:embassy, name: name)
 end
 
+Given /^I am an Ambassador$/ do
+  step "an Embassy has available Missions"
+  embassy = Embassy.find(1)
+  ambassador = FactoryGirl.create(:ambassador, embassy: embassy)
+end
+
 Given /^an Embassy has available Missions$/ do
   embassy = FactoryGirl.create(:embassy)
   m1 = FactoryGirl.create(:mission, name: "Mission 1 for The Embassy", embassy: embassy)
@@ -17,6 +23,15 @@ When /^I access an Embassy homepage$/ do
   step 'I access the homepage for the "The Embassy" Embassy'
 end
 
+When /^I access my Embassy homepage$/ do
+  step "I access an Embassy homepage"
+end
+
+When /^I access the homepage of another Embassy$/ do
+  another_embassy = FactoryGirl.create(:embassy, name: "Another Embassy")
+  visit embassy_path(another_embassy)
+end
+
 Then /^I should see the Embassy welcome information$/ do
   page.should have_selector("title", text: I18n.t("Welcome to the Embassy"))
   page.should have_content("Brand example")
@@ -25,4 +40,8 @@ end
 Then /^I should see the available Missions$/ do
   page.should have_content("Mission 1 for The Embassy")
   page.should have_content("Mission 2 for The Embassy")
+end
+
+Then /^I should be redirected to the global homepage$/ do
+  current_path.should == '/'
 end

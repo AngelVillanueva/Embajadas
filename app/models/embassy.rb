@@ -11,6 +11,7 @@
 class Embassy < ActiveRecord::Base
   attr_accessible :name
   has_many :missions
+  has_many :ambassadors
 
   validates :name, uniqueness: true
 end

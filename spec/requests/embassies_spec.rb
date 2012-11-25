@@ -6,6 +6,8 @@ describe "Embassies" do
     subject { embassy }
 
     it { should respond_to :name}
+    it { should respond_to :missions }
+    it { should respond_to :ambassadors }
     it { should be_valid }
   end
   describe "with accessible attributes" do
