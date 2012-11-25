@@ -6,4 +6,6 @@ en:
   site_description: "Embassyland, a world of Brand Ambassadors"
   Welcome to the Embassy: "Welcome to the Embassy"
   Welcome to the Embassy of brand: "Welcome to the Embassy of %{brand}"
+  flash:
+    Access not allowed: "Access not allowed"
 
