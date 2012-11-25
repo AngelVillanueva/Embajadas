@@ -14,9 +14,17 @@ Given /^an Embassy has available Missions$/ do
   m2 = FactoryGirl.create(:mission, name: "Mission 2 for The Embassy", embassy: embassy)
 end
 
+When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
+  embassy_id = Embassy.find_by_name(name).id
+  visit embassy_path(embassy_id)
+end
+
 When /^I access the homepage for the "(.*?)" Embassy$/ do |name|
   embassy_id = Embassy.find_by_name(name).id
   visit embassy_path(embassy_id)
+  fill_in 'ambassador_email', with: "imontoya@example.com"
+  fill_in 'ambassador_password', with: "foobar"
+  click_button 'Sign in'
 end
 
 When /^I access an Embassy homepage$/ do
@@ -30,6 +38,13 @@ end
 When /^I access the homepage of another Embassy$/ do
   another_embassy = FactoryGirl.create(:embassy, name: "Another Embassy")
   visit embassy_path(another_embassy)
+  fill_in 'ambassador_email', with: "imontoya@example.com"
+  fill_in 'ambassador_password', with: "foobar"
+  click_button "Sign in"
+end
+
+Then /^I should be prompted to authenticate myself$/ do
+  page.should have_css("form[action*='/ambassadors/sign_in']")
 end
 
 Then /^I should see the Embassy welcome information$/ do
