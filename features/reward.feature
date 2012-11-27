@@ -1,7 +1,7 @@
 Feature: As an Ambassador, I should be able to gain Rewards to increase my engagement
-
-Scenario: Missions have Rewards
+@wip
+Scenario: Rewards can be won by achieving point targets
   Given I am an Ambassador
-    And a Mission has associated Rewards
-  When I access the Mission page
-  Then I should see the Mission Rewards
+    And one of my Missions has a Reward
+  When the Ambassador achieves the Reward's point target
+  Then the Ambassador gains the Reward

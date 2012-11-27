@@ -9,6 +9,8 @@ describe "Ambassadors" do
     it { should respond_to :embassy }
     it { should respond_to :email }
     it { should respond_to :password }
+    it { should respond_to :points }
+    it { should respond_to :missions }
     it { should be_valid }
   end
   describe "with accessible attribute name" do

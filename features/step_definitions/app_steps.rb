@@ -14,6 +14,10 @@ Given /^an Embassy has available Missions$/ do
   m2 = FactoryGirl.create(:mission, name: "Mission 2 for The Embassy", embassy: embassy)
 end
 
+Given /^one of my Missions has a Reward$/ do
+  step "a Mission has associated Rewards"
+end
+
 When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
   embassy_id = Embassy.find_by_name(name).id
   visit embassy_path(embassy_id)
@@ -53,6 +57,10 @@ When /^a Mission has associated Rewards$/ do
   reward_2 = FactoryGirl.create(:reward, name: "Reward 2 for Mission 1", mission: mission)
 end
 
+When /^somebody behaves as I have recommended$/ do
+  visit tracker_path(ambassador_id: 1, mission_id: 1)
+end
+
 Then /^I should be prompted to authenticate myself$/ do
   page.should have_css("form[action*='/ambassadors/sign_in']")
 end
@@ -77,4 +85,9 @@ end
 
 Then /^I should see the Mission Rewards$/ do
   page.should have_content("Reward 1 for Mission 1")
+end
+
+Then /^my points should increase$/ do
+  ambassador = Ambassador.find(1)
+  ambassador.points.count.should == 1
 end
