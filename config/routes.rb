@@ -8,7 +8,9 @@ Embajadas::Application.routes.draw do
 
   root to: 'embassies#welcome'
 
-  resources :embassies
+  resources :embassies do
+    resources :missions
+  end
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

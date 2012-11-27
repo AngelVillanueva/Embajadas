@@ -43,6 +43,10 @@ When /^I access the homepage of another Embassy$/ do
   click_button "Sign in"
 end
 
+When /^I access the Mission page$/ do
+  visit embassy_mission_path(Embassy.find(1), Mission.find(1))
+end
+
 Then /^I should be prompted to authenticate myself$/ do
   page.should have_css("form[action*='/ambassadors/sign_in']")
 end
@@ -59,4 +63,8 @@ end
 
 Then /^I should be redirected to the global homepage$/ do
   current_path.should == root_path
+end
+
+Then /^I should see the Mission name$/ do
+  page.should have_content("Mission 1 for The Embassy")
 end
