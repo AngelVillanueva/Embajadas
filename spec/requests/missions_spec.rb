@@ -7,6 +7,7 @@ describe "Missions" do
 
     it { should respond_to :name }
     it { should respond_to :embassy }
+    it { should respond_to :rewards }
     it { should be_valid }
   end
   describe "with accessible attributes" do

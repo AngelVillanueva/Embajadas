@@ -47,6 +47,12 @@ When /^I access the Mission page$/ do
   visit embassy_mission_path(Embassy.find(1), Mission.find(1))
 end
 
+When /^a Mission has associated Rewards$/ do
+  mission = Mission.find(1)
+  reward_1 = FactoryGirl.create(:reward, name: "Reward 1 for Mission 1", mission: mission)
+  reward_2 = FactoryGirl.create(:reward, name: "Reward 2 for Mission 1", mission: mission)
+end
+
 Then /^I should be prompted to authenticate myself$/ do
   page.should have_css("form[action*='/ambassadors/sign_in']")
 end
@@ -67,4 +73,8 @@ end
 
 Then /^I should see the Mission name$/ do
   page.should have_content("Mission 1 for The Embassy")
+end
+
+Then /^I should see the Mission Rewards$/ do
+  page.should have_content("Reward 1 for Mission 1")
 end

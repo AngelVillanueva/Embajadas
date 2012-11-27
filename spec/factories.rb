@@ -11,4 +11,8 @@ FactoryGirl.define do
     password "foobar"
     embassy
   end
+  factory :reward do
+    name "Reward 1"
+    mission
+  end
 end

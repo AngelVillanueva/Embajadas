@@ -1,16 +1,15 @@
 # == Schema Information
 #
-# Table name: missions
+# Table name: rewards
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
-#  embassy_id :integer
+#  mission_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Mission < ActiveRecord::Base
+class Reward < ActiveRecord::Base
   attr_accessible :name
-  belongs_to :embassy
-  has_many :rewards
+  belongs_to :mission
 end
