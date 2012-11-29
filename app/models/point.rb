@@ -12,4 +12,21 @@
 class Point < ActiveRecord::Base
   belongs_to :ambassador
   belongs_to :mission
+
+  after_save :assign_badges
+
+  private
+  def assign_badges
+    ambassador_points = ambassador.points.where(mission_id: mission.id).count
+    reward = Reward.where(mission_id: mission.id)
+    reward.each do |r|
+      target_points = r.target_points
+      if ambassador_points >= target_points
+        badge = Badge.new
+        badge.ambassador = ambassador
+        badge.reward = r
+        badge.save
+      end
+    end
+  end
 end
