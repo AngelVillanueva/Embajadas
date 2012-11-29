@@ -14,5 +14,6 @@ FactoryGirl.define do
   factory :reward do
     name "Reward 1"
     mission
+    target_points 1
   end
 end

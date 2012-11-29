@@ -31,4 +31,6 @@ class Ambassador < ActiveRecord::Base
   belongs_to :embassy
   has_many :points
   has_many :missions, through: :points
+  has_many :badges
+  has_many :rewards, through: :badges
 end

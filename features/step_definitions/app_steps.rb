@@ -54,11 +54,18 @@ end
 When /^a Mission has associated Rewards$/ do
   mission = Mission.find(1)
   reward_1 = FactoryGirl.create(:reward, name: "Reward 1 for Mission 1", mission: mission)
-  reward_2 = FactoryGirl.create(:reward, name: "Reward 2 for Mission 1", mission: mission)
+  reward_2 = FactoryGirl.create(:reward, name: "Reward 2 for Mission 1", mission: mission, target_points: 2)
 end
 
 When /^somebody behaves as I have recommended$/ do
   visit tracker_path(ambassador_id: 1, mission_id: 1)
+end
+
+When /^the Ambassador achieves the target points for the Reward$/ do
+  step "somebody behaves as I have recommended"
+  ambassador = Ambassador.find(1)
+  target = Reward.find(1).target_points
+  ambassador.points.count.should == target
 end
 
 Then /^I should be prompted to authenticate myself$/ do
@@ -95,4 +102,9 @@ end
 Then /^my mission points should increase$/ do
   mission = Mission.find(1)
   mission.points.count.should == 1
+end
+
+Then /^the Ambassador is awarded with a new Badge$/ do
+  ambassador = Ambassador.find(1)
+  ambassador.badges.count.should == 1
 end

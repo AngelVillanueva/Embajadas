@@ -6,7 +6,10 @@ describe "Model" do
     subject { reward }
 
     it { should respond_to :name }
+    it { should respond_to :target_points }
     it { should respond_to :mission }
+    it { should respond_to :badges }
+    it { should respond_to :ambassadors }
     it { should be_valid }
   end
   describe "with accessible attribute name" do

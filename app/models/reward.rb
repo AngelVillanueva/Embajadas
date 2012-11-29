@@ -12,4 +12,6 @@
 class Reward < ActiveRecord::Base
   attr_accessible :name
   belongs_to :mission
+  has_many :badges
+  has_many :ambassadors, through: :badges
 end
