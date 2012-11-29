@@ -15,5 +15,8 @@ class StaticPagesController < ApplicationController
     ambassador.password = "foobar"
     ambassador.email = "the_ambassador@example.com"
     ambassador.save!
+    mission = Mission.find_or_create_by_id(1)
+    mission.name = "The Mission"
+    mission.save!
   end
 end
