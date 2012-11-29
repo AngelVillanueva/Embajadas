@@ -13,6 +13,7 @@ Embajadas::Application.routes.draw do
   end
 
   match 'tracker' => 'points#create', as: :tracker
+  match 'pixel_test' => 'static_pages#pixel_test', as: :pixel_test
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

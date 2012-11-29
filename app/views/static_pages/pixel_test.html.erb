@@ -1,0 +1,8 @@
+<%= provide :title, t("Pixel Test Page") %>
+
+<h2><%= t("Ambassador id for test", ambassador_id: 1) %></h2>
+<h2><%= t("Mission id for test", mission_id: 1) %></h2>
+
+<p><%= t("Pixel") %></p>
+<img src="<%= tracker_url(ambassador_id: @fake_ambassador_id, mission_id: @fake_mission_id) %>" height="1" width="1" border="0" alt="" />
+<p><%= t("Test points", points: @points) %></p>

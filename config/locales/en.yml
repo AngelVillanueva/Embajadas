@@ -6,6 +6,11 @@ en:
   site_description: "Embassyland, a world of Brand Ambassadors"
   Welcome to the Embassy: "Welcome to the Embassy"
   Welcome to the Embassy of brand: "Welcome to the Embassy of %{brand}"
+  Pixel Test Page: "Pixel Test Page"
+  Ambassador id for test: "Ambassador ID for the test is %{ambassador_id}"
+  Mission id for test: "Mission ID for the test is %{mission_id}"
+  Pixel: "Pixel"
+  Test points: "We had %{points} points till now"
   flash:
     Access not allowed: "Access not allowed"
 

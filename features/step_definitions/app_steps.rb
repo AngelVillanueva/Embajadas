@@ -18,6 +18,10 @@ Given /^one of my Missions has a Reward$/ do
   step "a Mission has associated Rewards"
 end
 
+Given /^I am a common web user$/ do
+  # do nothing
+end
+
 When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
   embassy_id = Embassy.find_by_name(name).id
   visit embassy_path(embassy_id)
@@ -68,6 +72,13 @@ When /^the Ambassador achieves the target points for the Reward$/ do
   ambassador.points.count.should == target
 end
 
+When /^I arrive at a page with a pixel tracker$/ do
+  step "I am an Ambassador"
+  visit pixel_test_path
+  image = page.first(:css, "img")
+  visit image[:src]
+end
+
 Then /^I should be prompted to authenticate myself$/ do
   page.should have_css("form[action*='/ambassadors/sign_in']")
 end
@@ -107,4 +118,10 @@ end
 Then /^the Ambassador is awarded with a new Badge$/ do
   ambassador = Ambassador.find(1)
   ambassador.badges.count.should == 1
+end
+
+Then /^I should increase the Points count for an Ambassador$/ do
+  ambassador = Ambassador.find(1)
+  points = ambassador.points.where(mission_id: 1).count
+  points.should == 1
 end
