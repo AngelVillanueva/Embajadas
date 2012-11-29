@@ -13,5 +13,6 @@ class Mission < ActiveRecord::Base
   attr_accessible :name
   belongs_to :embassy
   has_many :points
+  has_many :ambassadors, through: :points
   has_many :rewards
 end

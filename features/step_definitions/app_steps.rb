@@ -87,7 +87,12 @@ Then /^I should see the Mission Rewards$/ do
   page.should have_content("Reward 1 for Mission 1")
 end
 
-Then /^my points should increase$/ do
+Then /^my ambassador points should increase$/ do
   ambassador = Ambassador.find(1)
   ambassador.points.count.should == 1
+end
+
+Then /^my mission points should increase$/ do
+  mission = Mission.find(1)
+  mission.points.count.should == 1
 end
