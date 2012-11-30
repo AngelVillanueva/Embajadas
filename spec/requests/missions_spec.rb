@@ -12,8 +12,15 @@ describe "Missions" do
     it { should respond_to :rewards }
     it { should be_valid }
   end
-  describe "with accessible attributes" do
+  describe "with accessible attribute name" do
     let(:mission) { Mission.new(name: "New mission") }
+    subject { mission }
+
+    it { should be_valid }
+  end
+  describe "with accessible attribute embassy_id" do
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { Mission.new(embassy_id: 1) }
     subject { mission }
 
     it { should be_valid }

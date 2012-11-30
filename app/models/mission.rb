@@ -10,7 +10,7 @@
 #
 
 class Mission < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :embassy_id
   belongs_to :embassy
   has_many :points
   has_many :ambassadors, through: :points

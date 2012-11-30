@@ -8,6 +8,7 @@ describe "Embassies" do
     it { should respond_to :name}
     it { should respond_to :missions }
     it { should respond_to :ambassadors }
+    it { should respond_to :consuls }
     it { should be_valid }
   end
   describe "with accessible attributes" do

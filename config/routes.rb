@@ -1,4 +1,8 @@
 Embajadas::Application.routes.draw do
+  devise_for :consuls
+
+  mount RailsAdmin::Engine => '/brands', :as => 'rails_admin'
+
   devise_for :ambassadors
 
   filter :locale  #routing-filter gem, possible to exclude some resources as admin etc

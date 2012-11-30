@@ -16,4 +16,10 @@ FactoryGirl.define do
     mission
     target_points 1
   end
+  factory :consul do
+    name "Ciceron"
+    email "consul@example.com"
+    password "foobar"
+    embassy
+  end
 end

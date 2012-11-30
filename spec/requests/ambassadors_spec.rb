@@ -45,6 +45,18 @@ describe "Ambassadors" do
 
     it { should be_valid }
   end
+  describe "with accessible attribute embassy_id" do
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:ambassador) { Ambassador.new(embassy_id: 1) }
+    before do
+      ambassador.name = "Inigo Montoya"
+      ambassador.email = "imontoya@example.com"
+      ambassador.password = "foobar"
+    end
+    subject { ambassador }
+
+    it { should be_valid }
+  end
   describe "belonging to an Embassy" do
     let(:embassy) { FactoryGirl.create(:embassy) }
     let(:ambassador) { FactoryGirl.create(:ambassador, embassy: embassy) }

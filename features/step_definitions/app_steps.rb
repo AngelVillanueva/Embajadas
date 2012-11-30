@@ -76,7 +76,7 @@ When /^I arrive at a page with a pixel tracker$/ do
   step "I am an Ambassador"
   visit pixel_test_path
   image = page.first(:css, "img")
-  visit image[:src]
+  get image[:src]
 end
 
 Then /^I should be prompted to authenticate myself$/ do

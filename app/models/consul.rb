@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: ambassadors
+# Table name: consuls
 #
 #  id                     :integer          not null, primary key
 #  name                   :string(255)
@@ -19,7 +19,7 @@
 #  last_sign_in_ip        :string(255)
 #
 
-class Ambassador < ActiveRecord::Base
+class Consul < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -29,8 +29,4 @@ class Ambassador < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :embassy_id, :email, :password, :password_confirmation, :remember_me
   belongs_to :embassy
-  has_many :points
-  has_many :missions, through: :points
-  has_many :badges
-  has_many :rewards, through: :badges
 end

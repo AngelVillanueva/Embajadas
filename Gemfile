@@ -14,7 +14,7 @@ gem 'routing-filter' # to prepend locale to url; other uses (pagination, extensi
 gem 'devise'
 
 # Rails_Admin
-# gem 'rails_admin'
+gem 'rails_admin'
 
 # Locale app
 # gem 'localeapp' # issues with pull-push in dev mode
