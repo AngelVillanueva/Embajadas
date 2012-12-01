@@ -1,0 +1,129 @@
+ca:
+  home:
+    name: Inici
+  views:
+    pagination:
+      previous: "&laquo; Anterior"
+      next: "Següent &raquo;"
+      truncate: "…"
+  admin:
+    misc:
+      search: "Cerca"
+      filter: "Filtra"
+      refresh: "Actualitza"
+      show_all: "Mostra'ls tots"
+      add_filter: "Afegeix filtre"
+      bulk_menu_title: "Elements seleccionats"
+      remove: "Elimina"
+      add_new: "Afegeix nou"
+      chosen: "Seleccionat %{name}"
+      chose_all: "Selecciona'ls tots"
+      clear_all: "Deselecciona"
+      up: "Amunt"
+      down: "Avall"
+      navigation: "Navegació"
+      log_out: "Eixir"
+      ago: "enrere"
+    flash:
+      successful: "%{name} %{action} amb èxit"
+      error: "%{name} hauria de ser %{action} i ha fallat"
+      noaction: "No s'ha efectuat cap acció"
+      model_not_found: "El model '%{model}' no s'ha trobat"
+      object_not_found: "%{model} amb id '%{id}' no s'ha trobat"
+    table_headers:
+      model_name: "Nom del model"
+      last_used: "Darrer ús"
+      records: "Registres"
+      username: "Usuari"
+      changes: "Canvis"
+      created_at: "Data/Hora"
+      item: "Element"
+      message: "Missatge"
+    actions:
+      dashboard:
+        title: "Administració del lloc"
+        menu: "Quadre de comandament"
+        breadcrumb: "Quadre de comandament"
+      index:
+        title: "Llista de %{model_label_plural}"
+        menu: "Llista"
+        breadcrumb: "%{model_label_plural}"
+      show:
+        title: "Detalls de %{model_label} '%{object_label}'"
+        menu: "Mostra"
+        breadcrumb: "%{object_label}"
+      show_in_app:
+        menu: "Mostra en l'aplicació"
+      new:
+        title: "Nou %{model_label}"
+        menu: "Afegeix nou"
+        breadcrumb: "Afegeix"
+        link: "Afegeix un nou %{model_label}"
+        done: "creat"
+      edit:
+        title: "Edita %{model_label} '%{object_label}'"
+        menu: "Edita"
+        breadcrumb: "Edita"
+        link: "Edita este %{model_label}"
+        done: "actualitzat"
+      delete:
+        title: "Esborra %{model_label} '%{object_label}'"
+        menu: "Esborra"
+        breadcrumb: "Esborra"
+        link: "Esborra '%{object_label}'"
+        done: "esborrat"
+      bulk_delete:
+        title: "Esborra %{model_label_plural}"
+        menu: "Esborrat múltiple"
+        breadcrumb: "Esborrat múltiple"
+        bulk_link: "Esborra els %{model_label_plural} seleccionats"
+      export:
+        title: "Exporta %{model_label}"
+        menu: "Exporta"
+        breadcrumb: "Exporta"
+        link: "Exporta els %{model_label_plural} trobats"
+        bulk_link: "Exporta els %{model_label_plural} seleccionats"
+        done: "exportat"
+      history_index:
+        title: "Història de %{model_label_plural}"
+        menu: "Història"
+        breadcrumb: "Història"
+      history_show:
+        title: "Història de %{model_label} '%{object_label}'"
+        menu: "Història"
+        breadcrumb: "Història"
+    form:
+      cancel: "Canceŀla"
+      basic_info: "Informació bàsica"
+      required: "Requerit"
+      optional: "Opcional"
+      one_char: "caràcter"
+      char_length_up_to: "longitud fins a"
+      char_length_of: "longitud de"
+      save: "Alça"
+      save_and_add_another: "Alça i afegeix-ne un altre"
+      save_and_edit: "Alça i edita"
+      all_of_the_following_related_items_will_be_deleted: "? Els següents elements relacionats poden ser esborrats o quedar òrfens:"
+      are_you_sure_you_want_to_delete_the_object: "Segur que voleu eliminar este/a %{model_name}"
+      confirmation: "Sí, fes"
+      delete_confirmation: "Confirmació d'eliminació"
+      bulk_delete: "Els següents objectes seran esborrats, la qual cosa pot esborrar o deixar òrfenes algunes de les seues dependències:"
+    export:
+      confirmation: "Exporta a %{name}"
+      select: "Seleccioneu camps per a exportar"
+      fields_from: "Camps de %{name}"
+      fields_from_associated: "Camps del %{name} associat"
+      display: "Mostra %{name}: %{type}"
+      options_for: "Opcions de %{name}"
+      empty_value_for_associated_objects: "<buit>"
+      click_to_reverse_selection: 'Invertiu la selecció'
+      csv:
+        header_for_root_methods: "%{name}" # 'model' is available
+        header_for_association_methods: "%{name} [%{association}]"
+        encoding_to: "Codifica en"
+        encoding_to_help: "Escolliu la codificació d'eixida. Deixeu en blanc per a mantindre la codificació actual: (%{name})"
+        skip_header: "Sense capçalera"
+        skip_header_help: "No mostres capçalera (sense descripcions dels camps)"
+        default_col_sep: ","
+        col_sep: "Separador de columnes"
+        col_sep_help: "Deixeu en blanc per al valor per defecte ('%{value}')" # value is default_col_sep
