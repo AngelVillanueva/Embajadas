@@ -9,11 +9,4 @@ class EmbassiesController < ApplicationController
     @missions = @embassy.missions
   end
 
-  private
-  def require_belonging
-    unless belongs_to_embassy?
-      flash[:error] = I18n.t("flash.Access not allowed")
-      redirect_to root_path
-    end
-  end
 end
