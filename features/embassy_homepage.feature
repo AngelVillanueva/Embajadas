@@ -15,3 +15,10 @@ Scenario: Embassy homepage contains the list for available rewards for each Miss
     And at least one of my Missions has a Reward
   When I access my Embassy homepage
   Then I should see the available Rewards for each Mission
+
+Scenario: Embassy homepage is the quickest place to check my performance against a Reward
+  Given I am an Ambassador
+    And at least one of my Missions has a Reward
+  When I access my Embassy homepage
+  Then I should see the target points for a given Reward
+  And I should see how many points I have won for that Reward

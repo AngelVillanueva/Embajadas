@@ -61,8 +61,15 @@ When /^I access the homepage of another Embassy$/ do
   click_button "Sign in"
 end
 
+When /^I try to access the Mission page without previous authentication$/ do
+  visit embassy_mission_path(Embassy.find(1), Mission.find(1))
+end
+
 When /^I access the Mission page$/ do
   visit embassy_mission_path(Embassy.find(1), Mission.find(1))
+  fill_in 'ambassador_email', with: "imontoya@example.com"
+  fill_in 'ambassador_password', with: "foobar"
+  click_button "Sign in"
 end
 
 When /^a Mission has associated Rewards$/ do
@@ -123,6 +130,14 @@ end
 Then /^I should see the available Rewards for each Mission$/ do
   page.should have_content("Reward 1 for Mission 1")
   page.should have_content("Reward 2 for Mission 1")
+end
+
+Then /^I should see the target points for a given Reward$/ do
+  page.should have_content("/1")
+end
+
+Then /^I should see how many points I have won for that Reward$/ do
+  page.should have_content("0/")
 end
 
 Then /^my ambassador points should increase$/ do

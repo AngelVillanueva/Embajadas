@@ -1,1 +1,4 @@
-<li><%= reward.name %></li>
+<% target = reward.target_points %>
+<% achieved = current_ambassador.points.where(mission_id: reward.mission.id).count %>
+
+<li><%= reward.name %>: <%= achieved %>/<%= target %></li>
