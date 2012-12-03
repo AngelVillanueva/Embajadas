@@ -18,6 +18,10 @@ Given /^one of my Missions has a Reward$/ do
   step "a Mission has associated Rewards"
 end
 
+Given /^at least one of my Missions has a Reward$/ do
+  step "a Mission has associated Rewards"
+end
+
 Given /^I am a common web user$/ do
   # do nothing
 end
@@ -114,6 +118,11 @@ end
 
 Then /^I should see the Mission Rewards$/ do
   page.should have_content("Reward 1 for Mission 1")
+end
+
+Then /^I should see the available Rewards for each Mission$/ do
+  page.should have_content("Reward 1 for Mission 1")
+  page.should have_content("Reward 2 for Mission 1")
 end
 
 Then /^my ambassador points should increase$/ do
