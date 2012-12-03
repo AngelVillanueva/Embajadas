@@ -1,8 +1,10 @@
+<% pixel_html = '<img src="' + tracker_url(ambassador_id: current_ambassador.id, mission_id: mission.id) + %q(" border="0" height="1" width="1" />) %>
+
 <li>
   <ul>
     <li><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></li>
     <li><%= mission.short_description %></li>
-    <li><%= t("Pixel") %>: <%= tracker_url(ambassador_id: current_ambassador.id, mission_id: mission.id) %></li>
+    <li><%= t("Pixel") %>: <%= pixel_html %></li>
     <li><ul><%= render mission.rewards %></ul></li>
   </ul>
 </li>
