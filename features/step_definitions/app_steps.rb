@@ -10,8 +10,8 @@ end
 
 Given /^an Embassy has available Missions$/ do
   embassy = Embassy.find_by_name("The Embassy") || FactoryGirl.create(:embassy)
-  m1 = FactoryGirl.create(:mission, name: "Mission 1 for The Embassy", embassy: embassy)
-  m2 = FactoryGirl.create(:mission, name: "Mission 2 for The Embassy", embassy: embassy)
+  m1 = FactoryGirl.create(:mission, name: "Mission 1 for The Embassy", short_description: "Short description for Mission 1", embassy: embassy)
+  m2 = FactoryGirl.create(:mission, name: "Mission 2 for The Embassy", short_description: "Short description for Mission 2", embassy: embassy)
 end
 
 Given /^one of my Missions has a Reward$/ do
@@ -97,6 +97,11 @@ end
 Then /^I should see the available Missions$/ do
   page.should have_content("Mission 1 for The Embassy")
   page.should have_content("Mission 2 for The Embassy")
+end
+
+Then /^I should see the short description for each available Mission$/ do
+  page.should have_content("Short description for Mission 1")
+  page.should have_content("Short description for Mission 2")
 end
 
 Then /^I should be redirected to the global homepage$/ do

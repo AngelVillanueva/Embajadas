@@ -6,6 +6,7 @@ describe "Missions" do
     subject { mission }
 
     it { should respond_to :name }
+    it { should respond_to :short_description}
     it { should respond_to :embassy }
     it { should respond_to :points }
     it { should respond_to :ambassadors }
@@ -14,6 +15,12 @@ describe "Missions" do
   end
   describe "with accessible attribute name" do
     let(:mission) { Mission.new(name: "New mission") }
+    subject { mission }
+
+    it { should be_valid }
+  end
+  describe "with accessible attribute short_description" do
+    let(:mission) { Mission.new(name: "New mission", short_description: "Short description") }
     subject { mission }
 
     it { should be_valid }
