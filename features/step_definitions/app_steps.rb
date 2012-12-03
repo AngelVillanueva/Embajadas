@@ -1,5 +1,5 @@
 Given /^the "(.*?)" Embassy exists$/ do |name|
-  FactoryGirl.create(:embassy, name: name)
+  FactoryGirl.create(:embassy, name: name) unless Embassy.find_by_name(name)
 end
 
 Given /^I am an Ambassador$/ do
@@ -9,7 +9,7 @@ Given /^I am an Ambassador$/ do
 end
 
 Given /^an Embassy has available Missions$/ do
-  embassy = FactoryGirl.create(:embassy)
+  embassy = Embassy.find_by_name("The Embassy") || FactoryGirl.create(:embassy)
   m1 = FactoryGirl.create(:mission, name: "Mission 1 for The Embassy", embassy: embassy)
   m2 = FactoryGirl.create(:mission, name: "Mission 2 for The Embassy", embassy: embassy)
 end
@@ -30,6 +30,12 @@ end
 When /^I access the homepage for the "(.*?)" Embassy$/ do |name|
   embassy_id = Embassy.find_by_name(name).id
   visit embassy_path(embassy_id)
+  fill_in 'ambassador_email', with: "imontoya@example.com"
+  fill_in 'ambassador_password', with: "foobar"
+  click_button 'Sign in'
+end
+
+When /^I authenticate myself as her Ambassador$/ do
   fill_in 'ambassador_email', with: "imontoya@example.com"
   fill_in 'ambassador_password', with: "foobar"
   click_button 'Sign in'
@@ -85,7 +91,7 @@ end
 
 Then /^I should see the Embassy welcome information$/ do
   page.should have_selector("title", text: I18n.t("Welcome to the Embassy"))
-  page.should have_content("Brand example")
+  page.should have_content("The Embassy")
 end
 
 Then /^I should see the available Missions$/ do

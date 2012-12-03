@@ -1,6 +1,6 @@
-Feature: As an Ambassador, I should be able to gain Rewards to increase my engagement
+Feature: As an Ambassador, I should be able to gain Badges to increase my engagement
 
-Scenario: Rewards can be won by achieving point targets
+Scenario: Badges can be won by achieving a Reward target points
   Given I am an Ambassador
     And one of my Missions has a Reward
   When the Ambassador achieves the target points for the Reward
