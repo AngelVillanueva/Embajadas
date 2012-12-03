@@ -2,6 +2,7 @@
   <ul>
     <li><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></li>
     <li><%= mission.short_description %></li>
+    <li><%= t("Pixel") %>: <%= tracker_url(ambassador_id: current_ambassador.id, mission_id: mission.id) %></li>
     <li><ul><%= render mission.rewards %></ul></li>
   </ul>
 </li>

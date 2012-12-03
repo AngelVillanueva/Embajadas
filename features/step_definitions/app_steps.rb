@@ -144,6 +144,10 @@ Then /^I should see how many points I have won for that Reward$/ do
   page.should have_content("0/")
 end
 
+Then /^I should see the Pixel for each available Mission$/ do
+  page.should have_content(tracker_path(ambassador_id: 1, mission_id: 1))
+end
+
 Then /^my ambassador points should increase$/ do
   ambassador = Ambassador.find(1)
   ambassador.points.count.should == 1

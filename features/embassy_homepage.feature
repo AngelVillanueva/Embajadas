@@ -16,6 +16,11 @@ Scenario: Embassy homepage contains the short description of each Mission
   When I access my Embassy homepage
   Then I should see the short description for each available Mission
 
+Scenario: Embassy homepage contains the Pixel code for the Mission
+  Given I am an Ambassador
+  When I access my Embassy homepage
+  Then I should see the Pixel for each available Mission
+
 Scenario: Embassy homepage contains the list for available rewards for each Mission
   Given I am an Ambassador
     And at least one of my Missions has a Reward
