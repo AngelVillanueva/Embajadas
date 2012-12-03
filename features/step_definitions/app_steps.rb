@@ -72,6 +72,10 @@ When /^I access the Mission page$/ do
   click_button "Sign in"
 end
 
+When /^I follow any of the Mission name links$/ do
+  click_link "Mission 1 for The Embassy"
+end
+
 When /^a Mission has associated Rewards$/ do
   mission = Mission.find(1)
   reward_1 = FactoryGirl.create(:reward, name: "Reward 1 for Mission 1", mission: mission)
@@ -159,4 +163,8 @@ Then /^I should increase the Points count for an Ambassador$/ do
   ambassador = Ambassador.find(1)
   points = ambassador.points.where(mission_id: 1).count
   points.should == 1
+end
+
+Then /^I should be at the Mission page$/ do
+  step "I should see the Mission name"
 end

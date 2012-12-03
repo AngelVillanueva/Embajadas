@@ -5,6 +5,12 @@ Scenario: Embassy homepage has a list of the available Missions
   When I access my Embassy homepage
   Then I should see the available Missions
 
+Scenario: Embassy homepage is also an entrance door for each Mission
+  Given I am an Ambassador
+  When I access my Embassy homepage
+    And I follow any of the Mission name links
+  Then I should be at the Mission page
+
 Scenario: Embassy homepage contains the short description of each Mission
   Given I am an Ambassador
   When I access my Embassy homepage

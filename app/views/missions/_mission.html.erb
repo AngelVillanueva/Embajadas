@@ -1,6 +1,6 @@
 <li>
   <ul>
-    <li><%= mission.name %></li>
+    <li><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></li>
     <li><%= mission.short_description %></li>
     <li><ul><%= render mission.rewards %></ul></li>
   </ul>
