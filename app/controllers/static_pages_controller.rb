@@ -10,13 +10,17 @@ class StaticPagesController < ApplicationController
 
   private
   def seed_test
-    ambassador = Ambassador.find_or_create_by_id(1)
-    ambassador.name = "The Ambassador"
-    ambassador.password = "foobar"
-    ambassador.email = "the_ambassador@example.com"
-    ambassador.save!
-    mission = Mission.find_or_create_by_id(1)
-    mission.name = "The Mission"
-    mission.save!
+    if Ambassador.find(1).nil?
+      ambassador = Ambassador.new(id: 1)
+      ambassador.name = "The Ambassador"
+      ambassador.password = "foobar"
+      ambassador.email = "the_ambassador@example.com"
+      ambassador.save!
+    end
+    if Mission.find(1).nil?
+      mission = Mission.new(id: 1)
+      mission.name = "The Mission"
+      mission.save!
+    end
   end
 end
