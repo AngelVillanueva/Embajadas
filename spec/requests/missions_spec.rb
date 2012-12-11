@@ -11,6 +11,7 @@ describe "Missions" do
     it { should respond_to :points }
     it { should respond_to :ambassadors }
     it { should respond_to :rewards }
+    it { should respond_to :tracking_id }
     it { should be_valid }
   end
   describe "with accessible attribute name" do
@@ -39,5 +40,26 @@ describe "Missions" do
 
     it { should be_valid }
     its(:embassy) { should == embassy }
+  end
+  describe "with a mandatory tracking_id" do
+    let(:mission) { FactoryGirl.create(:mission) }
+    before { mission.tracking_id = "" }
+    subject { mission }
+
+    it { should_not be_valid }
+  end
+  describe "with a automatically created tracking_id" do
+    let(:mission) { Mission.new }
+    before { mission.save }
+    subject { mission }
+
+    its(:tracking_id) { should_not == nil }
+  end
+  describe "with a unique tracking_id" do
+    let(:mission) { FactoryGirl.create(:mission) }
+    let(:another_mission) { mission.dup }
+    subject { another_mission }
+
+    it { should_not be_valid }
   end
 end

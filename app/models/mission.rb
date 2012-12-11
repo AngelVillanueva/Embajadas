@@ -15,4 +15,25 @@ class Mission < ActiveRecord::Base
   has_many :points
   has_many :ambassadors, through: :points
   has_many :rewards
+
+  before_validation :assign_tracking_id
+
+  validates :tracking_id, presence: true
+  validates :tracking_id, uniqueness: true
+
+  protected
+  def assign_tracking_id
+    if tracking_id.nil?
+      self.tracking_id = get_unique_tracking_id
+    end
+  end
+  def get_unique_tracking_id
+    tracking_id = SecureRandom.hex 5
+    checked = Mission.where(tracking_id: tracking_id)
+    if checked.empty?
+      tracking_id
+    else
+      get_unique_tracking_id
+    end
+  end
 end
