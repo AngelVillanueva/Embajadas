@@ -13,6 +13,7 @@ describe "Ambassadors" do
     it { should respond_to :missions }
     it { should respond_to :badges }
     it { should respond_to :rewards }
+    it { should respond_to :tracking_id }
     it { should be_valid }
   end
   describe "with accessible attribute name" do
@@ -64,5 +65,32 @@ describe "Ambassadors" do
 
     it { should be_valid }
     its(:embassy) { should == embassy }
+  end
+  describe "with a mandatory tracking_id" do
+    let(:ambassador) { FactoryGirl.create(:ambassador)}
+    before do
+      ambassador.tracking_id = ""
+      ambassador.save
+    end
+    subject { ambassador }
+
+    it { should_not be_valid }
+  end
+  describe "with a unique tracking_id" do
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
+    let(:other_ambassador) { ambassador.dup }
+    before do
+      other_ambassador.email = "other@example.com"
+    end
+    subject { other_ambassador }
+
+    it { should_not be_valid }
+  end
+  describe "with an automatically created tracking_id" do
+    let(:ambassador) { Ambassador.new }
+    before { ambassador.save }
+    subject { ambassador }
+
+    its(:tracking_id) { should_not == nil }
   end
 end
