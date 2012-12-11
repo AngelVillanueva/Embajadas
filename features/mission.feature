@@ -15,3 +15,8 @@ Scenario: Missions have Rewards
     And a Mission has associated Rewards
   When I access the Mission page
   Then I should see the Mission Rewards
+
+Scenario: Mission is deleted if its Embassy is deleted
+  Given an Embassy has available Missions
+  When the Embassy is deleted
+  Then its Missions should be deleted

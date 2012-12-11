@@ -30,9 +30,9 @@ class Ambassador < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :embassy_id, :email, :password, :password_confirmation, :remember_me
   belongs_to :embassy
-  has_many :points
+  has_many :points, dependent: :destroy
   has_many :missions, through: :points
-  has_many :badges
+  has_many :badges, dependent: :destroy
   has_many :rewards, through: :badges
 
   before_validation :assign_random_tracking_id

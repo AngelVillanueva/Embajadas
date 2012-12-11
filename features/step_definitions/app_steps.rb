@@ -26,6 +26,16 @@ Given /^I am a common web user$/ do
   # do nothing
 end
 
+Given /^I have some Points$/ do
+  step "somebody behaves as I have recommended"
+  Ambassador.find(1).points.count.should == 1
+end
+
+Given /^I have some Badges$/ do
+  step "one of my Missions has a Reward"
+  step "I have been awarded with the Badge for that Reward"
+end
+
 When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
   embassy_id = Embassy.find_by_name(name).id
   visit embassy_path(embassy_id)
@@ -99,6 +109,10 @@ When /^I arrive at a page with a pixel tracker$/ do
   visit pixel_test_path
   image = page.first(:css, "img")
   get image[:src]
+end
+
+When /^the (.*?) is deleted$/ do |model|
+  model.constantize.find(1).destroy
 end
 
 Then /^I should be prompted to authenticate myself$/ do
@@ -186,4 +200,32 @@ end
 
 Then /^I should be at the Mission page$/ do
   step "I should see the Mission name"
+end
+
+Then /^her points should be deleted$/ do
+  Point.where(ambassador_id: 1).count.should == 0
+  Point.where(mission_id: 1).count.should == 0
+end
+
+Then /^her Badges should be deleted$/ do
+  Badge.where(ambassador_id: 1).count.should == 0
+  Badge.where(reward_id: 1).count.should == 0
+end
+
+Then /^its Badges should be deleted$/ do
+  Badge.where(reward_id: 1).count.should == 0
+  Badge.where(ambassador_id: 1).count.should == 0
+end
+
+Then /^its points should be deleted$/ do
+  Point.where(mission_id: 1).count.should == 0
+  Point.where(ambassador_id: 1).count.should == 0
+end
+
+Then /^its Missions should be deleted$/ do
+  Mission.where(embassy_id: 1).count.should == 0
+end
+
+Then /^its Rewards should be deleted$/ do
+  Reward.where(mission_id: 1).count.should == 0
 end

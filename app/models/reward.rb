@@ -13,6 +13,6 @@
 class Reward < ActiveRecord::Base
   attr_accessible :name, :target_points, :mission_id
   belongs_to :mission
-  has_many :badges
+  has_many :badges, dependent: :destroy
   has_many :ambassadors, through: :badges
 end
