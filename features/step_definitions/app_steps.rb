@@ -83,7 +83,9 @@ When /^a Mission has associated Rewards$/ do
 end
 
 When /^somebody behaves as I have recommended$/ do
-  visit tracker_path(ambassador_id: 1, mission_id: 1)
+  amb = Ambassador.find(1).tracking_id
+  miss = Mission.find(1).tracking_id
+  visit tracker_path(ambassador: amb, mission: miss)
 end
 
 When /^the Ambassador achieves the target points for the Reward$/ do
@@ -94,7 +96,6 @@ When /^the Ambassador achieves the target points for the Reward$/ do
 end
 
 When /^I arrive at a page with a pixel tracker$/ do
-  step "I am an Ambassador"
   visit pixel_test_path
   image = page.first(:css, "img")
   get image[:src]
