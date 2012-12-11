@@ -16,6 +16,7 @@ Embajadas::Application.routes.draw do
     resources :missions
   end
 
+  match 'coder' => 'codes#create', as: :coder
   match 'tracker' => 'points#create', as: :tracker
   match 'pixel_test' => 'static_pages#pixel_test', as: :pixel_test
 

@@ -36,6 +36,10 @@ Given /^I have some Badges$/ do
   step "I have been awarded with the Badge for that Reward"
 end
 
+Given /^I have a Code for a Mission$/ do
+  step "I request a Code for a Mission"
+end
+
 When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
   embassy_id = Embassy.find_by_name(name).id
   visit embassy_path(embassy_id)
@@ -113,6 +117,12 @@ end
 
 When /^the (.*?) is deleted$/ do |model|
   model.constantize.find(1).destroy
+end
+
+When /^I request a Code for a Mission$/ do
+  step 'I visit the homepage for the "The Embassy" Embassy'
+  step "I authenticate myself as her Ambassador"
+  visit coder_path(mission: Mission.find(1))
 end
 
 Then /^I should be prompted to authenticate myself$/ do
@@ -228,4 +238,17 @@ end
 
 Then /^its Rewards should be deleted$/ do
   Reward.where(mission_id: 1).count.should == 0
+end
+
+Then /^my code for the Mission should be created$/ do
+  Code.where(ambassador_id: 1, mission_id: 1).count.should == 1
+  Code.all.count == 1
+end
+
+Then /^her Codes should be deleted$/ do
+  Code.where(ambassador_id: 1).count.should == 0
+end
+
+Then /^its Codes should be deleted$/ do
+  Code.where(mission_id: 1).count.should == 0
 end

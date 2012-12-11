@@ -16,6 +16,7 @@ class Mission < ActiveRecord::Base
   belongs_to :embassy
   has_many :points, dependent: :destroy
   has_many :ambassadors, through: :points
+  has_many :codes, dependent: :destroy
   has_many :rewards, dependent: :destroy
 
   before_validation :assign_tracking_id

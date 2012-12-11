@@ -13,4 +13,6 @@ en:
   Test points: "We had %{points} points till now"
   flash:
     Access not allowed: "Access not allowed"
+    Code generated: "Code generated"
+    Error generating the Code: "Error generating the Code"
 

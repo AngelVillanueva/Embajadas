@@ -14,6 +14,7 @@ describe "Ambassadors" do
     it { should respond_to :badges }
     it { should respond_to :rewards }
     it { should respond_to :tracking_id }
+    it { should respond_to :codes }
     it { should be_valid }
   end
   describe "with accessible attribute name" do
