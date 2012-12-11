@@ -164,10 +164,24 @@ Then /^the Ambassador is awarded with a new Badge$/ do
   ambassador.badges.count.should == 1
 end
 
+When /^I have been awarded with the Badge for that Reward$/ do
+  step "the Ambassador achieves the target points for the Reward"
+end
+
+When /^I obtain more points for that Reward$/ do
+  step "somebody behaves as I have recommended"
+end
+
 Then /^I should increase the Points count for an Ambassador$/ do
   ambassador = Ambassador.find(1)
   points = ambassador.points.where(mission_id: 1).count
   points.should == 1
+end
+
+Then /^I can not be awarded again with the same Badge$/ do
+  ambassador = Ambassador.find(1)
+  ambassador.badges.count.should == 2
+  ambassador.badges.where(reward_id: 1).count.should == 1
 end
 
 Then /^I should be at the Mission page$/ do

@@ -21,7 +21,7 @@ class Point < ActiveRecord::Base
     reward = Reward.where(mission_id: mission.id)
     reward.each do |r|
       target_points = r.target_points
-      if ambassador_points >= target_points
+      if ambassador_points >= target_points && ambassador.badges.where(reward_id: r.id).empty?
         badge = Badge.new
         badge.ambassador = ambassador
         badge.reward = r
