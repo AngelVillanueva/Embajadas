@@ -2,11 +2,13 @@
 #
 # Table name: missions
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  embassy_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  embassy_id        :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  short_description :text
+#  tracking_id       :string(255)
 #
 
 class Mission < ActiveRecord::Base
