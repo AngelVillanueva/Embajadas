@@ -10,6 +10,24 @@ describe "Codes" do
     it { should respond_to :mission }
     it { should be_valid } 
   end
+  describe "with mandatory ambassador_id field" do
+    let(:code) { Code.new }
+    before do
+      code.mission_id = 1
+    end
+    subject { code }
+
+    it { should_not be_valid }
+  end
+  describe "with mandatory mission_id field" do
+    let(:code) { Code.new }
+    before do
+      code.ambassador_id = 1
+    end
+    subject { code }
+
+    it { should_not be_valid }
+  end
   describe "with mandatory code field" do
     let(:code) { Code.new }
     before do

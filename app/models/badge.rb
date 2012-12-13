@@ -12,4 +12,6 @@
 class Badge < ActiveRecord::Base
   belongs_to :ambassador
   belongs_to :reward
+
+  validates :ambassador_id, :reward_id, presence: true
 end

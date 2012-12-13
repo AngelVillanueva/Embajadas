@@ -38,7 +38,8 @@ class Ambassador < ActiveRecord::Base
 
   before_validation :assign_random_tracking_id
 
-  validates :tracking_id, presence: true
+  # email and password presence are mandatory via devise
+  validates :name, :embassy_id, :tracking_id, presence: true
   validates :tracking_id, uniqueness: true
 
   protected

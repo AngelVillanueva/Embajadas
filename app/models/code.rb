@@ -16,7 +16,7 @@ class Code < ActiveRecord::Base
 
   before_validation :assign_code
 
-  validates :code, presence: true
+  validates :ambassador_id, :mission_id, :code, presence: true
 
   protected
   def assign_code

@@ -17,35 +17,81 @@ describe "Ambassadors" do
     it { should respond_to :codes }
     it { should be_valid }
   end
-  describe "with accessible attribute name" do
-    let(:ambassador) { Ambassador.new(name: "Inigo Montoya") }
+  describe "with with a mandatory attribute name" do
+    let(:ambassador) { Ambassador.new }
     before do
       ambassador.email = "imontoya@example.com"
       ambassador.password = "foobar"
     end
     subject { ambassador }
 
+    it { should_not be_valid }
+  end
+  describe "with accessible attribute name" do
+    let(:ambassador) { Ambassador.new(name: "Inigo Montoya") }
+    before do
+      ambassador.email = "imontoya@example.com"
+      ambassador.password = "foobar"
+      ambassador.embassy_id = 1
+    end
+    subject { ambassador }
+
     it { should be_valid }
+  end
+  describe "with with a mandatory attribute email" do
+    let(:ambassador) { Ambassador.new }
+    before do
+      ambassador.name = "Inigo Montoya"
+      ambassador.password = "foobar"
+      ambassador.embassy_id = 1
+    end
+    subject { ambassador }
+
+    it { should_not be_valid }
   end
   describe "with accessible attribute email" do
     let(:ambassador) { Ambassador.new(email: "imontoya@example.com") }
     before do
       ambassador.name = "Inigo Montoya"
       ambassador.password = "foobar"
+      ambassador.embassy_id = 1
     end
     subject { ambassador }
 
     it { should be_valid }
+  end
+  describe "with with a mandatory attribute password" do
+    let(:ambassador) { Ambassador.new }
+    before do
+      ambassador.name = "Inigo Montoya"
+      ambassador.email = "imontoya@example.com"
+      ambassador.embassy_id = 1
+    end
+    subject { ambassador }
+
+    it { should_not be_valid }
   end
   describe "with accessible attribute password" do
     let(:ambassador) { Ambassador.new(password: "foobar") }
     before do
       ambassador.name = "Inigo Montoya"
       ambassador.email = "imontoya@example.com"
+      ambassador.embassy_id = 1
     end
     subject { ambassador }
 
     it { should be_valid }
+  end
+  describe "with with a mandatory attribute embassy_id" do
+    let(:ambassador) { Ambassador.new }
+    before do
+      ambassador.name = "Inigo Montoya"
+      ambassador.email = "imontoya@example.com"
+      ambassador.password = "foobar"
+    end
+    subject { ambassador }
+
+    it { should_not be_valid }
   end
   describe "with accessible attribute embassy_id" do
     let(:embassy) { FactoryGirl.create(:embassy) }
