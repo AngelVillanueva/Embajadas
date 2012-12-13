@@ -23,4 +23,9 @@ FactoryGirl.define do
     password "foobar"
     embassy
   end
+  factory :code do
+    code "cccccccc"
+    ambassador
+    mission
+  end
 end
