@@ -1,5 +1,5 @@
 <%= simple_form_for @code, url: url_for(action: 'create', controller: 'codes'), method: 'post' do |f| %>
-  <%= f.input :mission, as: :hidden, input_html: {value: mission.id} %>
+  <%= f.input :mission, as: :hidden, input_html: {value: mission.tracking_id} %>
 
   <%= f.button :submit, id: "generate_code", value: t("Generate Code") %>
   
