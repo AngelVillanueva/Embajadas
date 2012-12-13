@@ -122,7 +122,11 @@ end
 When /^I request a Code for a Mission$/ do
   step 'I visit the homepage for the "The Embassy" Embassy'
   step "I authenticate myself as her Ambassador"
-  visit coder_path(mission: Mission.find(1))
+  step "I request the Code generation"
+end
+
+When /^I request the Code generation$/ do
+  click_button 'generate_code'
 end
 
 Then /^I should be prompted to authenticate myself$/ do
@@ -196,6 +200,10 @@ When /^I obtain more points for that Reward$/ do
   step "somebody behaves as I have recommended"
 end
 
+When /^the Mission Code has not been generated yet$/ do
+  Mission.find(1).codes.where(ambassador_id: 1).count == 0
+end
+
 Then /^I should increase the Points count for an Ambassador$/ do
   ambassador = Ambassador.find(1)
   points = ambassador.points.where(mission_id: 1).count
@@ -251,4 +259,19 @@ end
 
 Then /^its Codes should be deleted$/ do
   Code.where(mission_id: 1).count.should == 0
+end
+
+Then /^I should see the button to generate the Code for each Mission$/ do
+  page.should have_css('#code_mission')
+  page.should have_css('#generate_code')
+end
+
+Then /^I should see the generated Code$/ do
+  page.should have_content(I18n.t("flash.Code generated"))
+  page.should have_css('#code_mission_1')
+end
+
+Then /^I should not see the generated Code$/ do
+  page.should_not have_content(I18n.t("flash.Code generated"))
+  page.should_not have_css('#code_mission_1')
 end

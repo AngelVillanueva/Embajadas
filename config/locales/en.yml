@@ -10,6 +10,8 @@ en:
   Ambassador tracking_id for test: "Ambassador tracking_ID for the test is %{ambassador_tracking_id}"
   Mission tracking_id for test: "Mission tracking_ID for the test is %{mission_tracking_id}"
   Pixel: "Pixel"
+  Generate Code: "Generate Code"
+  Code: "Code"
   Test points: "We had %{points} points till now"
   flash:
     Access not allowed: "Access not allowed"

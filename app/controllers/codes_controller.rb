@@ -3,7 +3,7 @@ class CodesController < ApplicationController
     @code = Code.new
 
     @code.ambassador_id = current_ambassador.id
-    @code.mission_id = params[:mission]
+    @code.mission_id = params[:code][:mission]
     @code.code = "ABC"
 
     if @code.save
