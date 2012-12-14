@@ -15,4 +15,6 @@ class Reward < ActiveRecord::Base
   belongs_to :mission
   has_many :badges, dependent: :destroy
   has_many :ambassadors, through: :badges
+
+  validates :name, :target_points, :mission_id, presence: true
 end
