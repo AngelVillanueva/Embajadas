@@ -15,6 +15,8 @@ class Point < ActiveRecord::Base
 
   after_save :assign_badges
 
+  validates :ambassador_id, :mission_id, presence: true
+
   private
   def assign_badges
     ambassador_points = ambassador.points.where(mission_id: mission.id).count
