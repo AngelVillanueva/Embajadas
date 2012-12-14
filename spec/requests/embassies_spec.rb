@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Embassies" do
   describe "Model" do
-    let(:embassy) { Embassy.new }
+    let(:embassy) { FactoryGirl.create(:embassy) }
     subject { embassy }
 
     it { should respond_to :name}
@@ -11,7 +11,16 @@ describe "Embassies" do
     it { should respond_to :consuls }
     it { should be_valid }
   end
-  describe "with accessible attributes" do
+  describe "with mandatory attribute name" do
+    let(:embassy) { Embassy.new(name: "Brand name") }
+    subject { embassy }
+    before do
+      embassy.name = ""
+    end
+
+    it { should_not be_valid }
+  end
+  describe "with accessible attribute name" do
     let(:embassy) { Embassy.new(name: "Brand name") }
     subject { embassy }
 

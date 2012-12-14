@@ -14,5 +14,6 @@ class Embassy < ActiveRecord::Base
   has_many :ambassadors
   has_many :consuls
 
+  validates :name, presence: true
   validates :name, uniqueness: true
 end
