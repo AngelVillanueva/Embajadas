@@ -21,7 +21,7 @@ class Mission < ActiveRecord::Base
 
   before_validation :assign_tracking_id
 
-  validates :tracking_id, presence: true
+  validates :name, :short_description, :embassy_id, :tracking_id, presence: true
   validates :tracking_id, uniqueness: true
 
   protected

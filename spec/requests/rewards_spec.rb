@@ -81,7 +81,7 @@ describe "Model" do
     it { should be_valid }
   end
   describe "belonging to a Mission" do
-    let(:mission) { FactoryGirl.create(:mission) }
+    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
     let(:reward) { FactoryGirl.create(:reward, mission: mission) }
     subject { reward }
 

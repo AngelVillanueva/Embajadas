@@ -32,6 +32,7 @@ class StaticPagesController < ApplicationController
     if Mission.where(id: 1).empty?
       mission = Mission.new(id: 1)
       mission.name = "The Mission"
+      mission.short_description = "Short description for the Mission"
       mission.tracking_id = "bbbbbbbbbb"
       mission.embassy = embassy
       mission.save!

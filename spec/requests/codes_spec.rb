@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe "Codes" do
   describe "Model" do
-    let(:code) { FactoryGirl.create(:code) }
+    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
+    let(:code) { FactoryGirl.create(:code, mission_id: mission.id) }
     subject { code }
 
     it { should respond_to :code }
