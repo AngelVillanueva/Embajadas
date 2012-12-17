@@ -9,6 +9,7 @@ en:
   Pixel Test Page: "Pixel Test Page"
   Ambassador tracking_id for test: "Ambassador tracking_ID for the test is %{ambassador_tracking_id}"
   Mission tracking_id for test: "Mission tracking_ID for the test is %{mission_tracking_id}"
+  Sharing URL: "Sharing URL"
   Pixel: "Pixel"
   Generate Code: "Generate Code"
   Code: "Code"

@@ -275,3 +275,7 @@ Then /^I should not see the generated Code$/ do
   page.should_not have_content(I18n.t("flash.Code generated"))
   page.should_not have_css('#code_mission_1')
 end
+
+Then /^I should see the url to be shared for each available Mission$/ do
+  page.should have_content("http://www.brandpage.com?ambassador=")
+end

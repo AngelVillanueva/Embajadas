@@ -12,7 +12,7 @@
 #
 
 class Mission < ActiveRecord::Base
-  attr_accessible :name, :short_description, :embassy_id
+  attr_accessible :name, :short_description, :embassy_id, :tracking_url
   belongs_to :embassy
   has_many :points, dependent: :destroy
   has_many :ambassadors, through: :points
@@ -21,7 +21,7 @@ class Mission < ActiveRecord::Base
 
   before_validation :assign_tracking_id
 
-  validates :name, :short_description, :embassy_id, :tracking_id, presence: true
+  validates :name, :short_description, :embassy_id, :tracking_url, :tracking_id, presence: true
   validates :tracking_id, uniqueness: true
 
   protected

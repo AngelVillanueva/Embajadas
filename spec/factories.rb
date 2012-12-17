@@ -5,6 +5,7 @@ FactoryGirl.define do
   factory :mission do
     name "Mission 1"
     short_description "Short description for Mission 1"
+    tracking_url "http://www.brandpage.com"
   end
   factory :ambassador do
     name "Inigo Montoya"
