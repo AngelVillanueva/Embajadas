@@ -1,15 +1,10 @@
-<% pixel_html = '<img src="' + tracker_url(ambassador_id: current_ambassador.id, mission_id: mission.id) + %q(" border="0" height="1" width="1" />) %>
-
-<% mission_code = "" %>
-<% if mission_code_exists = mission.codes.where(ambassador_id: current_ambassador.id).first %>
-  <% mission_code = mission_code_exists.code %>
-<% end %>
+<% tracking_URL = "http://" + mission.tracking_url + "?ambassador=" + current_ambassador.tracking_id %>
 
 <li>
   <ul>
     <li><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></li>
     <li><%= mission.short_description %></li>
-    <li><%= t("Pixel") %>: <%= pixel_html %></li>
+    <li><%= t("Sharing URL") %>: <%= link_to tracking_URL, tracking_URL %></li>
     <li><ul><%= render mission.rewards %></ul></li>
   </ul>
 </li>

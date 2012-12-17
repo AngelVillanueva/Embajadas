@@ -8,6 +8,7 @@ describe "Missions" do
       mission.name = "The name for the Mission"
       mission.short_description = "The short description for the Mission"
       mission.embassy_id = 1
+      mission.tracking_url = "www.brandpage.com"
     end
 
     it { should respond_to :name }
@@ -17,6 +18,7 @@ describe "Missions" do
     it { should respond_to :ambassadors }
     it { should respond_to :rewards }
     it { should respond_to :tracking_id }
+    it { should respond_to :tracking_url }
     it { should respond_to :codes }
     it { should be_valid }
   end
@@ -35,6 +37,7 @@ describe "Missions" do
     before do
       mission.short_description = "The short description for the Mission"
       mission.embassy_id = 1
+      mission.tracking_url = "www.brandpage.com"
     end
 
     it { should be_valid }
@@ -53,6 +56,7 @@ describe "Missions" do
     subject { mission }
     before do
       mission.embassy_id = 1
+      mission.tracking_url = "www.brandpage.com"
     end
 
     it { should be_valid }
@@ -73,6 +77,7 @@ describe "Missions" do
     before do
       mission.name = "The name for the Mission"
       mission.short_description = "The short description for the Mission"
+      mission.tracking_url = "www.brandpage.com"
     end
 
     it { should be_valid }
@@ -107,5 +112,25 @@ describe "Missions" do
     subject { another_mission }
 
     it { should_not be_valid }
+  end
+  describe "with a mandatory tracking_url" do
+    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
+    before do
+      mission.tracking_url = ""
+    end
+    subject { mission }
+
+    it { should_not be_valid }
+  end
+  describe "with accessible attribute tracking_url" do
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { Mission.new(embassy_id: 1, tracking_url: "www.brandpage.com") }
+    subject { mission }
+    before do
+      mission.name = "The name for the Mission"
+      mission.short_description = "The short description for the Mission"
+    end
+
+    it { should be_valid }
   end
 end

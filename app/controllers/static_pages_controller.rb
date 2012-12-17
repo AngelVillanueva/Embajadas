@@ -34,6 +34,7 @@ class StaticPagesController < ApplicationController
       mission.name = "The Mission"
       mission.short_description = "Short description for the Mission"
       mission.tracking_id = "bbbbbbbbbb"
+      mission.tracking_url = "www.brandpage.com"
       mission.embassy = embassy
       mission.save!
     end
