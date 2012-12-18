@@ -15,6 +15,8 @@ gem 'devise'
 
 # Rails_Admin
 gem 'rails_admin'
+# CanCan
+gem 'cancan'
 
 # Locale app
 # gem 'localeapp' # issues with pull-push in dev mode

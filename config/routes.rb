@@ -1,4 +1,5 @@
 Embajadas::Application.routes.draw do
+
   devise_for :consuls
 
   mount RailsAdmin::Engine => '/brands', :as => 'rails_admin'
