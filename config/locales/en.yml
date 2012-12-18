@@ -18,4 +18,7 @@ en:
     Access not allowed: "Access not allowed"
     Code generated: "Code generated"
     Error generating the Code: "Error generating the Code"
+  unauthorized:
+    manage:
+      all: "You are not authorized to access that page"
 

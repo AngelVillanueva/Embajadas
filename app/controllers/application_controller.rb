@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :set_locale
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
+    redirect_to main_app.root_path
+  end
   
 
   
