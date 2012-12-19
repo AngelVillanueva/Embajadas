@@ -9,6 +9,7 @@ describe "Consuls" do
     it { should respond_to :email }
     it { should respond_to :password }
     it { should respond_to :embassy }
+    it { should respond_to :minister }
     it { should be_valid }
   end
   describe "with mandatory attribute name" do
