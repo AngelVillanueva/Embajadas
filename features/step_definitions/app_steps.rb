@@ -8,6 +8,14 @@ Given /^I am an Ambassador$/ do
   ambassador = FactoryGirl.create(:ambassador, embassy: embassy)
 end
 
+Given /^I am a Consul$/ do
+  FactoryGirl.create(:consul)
+end
+
+Given /^I am a Minister$/ do
+  FactoryGirl.create(:consul, minister: true)
+end
+
 Given /^an Embassy has available Missions$/ do
   embassy = Embassy.find_by_name("The Embassy") || FactoryGirl.create(:embassy)
   m1 = FactoryGirl.create(:mission, name: "Mission 1 for The Embassy", short_description: "Short description for Mission 1", embassy: embassy)
@@ -38,6 +46,24 @@ end
 
 Given /^I have a Code for a Mission$/ do
   step "I request a Code for a Mission"
+end
+
+Given /^there are Embassies from different Consuls$/ do
+  step "I am an Ambassador"
+  step "a Mission has associated Rewards"
+  another_embassy = FactoryGirl.create(:embassy, name: "Another Embassy")
+  another_consul = FactoryGirl.create(:consul, email: "another_consul@example.com", embassy: another_embassy)
+  another_ambassador = FactoryGirl.create(:ambassador, email: "another_ambassador@example.com", embassy: another_embassy, name: "Another Ambassador")
+  another_mission = FactoryGirl.create(:mission, embassy: another_embassy, name: "Another Mission")
+  another_reward = FactoryGirl.create(:reward, mission: another_mission, name: "Another Reward")
+  another_point = Point.new
+  another_point.mission = another_mission
+  another_point.ambassador = another_ambassador
+  another_point.save
+  another_code = Code.new
+  another_code.ambassador = another_ambassador
+  another_code.mission = another_mission
+  another_code.save
 end
 
 When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
@@ -127,6 +153,20 @@ end
 
 When /^I request the Code generation$/ do
   click_button 'generate_code'
+end
+
+When /^I access the Brand area$/ do
+  visit rails_admin.dashboard_path
+  fill_in "consul_email", with: "consul@example.com"
+  fill_in "consul_password", with: "foobar"
+  page.find('input[type=submit]').click
+end
+
+When /^I try to access the Brand area$/ do
+  visit rails_admin.dashboard_path
+  fill_in "consul_email", with: "imontoya@example.com"
+  fill_in "consul_password", with: "foobar"
+  page.find('input[type=submit]').click
 end
 
 Then /^I should be prompted to authenticate myself$/ do
@@ -278,4 +318,61 @@ end
 
 Then /^I should see the url to be shared for each available Mission$/ do
   page.should have_content("http://www.brandpage.com?ambassador=")
+end
+
+Then /^I should be at the Brand area dashboard$/ do
+  page.should have_css('.rails_admin')
+  page.should have_css('.alert-notice', text: I18n.t("devise.sessions.signed_in"))
+end
+
+Then /^I should not be at the Brand area dashboard$/ do
+  page.should_not have_css('.rails_admin')
+  page.should_not have_css('.alert-notice', text: I18n.t("devise.sessions.signed_in"))
+  page.should have_css('.alert-alert', text: I18n.t("devise.failure.invalid"))
+end
+
+Then /^I should see just data from my Embassy$/ do
+  visit rails_admin.index_path(model_name: 'Embassy')
+  page.should have_content("The Embassy")
+  page.should_not have_content("Another Embassy")
+  visit rails_admin.index_path(model_name: 'Ambassador')
+  page.should have_content("Inigo Montoya")
+  page.should_not have_content("Another Ambassador")
+  visit rails_admin.index_path(model_name: 'Mission')
+  page.should have_content("Mission 1 for The Embassy")
+  page.should have_content("Mission 2 for The Embassy")
+  page.should_not have_content("Another Mission")
+  visit rails_admin.index_path(model_name: 'Reward')
+  page.should have_content("Reward 1 for Mission 1")
+  page.should have_content("Reward 2 for Mission 1")
+  page.should_not have_content("Another Reward")
+  visit rails_admin.index_path(model_name: 'Point')
+  page.all('td.id_field').count.should == 0
+  visit rails_admin.index_path(model_name: 'Badge')
+  page.all('td.id_field').count.should == 0
+  visit rails_admin.index_path(model_name: 'Code')
+  page.all('td.id_field').count.should == 0
+end
+
+Then /^I should see data from all the Embassies$/ do
+  visit rails_admin.index_path(model_name: 'Embassy')
+  page.should have_content("The Embassy")
+  page.should have_content("Another Embassy")
+  visit rails_admin.index_path(model_name: 'Ambassador')
+  page.should have_content("Inigo Montoya")
+  page.should have_content("Another Ambassador")
+  visit rails_admin.index_path(model_name: 'Mission')
+  page.should have_content("Mission 1 for The Embassy")
+  page.should have_content("Mission 2 for The Embassy")
+  page.should have_content("Another Mission")
+  visit rails_admin.index_path(model_name: 'Reward')
+  page.should have_content("Reward 1 for Mission 1")
+  page.should have_content("Reward 2 for Mission 1")
+  page.should have_content("Another Reward")
+  visit rails_admin.index_path(model_name: 'Point')
+  page.all('td.id_field').count.should == 1
+  visit rails_admin.index_path(model_name: 'Badge')
+  page.all('td.id_field').count.should == 1
+  visit rails_admin.index_path(model_name: 'Code')
+  page.all('td.id_field').count.should == 1
 end
