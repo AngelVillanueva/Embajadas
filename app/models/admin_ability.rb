@@ -2,10 +2,23 @@ class AdminAbility
   include CanCan::Ability
 
   def initialize(consul)
-    # Default access granted to RailsAdmin dashboard
+    # Default access granted to RailsAdmin dashboard for Consuls
     if consul
       can :access, :rails_admin
       can :dashboard
+      # SuperAdmin users can manage all
+      if consul.minister?
+        can :manage, :all
+      # Consuls can just manage its own resources
+      else
+        can :manage, Embassy, :id => consul.embassy_id
+        can :manage, Mission, :embassy_id => consul.embassy_id
+        can :manage, Ambassador, :embassy_id => consul.embassy_id
+        can :manage, Reward, :mission => { :embassy_id => consul.embassy_id }
+        can :manage, Code, mission: { embassy_id: consul.embassy_id } 
+        can :manage, Point, :mission => { :embassy_id => consul.embassy_id }
+        can :manage, Badge, :ambassador => { embassy_id: consul.embassy_id }
+      end
     end
     # Define abilities for the passed in user here. For example:
     #
