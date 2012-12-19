@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219085951) do
+ActiveRecord::Schema.define(:version => 20121219162655) do
 
   create_table "ambassadors", :force => true do |t|
     t.string   "name"
@@ -79,11 +79,11 @@ ActiveRecord::Schema.define(:version => 20121219085951) do
   create_table "missions", :force => true do |t|
     t.string   "name"
     t.integer  "embassy_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.text     "short_description"
     t.string   "tracking_id"
-    t.string   "tracking_url"
+    t.text     "tracking_url",      :limit => 255
   end
 
   create_table "points", :force => true do |t|
