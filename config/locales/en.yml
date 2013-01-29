@@ -14,10 +14,13 @@ en:
   Generate Code: "Generate Code"
   Code: "Code"
   Test points: "We had %{points} points till now"
+  Accept Mission: "Accept Mission"
   flash:
     Access not allowed: "Access not allowed"
     Code generated: "Code generated"
     Error generating the Code: "Error generating the Code"
+    Mission accepted: "Mission accepted"
+    Mission could not be accepted: "Error accepting the Mission"
   unauthorized:
     manage:
       all: "You are not authorized to access that page"

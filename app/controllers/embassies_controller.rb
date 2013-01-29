@@ -7,6 +7,7 @@ class EmbassiesController < ApplicationController
   def show
     @embassy = Embassy.find(params[:id])
     @missions = @embassy.missions
+    @assignment = Assignment.new
   end
 
 end
