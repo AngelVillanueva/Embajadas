@@ -19,7 +19,7 @@ describe "Missions" do
     it { should respond_to :rewards }
     it { should respond_to :tracking_id }
     it { should respond_to :tracking_url }
-    it { should respond_to :codes }
+    it { should respond_to :assignments }
     it { should be_valid }
   end
   describe "with mandatory attribute name" do

@@ -32,7 +32,7 @@ class Ambassador < ActiveRecord::Base
   belongs_to :embassy
   has_many :points, dependent: :destroy
   has_many :missions, through: :points
-  has_many :codes, dependent: :destroy
+  has_many :assignments, dependent: :destroy
   has_many :badges, dependent: :destroy
   has_many :rewards, through: :badges
 

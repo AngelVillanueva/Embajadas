@@ -4,7 +4,7 @@ class MissionsController < ApplicationController
   
   def show
     @mission = Mission.find(params[:id])
-    @code = Code.new
+    @assignment = Assignment.new
     @rewards = @mission.rewards
   end
 

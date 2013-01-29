@@ -15,7 +15,7 @@ class AdminAbility
         can :manage, Mission, :embassy_id => consul.embassy_id
         can :manage, Ambassador, :embassy_id => consul.embassy_id
         can :manage, Reward, :mission => { :embassy_id => consul.embassy_id }
-        can :manage, Code, mission: { embassy_id: consul.embassy_id } 
+        can :manage, Assignment, mission: { embassy_id: consul.embassy_id } 
         can :manage, Point, :mission => { :embassy_id => consul.embassy_id }
         can :manage, Badge, :ambassador => { embassy_id: consul.embassy_id }
       end
