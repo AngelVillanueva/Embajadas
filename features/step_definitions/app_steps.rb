@@ -169,6 +169,10 @@ When /^I try to access the Brand area$/ do
   page.find('input[type=submit]').click
 end
 
+When /^I accept the Mission$/ do
+  click_button "accept_mission"
+end
+
 Then /^I should be prompted to authenticate myself$/ do
   page.should have_css("form[action*='/ambassadors/sign_in']")
 end
@@ -377,6 +381,10 @@ Then /^I should see data from all the Embassies$/ do
   page.all('td.id_field').count.should == 1
 end
 
-Then /^I should accept the Mission$/ do
+Then /^I am prompted to accept the Mission$/ do
   page.should have_css('#accept_mission')
+end
+Then /^a new Assignment should be generated$/ do
+  Assignment.where(mission_id: 1).count.should == 1
+  Assignment.where(ambassador_id: 1).count.should == 1
 end

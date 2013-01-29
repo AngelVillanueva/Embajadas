@@ -6,8 +6,6 @@
     <li><%= mission.short_description %></li>
     <li><%= t("Sharing URL") %>: <%= link_to tracking_URL, tracking_URL %></li>
     <li><ul><%= render mission.rewards %></ul></li>
-    <%= 
-    #render 'accept_form' 
-    %>
+    <%= render 'missions/accept_form', mission: mission %>
   </ul>
 </li>
