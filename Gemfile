@@ -12,11 +12,13 @@ gem 'routing-filter' # to prepend locale to url; other uses (pagination, extensi
 
 # Devise
 gem 'devise'
-
 # Rails_Admin
 gem 'rails_admin'
 # CanCan
 gem 'cancan'
+
+# Bitly
+gem 'bitly'
 
 # Locale app
 # gem 'localeapp' # issues with pull-push in dev mode
