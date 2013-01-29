@@ -1,0 +1,6 @@
+<%= simple_form_for @assignment, url: url_for(action: 'create', controller: 'assignments'), method: 'post' do |f| %>
+  <%= f.input :mission, as: :hidden, input_html: {value: mission.tracking_id} %>
+
+  <%= f.button :submit, id: "accept_mission", value: t("Accept Mission") %>
+  
+<% end%>

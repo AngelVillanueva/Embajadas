@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219162655) do
+ActiveRecord::Schema.define(:version => 20130129164416) do
 
   create_table "ambassadors", :force => true do |t|
     t.string   "name"
@@ -34,17 +34,19 @@ ActiveRecord::Schema.define(:version => 20121219162655) do
   add_index "ambassadors", ["email"], :name => "index_ambassadors_on_email", :unique => true
   add_index "ambassadors", ["reset_password_token"], :name => "index_ambassadors_on_reset_password_token", :unique => true
 
-  create_table "badges", :force => true do |t|
+  create_table "assignments", :force => true do |t|
+    t.string   "code"
+    t.text     "tracking_url"
+    t.string   "short_url"
+    t.integer  "mission_id"
     t.integer  "ambassador_id"
-    t.integer  "reward_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "codes", :force => true do |t|
-    t.string   "code"
+  create_table "badges", :force => true do |t|
     t.integer  "ambassador_id"
-    t.integer  "mission_id"
+    t.integer  "reward_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

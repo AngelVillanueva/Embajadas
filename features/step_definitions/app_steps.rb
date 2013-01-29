@@ -60,10 +60,10 @@ Given /^there are Embassies from different Consuls$/ do
   another_point.mission = another_mission
   another_point.ambassador = another_ambassador
   another_point.save
-  another_code = Code.new
-  another_code.ambassador = another_ambassador
-  another_code.mission = another_mission
-  another_code.save
+  another_assignment = Assignment.new
+  another_assignment.ambassador = another_ambassador
+  another_assignment.mission = another_mission
+  another_assignment.save
 end
 
 When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
@@ -350,7 +350,7 @@ Then /^I should see just data from my Embassy$/ do
   page.all('td.id_field').count.should == 0
   visit rails_admin.index_path(model_name: 'Badge')
   page.all('td.id_field').count.should == 0
-  visit rails_admin.index_path(model_name: 'Code')
+  visit rails_admin.index_path(model_name: 'Assignment')
   page.all('td.id_field').count.should == 0
 end
 
@@ -373,6 +373,10 @@ Then /^I should see data from all the Embassies$/ do
   page.all('td.id_field').count.should == 1
   visit rails_admin.index_path(model_name: 'Badge')
   page.all('td.id_field').count.should == 1
-  visit rails_admin.index_path(model_name: 'Code')
+  visit rails_admin.index_path(model_name: 'Assignment')
   page.all('td.id_field').count.should == 1
+end
+
+Then /^I should accept the Mission$/ do
+  page.should have_css('#accept_mission')
 end
