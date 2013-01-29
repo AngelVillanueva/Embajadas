@@ -66,6 +66,10 @@ Given /^there are Embassies from different Consuls$/ do
   another_assignment.save
 end
 
+Given /^I have already accepted a Mission$/ do
+  assignment = FactoryGirl.create(:assignment, mission_id: 1, ambassador_id: 1)
+end
+
 When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
   embassy_id = Embassy.find_by_name(name).id
   visit embassy_path(embassy_id)
@@ -171,6 +175,10 @@ end
 
 When /^I accept the Mission$/ do
   click_button "accept_mission"
+end
+
+When /^I reject the Mission$/ do
+  click_button "reject_mission"
 end
 
 Then /^I should be prompted to authenticate myself$/ do
@@ -384,7 +392,20 @@ end
 Then /^I am prompted to accept the Mission$/ do
   page.should have_css('#accept_mission')
 end
+
+Then /^I should not be prompted to accept the Mission$/ do
+  page.should_not have_css('#accept_mission')
+end
+
 Then /^a new Assignment should be generated$/ do
   Assignment.where(mission_id: 1).count.should == 1
   Assignment.where(ambassador_id: 1).count.should == 1
+end
+
+Then /^I should see a Reject Mission button$/ do
+  page.should have_css('#reject_mission')
+end
+
+Then /^I should not have that Mission assigned$/ do
+  Assignment.where(mission_id: 1, ambassador_id: 1).count.should == 0
 end

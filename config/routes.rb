@@ -17,7 +17,7 @@ Embajadas::Application.routes.draw do
     resources :missions
   end
 
-  resources :assignments, only: :create
+  resources :assignments, only: [:create, :destroy]
 
   match 'coder' => 'codes#create', as: :coder
   match 'tracker' => 'points#create', as: :tracker

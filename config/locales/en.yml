@@ -15,12 +15,17 @@ en:
   Code: "Code"
   Test points: "We had %{points} points till now"
   Accept Mission: "Accept Mission"
+  Mission accepted: "Mission accepted"
+  Are you sure?: "Are you sure?"
+  Reject Mission: "Reject Mission"
   flash:
     Access not allowed: "Access not allowed"
     Code generated: "Code generated"
     Error generating the Code: "Error generating the Code"
     Mission accepted: "Mission accepted"
+    Mission rejected: "Mission rejected"
     Mission could not be accepted: "Error accepting the Mission"
+    Mission could not be rejected: "Error rejecting the Mission"
   unauthorized:
     manage:
       all: "You are not authorized to access that page"

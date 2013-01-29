@@ -1,6 +1,21 @@
-<%= simple_form_for @assignment, url: url_for(action: 'create', controller: 'assignments'), method: 'post' do |f| %>
+<% if Assignment.where(mission_id: mission.id, ambassador_id: current_ambassador.id).empty? %>
+  <% the_action = 'create' %>
+  <% the_method = 'post' %>
+  <% the_input_id = 'accept_mission' %>
+  <% the_input_value = 'Accept Mission' %>
+<% else %>
+  <% the_action = 'destroy' %>
+  <% the_method = 'delete' %>
+  <% the_warning = 'Are you sure?' %>
+  <% the_input_id = 'reject_mission' %>
+  <% the_input_value = 'Reject Mission' %>
+<% end %>
+
+
+
+<%= simple_form_for @assignment, url: url_for(action: the_action, controller: 'assignments'), method: the_method do |f| %>
   <%= f.input :mission, as: :hidden, input_html: {value: mission.tracking_id} %>
 
-  <%= f.button :submit, id: "accept_mission", value: t("Accept Mission") %>
+  <%= f.button :submit, id: the_input_id, value: t(the_input_value) %>
   
 <% end%>
