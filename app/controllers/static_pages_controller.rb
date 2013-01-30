@@ -20,6 +20,8 @@ class StaticPagesController < ApplicationController
       @point.mission = mission
 
       @point.save!
+
+      send_file Rails.root.join("public", "bonsai.gif"), type: "image/gif", disposition: "inline"
     end
   end
 
