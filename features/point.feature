@@ -22,7 +22,7 @@ Scenario: Points are deleted if the Mission is deleted
   When the Mission is deleted
   Then its points should be deleted
 
-@cookies @wip
+@cookies
 Scenario: an Ambassador can gain points (cookies)
   Given I am an Ambassador
     And I have already accepted a Mission
