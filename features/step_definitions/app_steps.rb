@@ -67,8 +67,12 @@ Given /^there are Embassies from different Consuls$/ do
 end
 
 Given /^I have already accepted a Mission$/ do
-  Mission.find(1).tracking_id = "123"
-  Mission.find(1).save
+  the_mission = Mission.find(1)
+  the_ambassador = Ambassador.find(1)
+  the_mission.tracking_id = "e0944ff734"
+  the_mission.save
+  the_ambassador.tracking_id = "987b1732ac"
+  the_ambassador.save
   assignment = FactoryGirl.create(:assignment, mission_id: 1, ambassador_id: 1)
 end
 
@@ -331,7 +335,7 @@ Then /^I should not see the generated Code$/ do
 end
 
 Then /^I should see the url to be shared for each available Mission$/ do
-  page.should have_content("http://en.wikipedia.org/wiki/Incitatus")
+  page.should have_content("http://www.sinapse.es/sandbox/pixel/destination_p.html")
 end
 
 Then /^I should be at the Brand area dashboard$/ do
@@ -415,9 +419,12 @@ end
 
 
 When /^somebody behaves as I have recommended clicking my link$/ do
-  Capybara.current_driver = :selenium
-  assignment = Assignment.where(mission_id: 1, ambassador_id: 1).first
-  visit assignment.short_url
+  # Capybara.current_driver = :selenium
+  # assignment = Assignment.where(mission_id: 1, ambassador_id: 1).first
+  # visit assignment.short_url
+  # page.should have_css('img', src: 'fan.gif')
+  visit cooker_path(tamb: Ambassador.find(1).tracking_id, emb_url: '')
+  visit reader_path(tmis: Mission.find(1).tracking_id)
 end
 
 Given /^I am a common web surfer$/ do
