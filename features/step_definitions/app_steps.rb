@@ -67,6 +67,8 @@ Given /^there are Embassies from different Consuls$/ do
 end
 
 Given /^I have already accepted a Mission$/ do
+  Mission.find(1).tracking_id = "123"
+  Mission.find(1).save
   assignment = FactoryGirl.create(:assignment, mission_id: 1, ambassador_id: 1)
 end
 
@@ -329,7 +331,7 @@ Then /^I should not see the generated Code$/ do
 end
 
 Then /^I should see the url to be shared for each available Mission$/ do
-  page.should have_content("http://www.brandpage.com?ambassador=")
+  page.should have_content("http://en.wikipedia.org/wiki/Incitatus")
 end
 
 Then /^I should be at the Brand area dashboard$/ do
@@ -408,4 +410,29 @@ end
 
 Then /^I should not have that Mission assigned$/ do
   Assignment.where(mission_id: 1, ambassador_id: 1).count.should == 0
+end
+
+
+
+When /^somebody behaves as I have recommended clicking my link$/ do
+  Capybara.current_driver = :selenium
+  assignment = Assignment.where(mission_id: 1, ambassador_id: 1).first
+  visit assignment.short_url
+end
+
+Given /^I am a common web surfer$/ do
+  # do nothing
+end
+
+Given /^an Ambassador has assigned Missions$/ do
+  step 'I am an Ambassador'
+  step 'I have already accepted a Mission'
+end
+
+When /^I click a link in any Internet page containing the Ambassador tracking id$/ do
+  step 'somebody behaves as I have recommended clicking my link'
+end
+
+Then /^a cookie should be set in my browser storing the Ambassador tracking id$/ do
+  cookies[:ambassador].should == Ambassador.find(1).tracking_id
 end

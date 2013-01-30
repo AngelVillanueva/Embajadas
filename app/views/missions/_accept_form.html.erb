@@ -1,4 +1,5 @@
-<% if Assignment.where(mission_id: mission.id, ambassador_id: current_ambassador.id).empty? %>
+<% the_assignment =  Assignment.where(mission_id: mission.id, ambassador_id: current_ambassador.id) %>
+<% if the_assignment.empty? %>
   <% the_action = 'create' %>
   <% the_method = 'post' %>
   <% the_warning = nil %>  
@@ -15,6 +16,11 @@
 
 
 <%= simple_form_for @assignment, url: url_for(action: the_action, controller: 'assignments'), method: the_method do |f| %>
+
+  <% unless the_assignment.empty? %>
+    <p>Short: <%= link_to the_assignment.first.short_url, the_assignment.first.short_url %></p>
+  <% end %>
+  
   <%= f.input :mission, as: :hidden, input_html: {value: mission.tracking_id} %>
 
   <%= f.button :submit, id: the_input_id, value: t(the_input_value), confirm: the_warning %>
