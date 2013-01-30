@@ -52,7 +52,8 @@ class Assignment < ActiveRecord::Base
   def build_tracking_url(mission_id, ambassador_id)
     mt = Mission.find(mission_id).tracking_url
     at = Ambassador.find(ambassador_id).tracking_id
-    own = 'http://127.0.0.1:3000/cooker/?tamb=' << at << '&emb_url='
+    #own = 'http://127.0.0.1:3000/cooker/?tamb=' << at << '&emb_url='
+    own = "#{Rails.configuration.custom_config_cookie_host}/cooker/?tamb=" << at << '&emb_url='
     protocol = ''
     protocol = 'http://' unless mt.match /^http:\/\//
     tracking_url = own << protocol << mt

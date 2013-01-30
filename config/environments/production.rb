@@ -69,4 +69,7 @@ Embajadas::Application.configure do
   config.middleware.insert_after(::Rack::Lock, "::Rack::Auth::Basic", "Embajadas") do |u, p|
     [u, p] == ['embajadas', 'embajadas']
   end
+
+  # Embassyland, for cookie seeding
+  config.custom_config_cookie_host = 'http://embajadas.herokuapp.com'
 end

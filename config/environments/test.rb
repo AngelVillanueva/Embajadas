@@ -34,4 +34,7 @@ Embajadas::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Embassyland, for cookie seeding
+  config.custom_config_cookie_host = 'http://127.0.0.1:3000'
 end
