@@ -2,4 +2,6 @@
 
 <h1><%= t("Welcome to the Embassy of brand", brand: @embassy.name) %></h1>
 
+<p><%= link_to t("Sign out"), destroy_ambassador_session_path, method: 'delete' %></p>
+
 <%= render @missions %>
