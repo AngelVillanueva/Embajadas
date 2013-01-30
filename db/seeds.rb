@@ -20,14 +20,14 @@ consuls = Consul.create([
 ], without_protection: true)
 
 ambassadors = Ambassador.create([
-  { name: 'Tintín', embassy_id: 1, email: 'tintin@example.com', password: 'foobar' },
+  { name: 'Tintín', embassy_id: 1, email: 'tintin@example.com', password: 'foobar', tracking_id: '987b1732ac' },
   { name: 'Haddock', embassy_id: 1, email: 'haddock@example.com', password: 'foobar' },
   { name: 'Sponsz', embassy_id: 2, email: 'sponsz@example.com', password: 'foobar' },
   { name: 'Tapioca', embassy_id: 2, email: 'tapioca@example.com', password: 'foobar' }
 ], without_protection: true)
 
 missions = Mission.create([
-  { name: 'El Cetro de Ottokar', embassy_id: 1, short_description: 'Get the Sceptre back!', tracking_url: 'es.wikipedia.org/wiki/El_cetro_de_Ottokar' },
+  { name: 'El Cetro de Ottokar', embassy_id: 1, short_description: 'Get the Sceptre back!', tracking_url: 'www.sinapse.es/sandbox/pixel/destination_p.html', tracking_id: 'e0944ff734' },
   { name: 'Objetivo: la Luna', embassy_id: 1, short_description: 'Arrive at the Moon!', tracking_url: 'es.wikipedia.org/wiki/Objetivo:_la_Luna' },
   { name: 'El asunto Tornasol', embassy_id: 2, short_description: 'Kidnap Tornasol!', tracking_url: 'es.wikipedia.org/wiki/El_asunto_Tornasol' },
   { name: 'Tintín y los Pícaros', embassy_id: 2, short_description: 'Depose Alcázar!', tracking_url: 'es.wikipedia.org/wiki/Tintín_y_los_Pícaros' }
