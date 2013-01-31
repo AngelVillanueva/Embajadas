@@ -1,4 +1,10 @@
-Feature: As a Brand, I should be able to manage my Embassy in order to engage my loyal customers
+Feature: As a Brand, I need an Embassy area in order to engage my loyal customers
+
+Scenario: Happy path to Embassies index page
+  Given I am a common web user
+    And the "The Embassy" Embassy exists
+  When I visit the index page for the Embassies
+  Then I should see a list of available Embassies
 
 Scenario: Embassy access is restricted to registered Ambassadors
   Given the "The Embassy" Embassy exists

@@ -441,3 +441,11 @@ end
 Then /^a cookie should be set in my browser storing the Ambassador tracking id$/ do
   cookies[:ambassador].should == Ambassador.find(1).tracking_id
 end
+
+When /^I visit the index page for the Embassies$/ do
+  visit embassies_path
+end
+
+Then /^I should see a list of available Embassies$/ do
+  page.should have_selector('li a', text: "The Embassy")
+end
