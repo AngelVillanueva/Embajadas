@@ -4,6 +4,10 @@ class EmbassiesController < ApplicationController
   
   def welcome
   end
+  def index
+    @embassies = Embassy.all
+  end
+
   def show
     @embassy = Embassy.find(params[:id])
     @missions = @embassy.missions
