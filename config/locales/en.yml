@@ -4,6 +4,8 @@
 en:
   Embassyland: "Embassyland"
   site_description: "Embassyland, a world of Brand Ambassadors"
+  I am an Ambassador: "I am an Ambassador"
+  I am a Consul from an Embassy: "I am a Consul from an Embassy"
   Welcome to the Embassy: "Welcome to the Embassy"
   Welcome to the Embassy of brand: "Welcome to the Embassy of %{brand}"
   Pixel Test Page: "Pixel Test Page"
