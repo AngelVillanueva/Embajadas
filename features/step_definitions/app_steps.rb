@@ -133,9 +133,7 @@ When /^a Mission has associated Rewards$/ do
 end
 
 When /^somebody behaves as I have recommended$/ do
-  amb = Ambassador.find(1).tracking_id
-  miss = Mission.find(1).tracking_id
-  visit tracker_path(ambassador: amb, mission: miss)
+  step 'somebody behaves as I have recommended clicking my link'
 end
 
 When /^the Ambassador achieves the target points for the Reward$/ do
