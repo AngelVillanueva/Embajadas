@@ -22,10 +22,6 @@ Embajadas::Application.routes.draw do
   match 'cooker' => 'static_pages#cooker'
   match 'reader' => 'static_pages#cookie_reader', as: :reader
 
-  match 'coder' => 'codes#create', as: :coder
-  match 'tracker' => 'points#create', as: :tracker
-  match 'pixel_test' => 'static_pages#pixel_test', as: :pixel_test
-
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
