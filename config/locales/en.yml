@@ -2,12 +2,19 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  Embassyland: "Embassyland"
+  Brandname: "Embassyland"
+  Brandtag: "Land of Embassies"
   site_description: "Embassyland, a world of Brand Ambassadors"
+  Home: "Home"
+  Plans & Pricing: "Plans & Pricing"
+  Discover y(our) land: "Discover y(our) land"
+  Press room: "Press room"
+  Latest news and more: "Latest news and more"
   Back to top: "Back to top"
   Legal notice: "Legal notice"
   Terms & Conditions: "Terms & Conditions"
   About us: "About us"
+  All what you always want to know: "All what you always want to know"
   I am an Ambassador: "I am an Ambassador"
   I am a Consul from an Embassy: "I am a Consul from an Embassy"
   List of Embassies: "List of Embassies"
