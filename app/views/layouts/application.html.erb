@@ -12,16 +12,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
-  <%= render 'layouts/shim-respond-modernizr' %>
+  <%= render 'shared/shim-respond-modernizr' %>
 </head>
 <body>
   <div class="container">
-    <header><%= render 'layouts/header' %></header>
+    <header><%= render 'shared/header' %></header>
     <div id="main" role="main">
-      <%= render 'layouts/flash', flash: flash %>
+      <%= render 'shared/flash', flash: flash %>
       <%= yield %>
     </div><!-- end of main -->
-    <footer id="footer"><%= render 'layouts/footer' %></footer>
+    <footer id="footer"><%= render 'shared/footer' %></footer>
 
     <% unless Rails.env.production? %>
     <div><%= debug(params) %></div>
@@ -30,6 +30,6 @@
   </div><!-- end of container -->
 
   <%= javascript_include_tag "application" %>
-  <%= render 'layouts/analytics', analytics_code: 'UA-12345-6' if Rails.env.production? %>
+  <%= render 'shared/analytics', analytics_code: 'UA-12345-6' if Rails.env.production? %>
 </body>
 </html>
