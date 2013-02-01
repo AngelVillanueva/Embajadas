@@ -15,19 +15,19 @@
   <%= render 'layouts/shim-respond-modernizr' %>
 </head>
 <body>
-  <div id="container">
-    <header><%= link_to t("Home"), root_path %></header>
+  <div class="container">
+    <header><%= render 'layouts/header' %></header>
     <div id="main" role="main">
       <%= render 'layouts/flash', flash: flash %>
       <%= yield %>
     </div><!-- end of main -->
-    <footer></footer>
-  </div><!-- end of container -->
+    <footer id="footer"><%= render 'layouts/footer' %></footer>
 
-  <% unless Rails.env.production? %>
-    <pre class="debug"><%= debug(params) %></pre>
-    <pre class="debug"><%= debug(cookies) %></pre>
-  <% end %>
+    <% unless Rails.env.production? %>
+    <div><%= debug(params) %></div>
+    <div><%= debug(cookies) %></div>
+    <% end %>
+  </div><!-- end of container -->
 
   <%= javascript_include_tag "application" %>
   <%= render 'layouts/analytics', analytics_code: 'UA-12345-6' if Rails.env.production? %>
