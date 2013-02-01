@@ -20,13 +20,14 @@
           </li>
 
         </ul>
-        <ul class="nav-pull-right" id="main-menu-right">
-          <li><%= link_to '#', target: '_blank', rel: 'tooltip', 'data-original-title' => t("All what you always want to know") do %>
-            <%= t("About us") %>
+        <ul class="nav pull-right" id="main-menu-right">
+          <li><%= link_to t("About us"), '#', rel: 'tooltip', target: '_blank', 'data-original-title' => t("All what you always want to know") %></li>
+          <li><%= link_to '#', target: '_blank', rel: 'tooltip', 'data-original-title' => t("Latest news and more") do %>
+            <%= t("Press room") %>
             <i class="icon-share-alt"></i>
             <% end %>
           </li>
-          <li><%= link_to t("Press room"), '#', rel: 'tooltip', target: '_blank', 'data-original-title' => t("Latest news and more") %></li>
+          
         </ul>
       </div>
     </div>
