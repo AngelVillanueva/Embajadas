@@ -9,7 +9,7 @@
       <%= link_to t("Brandname"), root_path, class: 'brand' %>
       <div class="nav-collapse" id="main-menu">
         <ul class="nav" id="main-menu-left">
-          <li><%= link_to t("Home"), root_path %></li>
+          <li><%= link_to t("How it works"), '#' %></li>
           <li><%= link_to t("Plans & Pricing"), '#' %></li>
           <li class="dropdown">
             <%= link_to '#', class: 'dropdown-toggle', 'data-toggle' => "dropdown" do %>
@@ -26,7 +26,7 @@
 
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
-          <li><%= link_to t("About us"), '#', rel: 'tooltip', target: '_blank', 'data-original-title' => t("All what you always want to know") %></li>
+          <li><%= link_to t("About us"), '#', rel: 'tooltip', 'data-original-title' => t("All what you always want to know") %></li>
           <li><%= link_to '#', target: '_blank', rel: 'tooltip', 'data-original-title' => t("Latest news and more") do %>
             <%= t("Press room") %>
             <i class="icon-share-alt"></i>
