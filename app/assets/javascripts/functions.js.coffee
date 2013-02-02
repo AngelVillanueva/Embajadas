@@ -1,2 +1,2 @@
 $(document).ready ->
-  $('a[rel="tooltip"]').tooltip()
+  $('a[rel="tooltip"]').tooltip({ 'placement': 'bottom' })
