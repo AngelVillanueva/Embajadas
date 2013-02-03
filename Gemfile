@@ -19,6 +19,8 @@ gem 'cancan'
 
 # Bitly
 gem 'bitly'
+# Tweetstream
+gem 'tweetstream'
 
 # Locale app
 # gem 'localeapp' # issues with pull-push in dev mode
