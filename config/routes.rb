@@ -19,6 +19,7 @@ Embajadas::Application.routes.draw do
 
   resources :assignments, only: [:create, :destroy]
 
+  match 'treader' => 'tweet_streams#stream', as: :treader
   match 'cooker' => 'static_pages#cooker'
   match 'reader' => 'static_pages#cookie_reader', as: :reader
 
