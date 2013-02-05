@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Embajadas::Application.load_tasks
+Incitatus::Application.load_tasks

@@ -1,4 +1,4 @@
-Embajadas::Application.routes.draw do
+Incitatus::Application.routes.draw do
 
   devise_for :consuls
 
