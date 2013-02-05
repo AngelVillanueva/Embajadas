@@ -4,7 +4,7 @@ end
 
 Given /^I am an Ambassador$/ do
   step "an Embassy has available Missions"
-  embassy = Embassy.find(1)
+  embassy = Embassy.first
   ambassador = FactoryGirl.create(:ambassador, embassy: embassy)
 end
 
@@ -36,7 +36,7 @@ end
 
 Given /^I have some Points$/ do
   step "somebody behaves as I have recommended"
-  Ambassador.find(1).points.count.should == 1
+  Ambassador.first.points.count.should == 1
 end
 
 Given /^I have some Badges$/ do
@@ -67,13 +67,13 @@ Given /^there are Embassies from different Consuls$/ do
 end
 
 Given /^I have already accepted a Mission$/ do
-  the_mission = Mission.find(1)
-  the_ambassador = Ambassador.find(1)
+  the_mission = Mission.first
+  the_ambassador = Ambassador.first
   the_mission.tracking_id = "e0944ff734"
   the_mission.save
   the_ambassador.tracking_id = "987b1732ac"
   the_ambassador.save
-  assignment = FactoryGirl.create(:assignment, mission_id: 1, ambassador_id: 1)
+  assignment = FactoryGirl.create(:assignment, mission_id: Mission.first.id, ambassador_id: Ambassador.first.id)
 end
 
 When /^I visit the homepage for the "(.*?)" Embassy$/ do |name|
@@ -112,11 +112,11 @@ When /^I access the homepage of another Embassy$/ do
 end
 
 When /^I try to access the Mission page without previous authentication$/ do
-  visit embassy_mission_path(Embassy.find(1), Mission.find(1))
+  visit embassy_mission_path(Embassy.first, Mission.first)
 end
 
 When /^I access the Mission page$/ do
-  visit embassy_mission_path(Embassy.find(1), Mission.find(1))
+  visit embassy_mission_path(Embassy.first, Mission.first)
   fill_in 'ambassador_email', with: "imontoya@example.com"
   fill_in 'ambassador_password', with: "foobar"
   click_button "Sign in"
@@ -127,7 +127,7 @@ When /^I follow any of the Mission name links$/ do
 end
 
 When /^a Mission has associated Rewards$/ do
-  mission = Mission.find(1)
+  mission = Mission.first
   reward_1 = FactoryGirl.create(:reward, name: "Reward 1 for Mission 1", mission: mission)
   reward_2 = FactoryGirl.create(:reward, name: "Reward 2 for Mission 1", mission: mission, target_points: 2)
 end
@@ -138,8 +138,8 @@ end
 
 When /^the Ambassador achieves the target points for the Reward$/ do
   step "somebody behaves as I have recommended"
-  ambassador = Ambassador.find(1)
-  target = Reward.find(1).target_points
+  ambassador = Ambassador.first
+  target = Reward.first.target_points
   ambassador.points.count.should == target
 end
 
@@ -150,7 +150,7 @@ When /^I arrive at a page with a pixel tracker$/ do
 end
 
 When /^the (.*?) is deleted$/ do |model|
-  model.constantize.find(1).destroy
+  model.constantize.first.destroy
 end
 
 When /^I request a Code for a Mission$/ do
@@ -230,21 +230,21 @@ Then /^I should see how many points I have won for that Reward$/ do
 end
 
 Then /^I should see the Pixel for each available Mission$/ do
-  page.should have_content(tracker_path(ambassador_id: 1, mission_id: 1))
+  page.should have_content(tracker_path(ambassador_id: Ambassador.first.id, mission_id: Mission.first.id))
 end
 
 Then /^my ambassador points should increase$/ do
-  ambassador = Ambassador.find(1)
+  ambassador = Ambassador.first
   ambassador.points.count.should == 1
 end
 
 Then /^my mission points should increase$/ do
-  mission = Mission.find(1)
+  mission = Mission.first
   mission.points.count.should == 1
 end
 
 Then /^the Ambassador is awarded with a new Badge$/ do
-  ambassador = Ambassador.find(1)
+  ambassador = Ambassador.first
   ambassador.badges.count.should == 1
 end
 
@@ -257,19 +257,19 @@ When /^I obtain more points for that Reward$/ do
 end
 
 When /^the Mission Code has not been generated yet$/ do
-  Mission.find(1).codes.where(ambassador_id: 1).count == 0
+  Mission.first.codes.where(ambassador_id: Ambassador.first.id).count == 0
 end
 
 Then /^I should increase the Points count for an Ambassador$/ do
-  ambassador = Ambassador.find(1)
-  points = ambassador.points.where(mission_id: 1).count
+  ambassador = Ambassador.first
+  points = ambassador.points.where(mission_id: Mission.first.id).count
   points.should == 1
 end
 
 Then /^I can not be awarded again with the same Badge$/ do
-  ambassador = Ambassador.find(1)
+  ambassador = Ambassador.first
   ambassador.badges.count.should == 2
-  ambassador.badges.where(reward_id: 1).count.should == 1
+  ambassador.badges.where(reward_id: Reward.first.id).count.should == 1
 end
 
 Then /^I should be at the Mission page$/ do
@@ -277,44 +277,47 @@ Then /^I should be at the Mission page$/ do
 end
 
 Then /^her points should be deleted$/ do
-  Point.where(ambassador_id: 1).count.should == 0
-  Point.where(mission_id: 1).count.should == 0
+  # Point.where(ambassador_id: Ambassador.first.id).count.should == 0
+  # Point.where(mission_id: Mission.first.id).count.should == 0
+  Point.all.size.should == 0
 end
 
 Then /^her Badges should be deleted$/ do
-  Badge.where(ambassador_id: 1).count.should == 0
-  Badge.where(reward_id: 1).count.should == 0
+  # Badge.where(ambassador_id: Ambassador.first.id).count.should == 0
+  # Badge.where(reward_id: Reward.first.id).count.should == 0
+  Badge.all.size.should == 0
 end
 
 Then /^its Badges should be deleted$/ do
-  Badge.where(reward_id: 1).count.should == 0
-  Badge.where(ambassador_id: 1).count.should == 0
+  Badge.where(reward_id: Reward.first.id).count.should == 0
+  Badge.where(ambassador_id: Ambassador.first.id).count.should == 0
 end
 
 Then /^its points should be deleted$/ do
-  Point.where(mission_id: 1).count.should == 0
-  Point.where(ambassador_id: 1).count.should == 0
+  Point.where(mission_id: Mission.first.id).count.should == 0
+  Point.where(ambassador_id: Ambassador.first.id).count.should == 0
 end
 
 Then /^its Missions should be deleted$/ do
-  Mission.where(embassy_id: 1).count.should == 0
+  # Mission.where(embassy_id: Embassy.first.id).count.should == 0
+  Mission.all.size.should == 0
 end
 
 Then /^its Rewards should be deleted$/ do
-  Reward.where(mission_id: 1).count.should == 0
+  Reward.where(mission_id: Mission.first.id).count.should == 0
 end
 
 Then /^my code for the Mission should be created$/ do
-  Code.where(ambassador_id: 1, mission_id: 1).count.should == 1
+  Code.where(ambassador_id: Ambassador.first.id, mission_id: Mission.first.id).count.should == 1
   Code.all.count == 1
 end
 
 Then /^her Codes should be deleted$/ do
-  Code.where(ambassador_id: 1).count.should == 0
+  Code.where(ambassador_id: Ambassador.first.id).count.should == 0
 end
 
 Then /^its Codes should be deleted$/ do
-  Code.where(mission_id: 1).count.should == 0
+  Code.where(mission_id: Mission.first.id).count.should == 0
 end
 
 Then /^I should see the button to generate the Code for each Mission$/ do
@@ -402,8 +405,8 @@ Then /^I should not be prompted to accept the Mission$/ do
 end
 
 Then /^a new Assignment should be generated$/ do
-  Assignment.where(mission_id: 1).count.should == 1
-  Assignment.where(ambassador_id: 1).count.should == 1
+  Assignment.where(mission_id: Mission.first.id).count.should == 1
+  Assignment.where(ambassador_id: Ambassador.first.id).count.should == 1
 end
 
 Then /^I should see a Reject Mission button$/ do
@@ -411,18 +414,18 @@ Then /^I should see a Reject Mission button$/ do
 end
 
 Then /^I should not have that Mission assigned$/ do
-  Assignment.where(mission_id: 1, ambassador_id: 1).count.should == 0
+  Assignment.where(mission_id: Mission.first.id, ambassador_id: Ambassador.first.id).count.should == 0
 end
 
 
 
 When /^somebody behaves as I have recommended clicking my link$/ do
   # Capybara.current_driver = :selenium
-  # assignment = Assignment.where(mission_id: 1, ambassador_id: 1).first
+  # assignment = Assignment.where(mission_id: Mission.first.id, ambassador_id: Ambassador.first.id).first
   # visit assignment.short_url
   # page.should have_css('img', src: 'fan.gif')
-  visit cooker_path(tamb: Ambassador.find(1).tracking_id, emb_url: '')
-  visit reader_path(tmis: Mission.find(1).tracking_id)
+  visit cooker_path(tamb: Ambassador.first.tracking_id, emb_url: '')
+  visit reader_path(tmis: Mission.first.tracking_id)
 end
 
 Given /^I am a common web surfer$/ do
@@ -439,7 +442,7 @@ When /^I click a link in any Internet page containing the Ambassador tracking id
 end
 
 Then /^a cookie should be set in my browser storing the Ambassador tracking id$/ do
-  cookies[:ambassador].should == Ambassador.find(1).tracking_id
+  cookies[:ambassador].should == Ambassador.first.tracking_id
 end
 
 When /^I visit the index page for the Embassies$/ do
