@@ -13,9 +13,33 @@ TweetStream.configure do |config|
 namespace :tweets do
   desc 'Looking for tweets'
   task :prueba => :environment do
-    TweetStream::Client.new.track('mourinho') do |status|
+    word = 'Rituals'
+    user = '20141312'
+    puts "Tracking the term #{word}"
+    TweetStream::Client.new.track(word) do |status|
       puts "#{status.text}"
+      puts "#{status.created_at}"
+      puts "#{status.user[:id]}"
+      puts "#{status.user.screen_name}"
+      puts "***************"
     end
+    # TweetStream::Client.new.follow(user) do |status|
+    #   if status.text.index(word)  
+    #     puts "#{status.text}"
+    #     puts "#{status.created_at}"
+    #     puts "#{status.user[:id]}"
+    #     puts "#{status.user.screen_name}"
+    #     puts "***************"
+    #     rew = Reward.new
+    #     rew.name = word << status.created_at
+    #     rew.mission_id = 1
+    #     rew.target_points = status.user[:id]
+    #     rew.save
+    #   end
+    # end
+    # TweetStream::Client.new.userstream(20134211) do |status|
+    #   puts "#{status.text}"
+    # end
   end
   
   desc 'Run all lookups'
