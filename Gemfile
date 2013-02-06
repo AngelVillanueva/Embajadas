@@ -19,6 +19,7 @@ gem 'rails_admin'
 gem 'cancan'
 # OmniAuth
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 # Bitly
 gem 'bitly'
