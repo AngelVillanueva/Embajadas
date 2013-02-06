@@ -4,7 +4,7 @@ Incitatus::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/brands', :as => 'rails_admin'
 
-  devise_for :ambassadors
+  devise_for :ambassadors, controllers: { omniauth_callbacks: "omniauth_callbacks" }
 
   #filter :locale, exclude: /^\/ambassadors/  #routing-filter gem, possible to exclude some resources as admin etc
   filter :locale
