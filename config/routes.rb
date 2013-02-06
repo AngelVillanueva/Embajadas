@@ -4,9 +4,10 @@ Incitatus::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/brands', :as => 'rails_admin'
 
-  devise_for :ambassadors
-
-  filter :locale  #routing-filter gem, possible to exclude some resources as admin etc
+  scope "(:locale)", :locale => /en|es/ do 
+    devise_for :ambassadors
+  end
+  filter :locale, exclude: /^\/ambassadors/  #routing-filter gem, possible to exclude some resources as admin etc
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
