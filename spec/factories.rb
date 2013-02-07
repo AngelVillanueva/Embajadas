@@ -12,7 +12,6 @@ FactoryGirl.define do
     name "Inigo Montoya"
     email "imontoya@example.com"
     password "foobar"
-    embassy
   end
   factory :reward do
     name "Reward 1"
