@@ -452,3 +452,15 @@ end
 Then /^I should see a list of available Embassies$/ do
   page.should have_selector('li a', text: "The Embassy")
 end
+
+Given /^I have more than one Embassy$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I access my own Ambassador area$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see the full list of my Embassies$/ do
+  pending # express the regexp above with the code you wish you had
+end

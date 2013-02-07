@@ -1,4 +1,4 @@
-Feature: As an Ambassador, I should be able to access my Embassy area in order to manage my achivements
+Feature: As an Ambassador, I should be able to access my Embassies areas in order to manage my achivements
 
 Scenario: access the Embassy area is allowed to its Ambassadors
   Given I am an Ambassador
@@ -9,3 +9,9 @@ Scenario: access the Embassy area is not allowed to Ambassadors from other Embas
   Given I am an Ambassador
   When I access the homepage of another Embassy
   Then I should be redirected to the global homepage
+
+Scenario: as an Ambassador I can access to all of my Embassies
+  Given I am an Ambassador
+    And I have more than one Embassy
+  When I access my own Ambassador area
+  Then I should see the full list of my Embassies
