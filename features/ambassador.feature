@@ -15,3 +15,10 @@ Scenario: as an Ambassador I can access to all of my Embassies
     And I have more than one Embassy
   When I access my own Ambassador area
   Then I should see the full list of my Embassies
+
+Scenario: as an Ambassador I can not access the pages of the rest of the Ambassadors
+  Given I am an Ambassador
+  When I access the Ambassador area of other Ambassador
+  Then I should be redirected to the global homepage
+
+# Ambassador can edit her profile to add/delete her embassies

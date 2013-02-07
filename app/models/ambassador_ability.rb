@@ -5,6 +5,7 @@ class AmbassadorAbility
     if ambassador
         can :manage, Embassy, :id => ambassador.embassy_ids
         can :manage, Mission, :embassy_id => ambassador.embassy_ids
+        can :manage, Ambassador, id: ambassador.id
     end
     # Define abilities for the passed in user here. For example:
     #
