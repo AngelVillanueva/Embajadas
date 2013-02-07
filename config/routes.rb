@@ -5,6 +5,7 @@ Incitatus::Application.routes.draw do
   mount RailsAdmin::Engine => '/brands', :as => 'rails_admin'
 
   devise_for :ambassadors
+  resources :ambassadors
 
   filter :locale  #routing-filter gem, possible to exclude some resources as admin etc
   
