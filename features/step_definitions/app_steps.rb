@@ -457,14 +457,19 @@ end
 
 Given /^I have more than one Embassy$/ do
   second_embassy = FactoryGirl.create(:embassy, name: "Second Embassy")
+  third_embassy = FactoryGirl.create(:embassy, name: "Not my Embassy")
   ambassador = Ambassador.first
   ambassador.embassies << second_embassy
 end
 
 When /^I access my own Ambassador area$/ do
   visit ambassador_path(Ambassador.first)
+  fill_in 'ambassador_email', with: "imontoya@example.com"
+  fill_in 'ambassador_password', with: "foobar"
+  click_button 'Sign in'
 end
 
 Then /^I should see the full list of my Embassies$/ do
-  pending # express the regexp above with the code you wish you had
+  my_embassies_count = Ambassador.first.embassies.size
+  page.all('#embassies li').count.should == my_embassies_count
 end
