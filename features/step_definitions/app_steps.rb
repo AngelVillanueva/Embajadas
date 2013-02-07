@@ -473,3 +473,11 @@ Then /^I should see the full list of my Embassies$/ do
   my_embassies_count = Ambassador.first.embassies.size
   page.all('#embassies li').count.should == my_embassies_count
 end
+
+When /^I access the Ambassador area of other Ambassador$/ do
+  ambassador_two = FactoryGirl.create(:ambassador, name: "Ambassador_two", email: "ambassador_two@example.com")
+  visit ambassador_path(ambassador_two)
+  fill_in 'ambassador_email', with: "imontoya@example.com"
+  fill_in 'ambassador_password', with: "foobar"
+  click_button 'Sign in'
+end
