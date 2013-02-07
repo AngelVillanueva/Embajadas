@@ -29,7 +29,7 @@ class Ambassador < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :embassy_id, :email, :password, :password_confirmation, :remember_me
-  belongs_to :embassy
+  has_and_belongs_to_many :embassies
   has_many :points, dependent: :destroy
   has_many :missions, through: :points
   has_many :assignments, dependent: :destroy
@@ -39,7 +39,7 @@ class Ambassador < ActiveRecord::Base
   before_validation :assign_random_tracking_id
 
   # email and password presence are mandatory via devise
-  validates :name, :embassy_id, :tracking_id, presence: true
+  validates :name, :tracking_id, presence: true
   validates :tracking_id, uniqueness: true
 
   protected

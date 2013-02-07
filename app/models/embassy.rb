@@ -11,7 +11,7 @@
 class Embassy < ActiveRecord::Base
   attr_accessible :name
   has_many :missions, dependent: :destroy
-  has_many :ambassadors
+  has_and_belongs_to_many :ambassadors
   has_many :consuls
 
   validates :name, presence: true
