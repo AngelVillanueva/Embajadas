@@ -22,13 +22,4 @@ class ApplicationController < ActionController::Base
     end
     I18n.locale = params[:locale] || I18n.default_locale
   end
-  def require_belonging
-    unless belongs_to_embassy?
-      flash[:error] = I18n.t("flash.Access not allowed")
-      redirect_to root_path
-    end
-  end
-  def belongs_to_embassy?
-    current_ambassador.embassy == Embassy.find(params[:id])
-  end
 end
