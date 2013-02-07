@@ -3,8 +3,8 @@ class AmbassadorAbility
 
   def initialize(ambassador)
     if ambassador
-        can :manage, Embassy, :id => ambassador.embassy_id
-        can :manage, Mission, :embassy_id => ambassador.embassy_id 
+        can :manage, Embassy, :id => ambassador.embassy_ids
+        can :manage, Mission, :embassy_id => ambassador.embassy_ids
     end
     # Define abilities for the passed in user here. For example:
     #

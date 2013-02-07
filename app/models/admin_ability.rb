@@ -13,11 +13,15 @@ class AdminAbility
       else
         can :manage, Embassy, :id => consul.embassy_id
         can :manage, Mission, :embassy_id => consul.embassy_id
-        can :manage, Ambassador, :embassy_id => consul.embassy_id
+        can :manage, Ambassador, ["id in (select ambassador_id from ambassadors_embassies where embassy_id=?)", consul.embassy_id] do |ambassador|
+          ambassador.embassies.include? consul.embassy
+        end
         can :manage, Reward, :mission => { :embassy_id => consul.embassy_id }
         can :manage, Assignment, mission: { embassy_id: consul.embassy_id } 
         can :manage, Point, :mission => { :embassy_id => consul.embassy_id }
-        can :manage, Badge, :ambassador => { embassy_id: consul.embassy_id }
+        can :manage, Badge, ["ambassador_id in (select ambassador_id from ambassadors_embassies where embassy_id=?)", consul.embassy_id] do |badge|
+          badge.ambassador.embassies.include? consul.embassy
+        end
       end
     end
     # Define abilities for the passed in user here. For example:

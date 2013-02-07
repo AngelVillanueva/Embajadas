@@ -5,7 +5,8 @@ end
 Given /^I am an Ambassador$/ do
   step "an Embassy has available Missions"
   embassy = Embassy.first
-  ambassador = FactoryGirl.create(:ambassador, embassy: embassy)
+  ambassador = FactoryGirl.create(:ambassador)
+  ambassador.embassies << embassy
 end
 
 Given /^I am a Consul$/ do
@@ -53,7 +54,8 @@ Given /^there are Embassies from different Consuls$/ do
   step "a Mission has associated Rewards"
   another_embassy = FactoryGirl.create(:embassy, name: "Another Embassy")
   another_consul = FactoryGirl.create(:consul, email: "another_consul@example.com", embassy: another_embassy)
-  another_ambassador = FactoryGirl.create(:ambassador, email: "another_ambassador@example.com", embassy: another_embassy, name: "Another Ambassador")
+  another_ambassador = FactoryGirl.create(:ambassador, email: "another_ambassador@example.com", name: "Another Ambassador")
+  another_ambassador.embassies << another_embassy
   another_mission = FactoryGirl.create(:mission, embassy: another_embassy, name: "Another Mission")
   another_reward = FactoryGirl.create(:reward, mission: another_mission, name: "Another Reward")
   another_point = Point.new
@@ -454,11 +456,13 @@ Then /^I should see a list of available Embassies$/ do
 end
 
 Given /^I have more than one Embassy$/ do
-  pending # express the regexp above with the code you wish you had
+  second_embassy = FactoryGirl.create(:embassy, name: "Second Embassy")
+  ambassador = Ambassador.first
+  ambassador.embassies << second_embassy
 end
 
 When /^I access my own Ambassador area$/ do
-  pending # express the regexp above with the code you wish you had
+  visit ambassador_path(Ambassador.first)
 end
 
 Then /^I should see the full list of my Embassies$/ do
