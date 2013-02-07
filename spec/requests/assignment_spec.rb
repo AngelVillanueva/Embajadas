@@ -12,35 +12,64 @@ describe "Assignments" do
     it { should respond_to :short_url }
   end
   describe "with mandatory ambassador_id field" do
-    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
-    let(:ambassador) { FactoryGirl.create(:ambassador, embassy_id: 1) }
+    let(:embassy ) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
     let(:assignment) { FactoryGirl.create(:assignment, mission: mission, ambassador: ambassador) }
-    before { assignment.ambassador_id = "" }
+    before do
+      ambassador.embassies << embassy
+      assignment.ambassador_id = ""
+    end
     subject { assignment }
 
     it { should_not be_valid }
   end
   describe "with mandatory mission_id field" do
-    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
-    let(:assignment) { FactoryGirl.create(:assignment, mission: mission) }
-    before { assignment.mission_id = "" }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador)}
+    let(:assignment) { FactoryGirl.create(:assignment, mission: mission, ambassador: ambassador) }
+    before do
+      ambassador.embassies << embassy
+      assignment.mission_id = ""
+    end
     subject { assignment }
 
     it { should_not be_valid }
   end
+  describe "with ambassador and mission belonging to different embassies" do
+    let(:embassy_one) { FactoryGirl.create(:embassy, name: "Embassy One")}
+    let(:embassy_two) { FactoryGirl.create(:embassy, name: "Embassy Two")}
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy_one) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
+    before { ambassador.embassies << embassy_two }
+
+    it "should not validate" do
+      expect do
+        FactoryGirl.create(:assignment, mission: mission, ambassador: ambassador)
+      end.to raise_error
+    end
+  end
   describe "with mandatory code field" do
-    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
-    let(:assignment) { FactoryGirl.create(:assignment, mission: mission) }
-    before { assignment.code = "" }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador)}
+    let(:assignment) { FactoryGirl.create(:assignment, mission: mission, ambassador: ambassador) }
+    before do
+      ambassador.embassies << embassy
+      assignment.code = ""
+    end
     subject { assignment }
 
     it { should_not be_valid }
   end
   describe "with automatically created code field" do
-    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
-    let(:ambassador) { FactoryGirl.create(:ambassador, embassy_id: 1) }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
     let(:assignment) { Assignment.new }
     before do
+      ambassador.embassies << embassy
       assignment.mission_id = mission.id
       assignment.ambassador_id = ambassador.id
       assignment.tracking_url = "a"
@@ -52,18 +81,25 @@ describe "Assignments" do
     it { should be_valid }
   end
   describe "with mandatory tracking_url field" do
-    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
-    let(:assignment) { FactoryGirl.create(:assignment, mission: mission) }
-    before { assignment.tracking_url = "" }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
+    let(:assignment) { FactoryGirl.create(:assignment, mission: mission, ambassador: ambassador) }
+    before do
+      ambassador.embassies << embassy
+      assignment.tracking_url = ""
+    end
     subject { assignment }
 
     it { should_not be_valid }
   end
   describe "with automatically created tracking_url field" do
-    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
-    let(:ambassador) { FactoryGirl.create(:ambassador, embassy_id: 1) }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
     let(:assignment) { Assignment.new }
     before do
+      ambassador.embassies << embassy
       assignment.mission_id = mission.id
       assignment.ambassador_id = ambassador.id
       assignment.code = "a"
@@ -75,18 +111,25 @@ describe "Assignments" do
     it { should be_valid }
   end
   describe "with mandatory short_url field" do
-    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
-    let(:assignment) { FactoryGirl.create(:assignment, mission: mission) }
-    before { assignment.short_url = "" }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
+    let(:assignment) { FactoryGirl.create(:assignment, mission: mission, ambassador: ambassador) }
+    before do
+      ambassador.embassies << embassy
+      assignment.short_url = ""
+    end
     subject { assignment }
 
     it { should_not be_valid }
   end
   describe "with automatically created short_url field" do
-    let(:mission) { FactoryGirl.create(:mission, embassy_id: 1) }
-    let(:ambassador) { FactoryGirl.create(:ambassador, embassy_id: 1) }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
     let(:assignment) { Assignment.new }
     before do
+      ambassador.embassies << embassy
       assignment.mission_id = mission.id
       assignment.ambassador_id = ambassador.id
       assignment.code = "a"
