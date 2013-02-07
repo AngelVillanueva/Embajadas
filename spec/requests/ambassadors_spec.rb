@@ -3,10 +3,12 @@ require 'spec_helper'
 describe "Ambassadors" do
   describe "Model" do
     let(:ambassador) { FactoryGirl.create(:ambassador) }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    before { ambassador.embassies << embassy }
     subject { ambassador }
 
     it { should respond_to :name}
-    it { should respond_to :embassy }
+    it { should respond_to :embassies }
     it { should respond_to :email }
     it { should respond_to :password }
     it { should respond_to :points }
@@ -32,7 +34,6 @@ describe "Ambassadors" do
     before do
       ambassador.email = "imontoya@example.com"
       ambassador.password = "foobar"
-      ambassador.embassy_id = 1
     end
     subject { ambassador }
 
@@ -43,7 +44,6 @@ describe "Ambassadors" do
     before do
       ambassador.name = "Inigo Montoya"
       ambassador.password = "foobar"
-      ambassador.embassy_id = 1
     end
     subject { ambassador }
 
@@ -54,7 +54,6 @@ describe "Ambassadors" do
     before do
       ambassador.name = "Inigo Montoya"
       ambassador.password = "foobar"
-      ambassador.embassy_id = 1
     end
     subject { ambassador }
 
@@ -65,7 +64,6 @@ describe "Ambassadors" do
     before do
       ambassador.name = "Inigo Montoya"
       ambassador.email = "imontoya@example.com"
-      ambassador.embassy_id = 1
     end
     subject { ambassador }
 
@@ -76,30 +74,6 @@ describe "Ambassadors" do
     before do
       ambassador.name = "Inigo Montoya"
       ambassador.email = "imontoya@example.com"
-      ambassador.embassy_id = 1
-    end
-    subject { ambassador }
-
-    it { should be_valid }
-  end
-  describe "with with a mandatory attribute embassy_id" do
-    let(:ambassador) { Ambassador.new }
-    before do
-      ambassador.name = "Inigo Montoya"
-      ambassador.email = "imontoya@example.com"
-      ambassador.password = "foobar"
-    end
-    subject { ambassador }
-
-    it { should_not be_valid }
-  end
-  describe "with accessible attribute embassy_id" do
-    let(:embassy) { FactoryGirl.create(:embassy) }
-    let(:ambassador) { Ambassador.new(embassy_id: 1) }
-    before do
-      ambassador.name = "Inigo Montoya"
-      ambassador.email = "imontoya@example.com"
-      ambassador.password = "foobar"
     end
     subject { ambassador }
 
@@ -107,11 +81,12 @@ describe "Ambassadors" do
   end
   describe "belonging to an Embassy" do
     let(:embassy) { FactoryGirl.create(:embassy) }
-    let(:ambassador) { FactoryGirl.create(:ambassador, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
+    before { ambassador.embassies << embassy }
     subject { ambassador }
 
     it { should be_valid }
-    its(:embassy) { should == embassy }
+    its(:embassies) { should include(embassy) }
   end
   describe "with a mandatory tracking_id" do
     let(:ambassador) { FactoryGirl.create(:ambassador)}
