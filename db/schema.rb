@@ -11,11 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130206212817) do
+=======
+ActiveRecord::Schema.define(:version => 20130207094922) do
+>>>>>>> Ambassador and Embassy has_and_belongs_to_many
 
   create_table "ambassadors", :force => true do |t|
     t.string   "name"
-    t.integer  "embassy_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "email",                  :default => "", :null => false
@@ -35,6 +38,11 @@ ActiveRecord::Schema.define(:version => 20130206212817) do
 
   add_index "ambassadors", ["email"], :name => "index_ambassadors_on_email", :unique => true
   add_index "ambassadors", ["reset_password_token"], :name => "index_ambassadors_on_reset_password_token", :unique => true
+
+  create_table "ambassadors_embassies", :id => false, :force => true do |t|
+    t.integer "ambassador_id"
+    t.integer "embassy_id"
+  end
 
   create_table "assignments", :force => true do |t|
     t.string   "code"
