@@ -24,7 +24,7 @@ class Ambassador < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :omniauthable, 
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
@@ -43,6 +43,7 @@ class Ambassador < ActiveRecord::Base
   validates :tracking_id, uniqueness: true
 
   protected
+  # assign a random tracking_id on Ambassador creation to avoid using the Ambassador id externally
   def assign_random_tracking_id
     if tracking_id.nil?
       self.tracking_id = get_unique_tracking_id
@@ -56,5 +57,29 @@ class Ambassador < ActiveRecord::Base
     else
       get_unique_tracking_id
     end
+  end
+  # helper functions to complete the Ambassador creation via OmniAuth/Devise
+  # create or update Ambassador info with the OmniAuth provider returned info
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_create do |ambassador|
+      ambassador.provider = auth.provider
+      ambassador.uid = auth.uid
+      ambassador.name = auth.info.nickname
+    end
+  end
+  # if there is an error saving the Ambassador via OmniAuth, the info is sent back to the create form to show the errors
+  def self.new_with_session(params, session)
+    if session["devise.ambassador_attributes"]
+      new(session["devise.ambassador_attributes"], without_protection: true) do |ambassador|
+        ambassador.attributes = params
+        ambassador.valid?
+      end
+    else
+      super
+    end
+  end
+  # if the Ambassador is created via OmniAuth the password field is not needed
+  def password_required?
+    super && provider.blank?
   end
 end
