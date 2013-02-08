@@ -11,5 +11,10 @@ window.fbAsyncInit = ->
 
   $("#facebook_sign_in").click (e) ->
     e.preventDefault()
+    # recover resource and locale in order to build the right callback address
+    locale = $("b.anchorSDK").attr("data-custom-locale")
+    resource = $("b.anchorSDK").attr("data-custom-resource")
+    callback_address = "/#{resource}/auth/facebook/callback?locale=#{locale}"
+    # now fire FB login function
     FB.login (response) ->
-      window.location = '/auth/facebook/callback' if response.authResponse
+      window.location = callback_address if response.authResponse
