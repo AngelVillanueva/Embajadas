@@ -47,6 +47,10 @@ class Ambassador < ActiveRecord::Base
   def password_required?
     super && provider.blank?
   end
+  # helper method for quick Facebook Graph API access through Koala gem
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+  end
   protected
   # assign a random tracking_id on Ambassador creation to avoid using the Ambassador id externally
   def assign_random_tracking_id
