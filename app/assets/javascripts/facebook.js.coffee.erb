@@ -18,3 +18,8 @@ window.fbAsyncInit = ->
     # now fire FB login function
     FB.login (response) ->
       window.location = callback_address if response.authResponse
+
+  $('#sign_out').click (e) ->
+    FB.getLoginStatus (response) ->
+      FB.logout() if response.authResponse
+    true
