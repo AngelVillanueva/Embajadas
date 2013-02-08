@@ -25,6 +25,8 @@ gem 'omniauth-facebook','1.4.0' #downgrade to 1.4.0 to avoid 'Csrf detected' jav
 gem 'bitly'
 # Tweetstream
 gem 'tweetstream'
+# Koala for Facebook
+gem 'koala'
 
 # Locale app
 # gem 'localeapp' # issues with pull-push in dev mode
