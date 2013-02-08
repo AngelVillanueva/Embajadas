@@ -19,7 +19,7 @@ gem 'rails_admin'
 gem 'cancan'
 # OmniAuth
 gem 'omniauth-twitter'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook','1.4.0' #downgrade to 1.4.0 to avoid 'Csrf detected' javascriptSDK issue
 
 # Bitly
 gem 'bitly'
