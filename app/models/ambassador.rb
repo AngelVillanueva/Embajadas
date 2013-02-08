@@ -42,6 +42,11 @@ class Ambassador < ActiveRecord::Base
   validates :name, :tracking_id, presence: true
   validates :tracking_id, uniqueness: true
 
+  
+  # if the Ambassador is created via OmniAuth the password field is not needed
+  def password_required?
+    super && provider.blank?
+  end
   protected
   # assign a random tracking_id on Ambassador creation to avoid using the Ambassador id externally
   def assign_random_tracking_id
@@ -65,6 +70,7 @@ class Ambassador < ActiveRecord::Base
       ambassador.provider = auth.provider
       ambassador.uid = auth.uid
       ambassador.name = auth.info.nickname
+      ambassador.email = auth.info.email if auth.info.email
     end
   end
   # if there is an error saving the Ambassador via OmniAuth, the info is sent back to the create form to show the errors
@@ -77,9 +83,5 @@ class Ambassador < ActiveRecord::Base
     else
       super
     end
-  end
-  # if the Ambassador is created via OmniAuth the password field is not needed
-  def password_required?
-    super && provider.blank?
   end
 end
