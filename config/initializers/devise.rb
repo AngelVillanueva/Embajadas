@@ -208,7 +208,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   #config.omniauth :twitter, ENV["TWITTER_CONSUMER_KEY"], ENV["TWITTER_CONSUMER_SECRET"]
   config.omniauth :twitter, TWITTER_CONFIG['consumer_key'], TWITTER_CONFIG['consumer_secret']
-  config.omniauth :facebook, FACEBOOK_CONFIG['api_key'], FACEBOOK_CONFIG['api_secret']
+  config.omniauth :facebook, FACEBOOK_CONFIG['app_id'], FACEBOOK_CONFIG['app_secret']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
