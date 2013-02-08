@@ -71,6 +71,8 @@ class Ambassador < ActiveRecord::Base
       ambassador.uid = auth.uid
       ambassador.name = auth.info.nickname
       ambassador.email = auth.info.email if auth.info.email
+      ambassador.oauth_token = auth.credentials.token
+      ambassador.oauth_expires_at = Time.at(auth.credentials.expires_at) if auth.credentials.expires_at
     end
   end
   # if there is an error saving the Ambassador via OmniAuth, the info is sent back to the create form to show the errors
