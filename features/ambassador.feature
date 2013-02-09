@@ -13,7 +13,8 @@ Scenario: access the Embassy area is not allowed to Ambassadors from other Embas
 Scenario: as an Ambassador I can access to all of my Embassies
   Given I am an Ambassador
     And I have more than one Embassy
-  When I access my own Ambassador area
+  When I try to access my own Ambassador area
+    And I fullfill my Ambassador access information
   Then I should see the full list of my Embassies
 
 Scenario: as an Ambassador I can not access the pages of the rest of the Ambassadors
