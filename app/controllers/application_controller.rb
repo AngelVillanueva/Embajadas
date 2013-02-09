@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
+  # override default Devise redirect after sign in
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || ambassador_path(current_ambassador)
+  end
+
   # CanCan customization
   def current_ability
     @current_ability ||= AmbassadorAbility.new(current_ambassador)

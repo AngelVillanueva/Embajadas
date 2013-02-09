@@ -18,8 +18,16 @@ window.fbAsyncInit = ->
     # now fire FB login function
     FB.login (response) ->
       window.location = callback_address if response.authResponse
-
+    , scope: 'email,read_stream'
+  # close Facebook session clicking the logout app link  
   $('#sign_out').click (e) ->
     FB.getLoginStatus (response) ->
       FB.logout() if response.authResponse
     true
+  # automatically logouts Facebook user in the app if logs out from Facebook (not working in sandbox mode)
+  if $('#sign_out').length > 0
+    FB.getLoginStatus (response) ->
+      $('#sign_out').trigger('click') if !response.authResponse
+      # instead, the suggestion in RailsCasts 361 is:
+      #window.location = $('#sign_out').attr('href') if !response.authResponse
+      # but that not fires the 'delete' method needed in the ambassdors_destroy_session_path

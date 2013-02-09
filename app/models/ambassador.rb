@@ -42,7 +42,21 @@ class Ambassador < ActiveRecord::Base
   validates :name, :tracking_id, presence: true
   validates :tracking_id, uniqueness: true
 
-  
+  # helper method for quick Facebook Graph API access through Koala gem
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
+    # error recovery (block-ish so can be shared across the rest of the Facebook methods)
+    block_given? ? yield(@facebook) : @facebook
+  rescue Koala::Facebook::APIError
+    logger.info e.to_s
+    nil
+  end
+
+  def friends_count
+    # example of block-ish Facebook method [ex: current_ambassador.friends_count]
+    facebook { |fb| fb.get_connection("me", "friends").size }
+  end
+
   # if the Ambassador is created via OmniAuth the password field is not needed
   def password_required?
     super && provider.blank?

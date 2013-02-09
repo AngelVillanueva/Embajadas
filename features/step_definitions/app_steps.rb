@@ -462,8 +462,12 @@ Given /^I have more than one Embassy$/ do
   ambassador.embassies << second_embassy
 end
 
-When /^I access my own Ambassador area$/ do
+When /^I try to access my own Ambassador area$/ do
   visit ambassador_path(Ambassador.first)
+  page.should have_selector('form#new_ambassador')
+end
+
+When /^I fullfill my Ambassador access information$/ do
   fill_in 'ambassador_email', with: "imontoya@example.com"
   fill_in 'ambassador_password', with: "foobar"
   click_button 'Sign in'

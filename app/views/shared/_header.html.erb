@@ -26,6 +26,11 @@
 
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
+          <% if current_ambassador %>
+            <li><%= link_to t("Sign out"), destroy_ambassador_session_path, method: "delete", rel: 'tooltip', 'data-original-title' => t("Sign out") %></li>
+          <% else %>
+            <li><%= link_to t("Sign in"), new_ambassador_session_path, rel: 'tooltip', 'data-original-title' => t("Sign in") %></li>
+          <% end %>
           <li><%= link_to t("About us"), '#', rel: 'tooltip', 'data-original-title' => t("All what you always want to know") %></li>
           <li><%= link_to '#', target: '_blank', rel: 'tooltip', 'data-original-title' => t("Latest news and more") do %>
             <%= t("Press room") %>
