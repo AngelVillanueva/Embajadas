@@ -11,15 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130206212817) do
-=======
-ActiveRecord::Schema.define(:version => 20130207094922) do
->>>>>>> Ambassador and Embassy has_and_belongs_to_many
-=======
 ActiveRecord::Schema.define(:version => 20130208103643) do
->>>>>>> Added oauth_token and oauth_expires_at (if exists) fields to Ambassador
 
   create_table "ambassadors", :force => true do |t|
     t.string   "name"
