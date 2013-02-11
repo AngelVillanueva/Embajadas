@@ -1,4 +1,1 @@
-<% query = "select message from status where uid=me() and strpos(message, '#{slogan.search_term.term}')>=0" %>
-<% resultado = current_ambassador.facebook.fql_query(query) %>
-
-<li><%= slogan.search_term.term %>: <%= resultado.size %> (Facebook).</li>
+<li><%= slogan.search_term.term %>: <%= current_ambassador.fb_slogan_count(slogan.search_term.term.downcase) %> (Facebook).</li>
