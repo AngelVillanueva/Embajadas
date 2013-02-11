@@ -19,6 +19,8 @@ class Mission < ActiveRecord::Base
   has_many :ambassadors, through: :points
   has_many :assignments, dependent: :destroy
   has_many :rewards, dependent: :destroy
+  has_many :slogans
+  has_many :search_terms, through: :slogans
 
   before_validation :assign_tracking_id
 
