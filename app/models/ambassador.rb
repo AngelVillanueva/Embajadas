@@ -90,13 +90,14 @@ class Ambassador < ActiveRecord::Base
   # helper functions to complete the Ambassador creation via OmniAuth/Devise
   # create or update Ambassador info with the OmniAuth provider returned info
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |ambassador|
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |ambassador|
       ambassador.provider = auth.provider
       ambassador.uid = auth.uid
       ambassador.name = auth.info.nickname
       ambassador.email = auth.info.email if auth.info.email
       ambassador.oauth_token = auth.credentials.token
       ambassador.oauth_expires_at = Time.at(auth.credentials.expires_at) if auth.credentials.expires_at
+      ambassador.save!
     end
   end
   # if there is an error saving the Ambassador via OmniAuth, the info is sent back to the create form to show the errors
