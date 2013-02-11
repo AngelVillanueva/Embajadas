@@ -13,6 +13,7 @@ class Embassy < ActiveRecord::Base
   has_many :missions, dependent: :destroy
   has_and_belongs_to_many :ambassadors
   has_many :consuls
+  has_many :slogans
 
   validates :name, presence: true
   validates :name, uniqueness: true

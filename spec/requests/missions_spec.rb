@@ -20,6 +20,8 @@ describe "Missions" do
     it { should respond_to :tracking_id }
     it { should respond_to :tracking_url }
     it { should respond_to :assignments }
+    it { should respond_to :slogans }
+    it { should respond_to :search_terms }
     it { should be_valid }
   end
   describe "with mandatory attribute name" do

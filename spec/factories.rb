@@ -28,4 +28,11 @@ FactoryGirl.define do
     code "cccccccc"
     ambassador
   end
+  factory :search_term do
+    term "The Embassy"
+  end
+  factory :slogan do
+    mission
+    search_term
+  end
 end

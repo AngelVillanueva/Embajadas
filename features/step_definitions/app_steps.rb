@@ -166,7 +166,7 @@ When /^I request the Code generation$/ do
 end
 
 When /^I access the Brand area$/ do
-  visit rails_admin.dashboard_path
+  visit rails_admin_path
   fill_in "consul_email", with: "consul@example.com"
   fill_in "consul_password", with: "foobar"
   page.find('input[type=submit]').click
@@ -484,4 +484,52 @@ When /^I access the Ambassador area of other Ambassador$/ do
   fill_in 'ambassador_email', with: "imontoya@example.com"
   fill_in 'ambassador_password', with: "foobar"
   click_button 'Sign in'
+end
+
+When /^I create a new Mission$/ do
+  visit rails_admin.new_path(model_name: :mission)
+  page.should have_css('#mission_name')
+end
+
+Then /^I should be able to create relevant slogans$/ do
+  visit rails_admin.new_path(model_name: :slogan)
+  page.should have_css('#slogan_mission_id_field')
+  page.should have_css('#slogan_search_term_id_field')
+end
+
+Then /^I should be able to add relevant slogans for that Mission$/ do
+  page.should have_css('#mission_slogan_ids_field')
+end
+
+Then /^I should be able to create new Search Terms$/ do
+  visit rails_admin.new_path(model_name: :search_term)
+  page.should have_css('#search_term_term')
+end
+
+When /^there are some Slogans created$/ do
+  search_term_one = FactoryGirl.create(:search_term, term: "Term 1")
+  search_term_two = FactoryGirl.create(:search_term, term: "Term 2")
+  search_term_three = FactoryGirl.create(:search_term, term: "Term 3")
+  step "there are Embassies from different Consuls"
+  slogan_one = Slogan.new
+  slogan_one.mission = Mission.first
+  slogan_one.search_term = search_term_one
+  slogan_one.save!
+  slogan_two = Slogan.new
+  slogan_two.mission = Mission.first
+  slogan_two.search_term = search_term_two
+  slogan_two.save!
+  slogan_third = Slogan.new
+  slogan_third.mission = Mission.last
+  slogan_third.search_term = search_term_three
+  slogan_third.save!
+  Slogan.all.size.should == 3
+  Slogan.where(mission_id: Embassy.first.mission_ids).size.should == 2
+  Slogan.where(mission_id: Embassy.last.mission_ids).size.should == 1
+end
+
+
+Then /^I should see just the slogans created for my Missions$/ do
+  visit rails_admin.index_path(model_name: :slogan)
+  page.all('td.id_field').count.should == 2
 end
