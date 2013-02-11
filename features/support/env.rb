@@ -56,6 +56,31 @@ require 'cucumber/rails'
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
+# to test Omniauth
+#Capybara.default_host = 'example.org' # makes fail all the other tests
+OmniAuth.config.test_mode = true
+OmniAuth.config.add_mock(:twitter, {
+  :uid => '12345',
+  :nickname => 'twitterman',
+  :user_info => {
+    :first_name => 'Foo',
+    :last_name => 'Man'
+  },
+  :credentials => {
+    :token => '123'
+  }
+})
+OmniAuth.config.add_mock(:facebook, {
+  :uid => '67890',
+  :info => {
+    :nickname => 'facebookman',
+    :email => 'test@example.org'
+  },
+  :credentials => {
+    :token => '456',
+    :expires_at => 1200 # 20 minutes
+  }
+})
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 
