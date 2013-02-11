@@ -9,6 +9,11 @@ Given /^I am an Ambassador$/ do
   ambassador.embassies << embassy
 end
 
+Given /^I am an Ambassador signed in with provider "(.*?)"$/ do |provider|
+  #Capybara.default_host = 'example.org' # makes to fail all the other tests
+  visit "/ambassadors/auth/#{provider.downcase}"
+end
+
 Given /^I am a Consul$/ do
   FactoryGirl.create(:consul)
 end
@@ -208,6 +213,10 @@ end
 
 Then /^I should be redirected to the global homepage$/ do
   current_path.should == root_path
+end
+
+Then /^I should not be redirected to the global homepage$/ do
+  current_path.should == ambassador_path(Ambassador.last)
 end
 
 Then /^I should see the Mission name$/ do
@@ -526,6 +535,10 @@ When /^there are some Slogans created$/ do
   Slogan.all.size.should == 3
   Slogan.where(mission_id: Embassy.first.mission_ids).size.should == 2
   Slogan.where(mission_id: Embassy.last.mission_ids).size.should == 1
+end
+
+When /^I access my Ambassador area$/ do
+  visit ambassador_path(Ambassador.last)
 end
 
 
