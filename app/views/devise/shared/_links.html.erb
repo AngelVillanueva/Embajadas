@@ -22,6 +22,8 @@
   <!-- Anchor for building the right Omniauth callback routes in the javascript -->
   <b class="anchorSDK" data-custom-locale="<%= I18n.locale %>" data-custom-resource="<%= resource_name.to_s.pluralize %>"></b>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{provider.to_s.titleize}", "/ambassadors/auth/#{provider}?locale=#{I18n.locale}", id: "#{provider}_sign_in" %><br />
+    <% if provider == :facebook %>
+      <%= link_to "Sign in with #{provider.to_s.titleize}", "/ambassadors/auth/#{provider}?locale=#{I18n.locale}", id: "#{provider}_sign_in" %><br />
+    <% end %>
   <% end -%>
 <% end -%>
