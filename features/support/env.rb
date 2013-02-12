@@ -71,10 +71,10 @@ OmniAuth.config.add_mock(:twitter, {
   }
 })
 OmniAuth.config.add_mock(:facebook, {
-  :uid => '67890',
+  :uid => '100005201376696',
   :info => {
     :nickname => 'facebookman',
-    :email => 'test@example.org'
+    :email => 'perico_lozjywc_perico@tfbnw.net'
   },
   :credentials => {
     :token => '456',
