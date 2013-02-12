@@ -10,6 +10,6 @@ Scenario: any Mission can select relevant "slogans" to be used to gain points
 Scenario: an Ambassador can gain points by posting slogan in Facebook (or Twitter)
   Given I am an Ambassador signed in with provider "Facebook"
     And one of my Missions has at least one Slogan
-  When I post "the Slogan" in my Facebook stream
+  When I post the Slogan in my Facebook stream
   Then the post should be stored in the database
     And the points of the related Missions should be increased
