@@ -1,4 +1,3 @@
-@pending
 Feature: as a Consul I should be able to create search terms to easily track my Ambassadors
 
 Scenario: a Consul can create Search Terms
@@ -11,4 +10,5 @@ Scenario: a Consul can just add Search Terms not created by other Embassies
     And one of my Missions has at least one Slogan
     And there are Search Terms not from my Missions
   When I access the Brand area
-  Then I should not see Search Terms created by other Embassies
+  Then my Embassy Search Terms should not include terms from other Embassies
+    And I should not see Search Terms created by other Embassies
