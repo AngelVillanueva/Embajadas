@@ -1,9 +1,12 @@
 development:
   app_id: 455185007883513
   app_secret: cb43e6001326b223820ab402bb8ef212
+  access_token: 455185007883513|EH-U5a-bdpUe6sMYxEqho1xVhWw
 test:
   app_id: 455185007883513
   app_secret: cb43e6001326b223820ab402bb8ef212
+  access_token: 455185007883513|EH-U5a-bdpUe6sMYxEqho1xVhWw
 production:
   app_id: 455185007883513
   app_secret: cb43e6001326b223820ab402bb8ef212
+  access_token: 455185007883513|EH-U5a-bdpUe6sMYxEqho1xVhWw
