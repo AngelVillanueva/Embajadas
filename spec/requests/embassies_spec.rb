@@ -44,7 +44,7 @@ describe "Embassies" do
 
     it "should filter the assigned slogans" do
       slogan_1.class.should == Slogan # without calling the Slogan instance within the IT block, the test fails
-      embassy.assigned_slogans.size.should == 10
+      embassy.assigned_slogans.size.should == 1
     end
     it "should filter the used terms" do
       slogan_1.class.should == Slogan # without calling the Slogan instance within the IT block, the test fails
