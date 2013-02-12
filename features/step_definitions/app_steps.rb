@@ -2,13 +2,6 @@ Given /^the "(.*?)" Embassy exists$/ do |name|
   FactoryGirl.create(:embassy, name: name) unless Embassy.find_by_name(name)
 end
 
-Given /^I am an Ambassador$/ do
-  step "an Embassy has available Missions"
-  embassy = Embassy.first
-  ambassador = FactoryGirl.create(:ambassador)
-  ambassador.embassies << embassy
-end
-
 Given /^I am an Ambassador signed in with provider "(.*?)"$/ do |provider|
   #Capybara.default_host = 'example.org' # makes to fail all the other tests
   visit "/ambassadors/auth/#{provider.downcase}"
