@@ -12,7 +12,12 @@ Given /^there are Search Terms not from my Missions$/ do
   slogan_2 = FactoryGirl.create(:slogan, mission: mission_2, search_term: SearchTerm.last)
 end
 
-Then /^I should not see Search Terms created by other Embassies$/ do
+Then /^my Embassy Search Terms should not include terms from other Embassies$/ do
   embassy = Embassy.first
   embassy.available_search_terms.size.should == 1
+end
+
+Then /^I should not see Search Terms created by other Embassies$/ do
+  visit rails_admin.index_path(model_name: :search_term)
+  page.all('td.id_field').count.should == 1
 end
