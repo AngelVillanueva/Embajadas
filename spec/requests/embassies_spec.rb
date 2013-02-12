@@ -9,6 +9,7 @@ describe "Embassies" do
     it { should respond_to :missions }
     it { should respond_to :ambassadors }
     it { should respond_to :consuls }
+    it { should respond_to :available_search_terms }
     it { should be_valid }
   end
   describe "with mandatory attribute name" do
@@ -32,5 +33,17 @@ describe "Embassies" do
     subject { embassy_with_same_name }
 
     it { should_not be_valid }
+  end
+  describe "with a method to find out its related search terms" do
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:search_term_1) { FactoryGirl.create(:search_term, term: "My loved brand") }
+    let(:search_term_2) { FactoryGirl.create(:search_term, term: "My beloved product") }
+    let(:slogan_1) { FactoryGirl.create(:slogan, mission: mission, search_term: search_term_1) }
+
+    it "should filter the used terms" do
+      slogan_1.class.should == Slogan # without calling the Slogan instance within the IT block, the test fails
+      embassy.available_search_terms.size.should == 1
+    end
   end
 end
