@@ -22,7 +22,7 @@ class AdminAbility
         can :manage, Badge, ["ambassador_id in (select ambassador_id from ambassadors_embassies where embassy_id=?)", consul.embassy_id] do |badge|
           badge.ambassador.embassies.include? consul.embassy
         end
-        can :manage, SearchTerm, :id => consul.embassy.available_search_terms.map(&:id)
+        can :manage, SearchTerm, :consul_id => consul.id
         can :manage, Slogan, :mission => { :embassy_id => consul.embassy_id }
       end
     end
