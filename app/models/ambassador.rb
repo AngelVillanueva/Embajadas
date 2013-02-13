@@ -61,9 +61,9 @@ class Ambassador < ActiveRecord::Base
     # example of block-ish Facebook method [ex: current_ambassador.friends_count]
     facebook { |fb| fb.get_connection("me", "friends").size }
   end
-  def fb_slogan_count(slogan)
-    query = "select message from status where uid=me() and strpos(message, '#{slogan}')>=0"
-    facebook { |fb| fb.fql_query(query).size }
+  def fb_slogan_search(slogan)
+    query = "select post_id, message, created_time from stream where source_id=me() and is_published=1 and strpos(lower(message), lower('#{slogan}'))>=0"
+    facebook { |fb| fb.fql_query(query) }
   end
   ## end of FACEBOOK METHODS
   
