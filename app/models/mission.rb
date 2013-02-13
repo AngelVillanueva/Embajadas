@@ -9,7 +9,7 @@
 #  updated_at        :datetime         not null
 #  short_description :text
 #  tracking_id       :string(255)
-#  tracking_url      :text(255)
+#  tracking_url      :text
 #
 
 class Mission < ActiveRecord::Base
