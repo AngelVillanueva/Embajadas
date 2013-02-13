@@ -30,6 +30,7 @@ class Consul < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :embassy_id, :email, :password, :password_confirmation, :remember_me
   belongs_to :embassy
+  has_many :search_terms
 
   # email and password fields mandatories via devise
   validates :name, :embassy_id, presence: true

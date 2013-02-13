@@ -37,9 +37,12 @@ describe "Embassies" do
   end
   describe "with a method to find out its assigned slogans and the related search terms" do
     let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:embassy_2) { FactoryGirl.create(:embassy, name: "Second Embassy") }
     let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
-    let(:search_term_1) { FactoryGirl.create(:search_term, term: "My loved brand") }
-    let(:search_term_2) { FactoryGirl.create(:search_term, term: "My beloved product") }
+    let(:consul) { FactoryGirl.create(:consul, embassy: embassy) }
+    let(:consul_2) { FactoryGirl.create(:consul, embassy: embassy_2) }
+    let(:search_term_1) { FactoryGirl.create(:search_term, term: "My loved brand", consul: consul) }
+    let(:search_term_2) { FactoryGirl.create(:search_term, term: "My beloved product", consul: consul_2) }
     let(:slogan_1) { FactoryGirl.create(:slogan, mission: mission, search_term: search_term_1) }
 
     it "should filter the assigned slogans" do

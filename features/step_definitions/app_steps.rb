@@ -508,27 +508,6 @@ Then /^I should be able to create new Search Terms$/ do
   page.should have_css('#search_term_term')
 end
 
-When /^there are some Slogans created$/ do
-  search_term_one = FactoryGirl.create(:search_term, term: "Term 1")
-  search_term_two = FactoryGirl.create(:search_term, term: "Term 2")
-  search_term_three = FactoryGirl.create(:search_term, term: "Term 3")
-  step "there are Embassies from different Consuls"
-  slogan_one = Slogan.new
-  slogan_one.mission = Mission.first
-  slogan_one.search_term = search_term_one
-  slogan_one.save!
-  slogan_two = Slogan.new
-  slogan_two.mission = Mission.first
-  slogan_two.search_term = search_term_two
-  slogan_two.save!
-  slogan_third = Slogan.new
-  slogan_third.mission = Mission.last
-  slogan_third.search_term = search_term_three
-  slogan_third.save!
-  Slogan.all.size.should == 3
-  Slogan.where(mission_id: Embassy.first.mission_ids).size.should == 2
-  Slogan.where(mission_id: Embassy.last.mission_ids).size.should == 1
-end
 
 When /^I access my Ambassador area$/ do
   visit ambassador_path(Ambassador.last)

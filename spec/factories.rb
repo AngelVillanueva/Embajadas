@@ -30,6 +30,7 @@ FactoryGirl.define do
   end
   factory :search_term do
     term "The Embassy"
+    consul
   end
   factory :slogan do
     mission

@@ -8,6 +8,7 @@ describe "Consuls" do
     it { should respond_to :name }
     it { should respond_to :email }
     it { should respond_to :password }
+    it { should respond_to :search_terms }
     it { should respond_to :embassy }
     it { should respond_to :minister }
     it { should be_valid }
