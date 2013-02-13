@@ -13,3 +13,6 @@ Scenario: an Ambassador can gain points by posting slogan in Facebook (or Twitte
   When I post the Slogan in my Facebook stream
   Then the post should be stored in the database
     And the points of the related Missions should be increased
+
+# remember to delete mock user
+https://graph.facebook.com/#{userid}?method=delete&access_token=#{access_token}

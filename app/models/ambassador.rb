@@ -34,7 +34,7 @@ class Ambassador < ActiveRecord::Base
   attr_accessible :name, :embassy_ids, :email, :password, :password_confirmation, :remember_me
   has_and_belongs_to_many :embassies
   has_many :points, dependent: :destroy
-  has_many :missions, through: :points
+  has_many :missions, through: :assignments
   has_many :assignments, dependent: :destroy
   has_many :badges, dependent: :destroy
   has_many :rewards, through: :badges
@@ -70,6 +70,10 @@ class Ambassador < ActiveRecord::Base
   end
   ## end of FACEBOOK METHODS
   
+  # helper method to recover Ambassador slogans
+  def assigned_slogans
+    Slogan.where(mission_id: mission_ids)
+  end
   # if the Ambassador is created via OmniAuth the password field is not needed
   def password_required?
     super && provider.blank?
