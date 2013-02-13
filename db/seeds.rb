@@ -50,9 +50,9 @@ rewards = Reward.create([
 ], without_protection: true)
 
 search_terms = SearchTerm.create([
-  { term: "Term 1"},
-  { term: "Term 2"},
-  { term: "Term 3"}  
+  { term: "Term 1", consul_id: Consul.all[1].id},
+  { term: "Term 2", consul_id: Consul.all[1].id},
+  { term: "Term 3", consul_id: Consul.last.id}  
 ], without_protection: true)
 
 slogans = Slogan.create([
