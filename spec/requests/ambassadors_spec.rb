@@ -17,6 +17,7 @@ describe "Ambassadors" do
     it { should respond_to :rewards }
     it { should respond_to :tracking_id }
     it { should respond_to :assignments }
+    it { should respond_to :assigned_slogans }
     it { should be_valid }
   end
   describe "with with a mandatory attribute name" do
@@ -114,5 +115,15 @@ describe "Ambassadors" do
     subject { ambassador }
 
     its(:tracking_id) { should_not == nil }
+  end
+  describe "with slogans to use through assigned missions" do
+    let(:mission) { FactoryGirl.create(:mission) }
+    let(:slogan) { FactoryGirl.create(:slogan, mission: mission) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
+    before { FactoryGirl.create(:assignment, ambassador: ambassador, mission: mission) }
+
+    subject { ambassador.mission_ids }
+
+    its(:size) { should == 1 }
   end
 end
