@@ -23,7 +23,6 @@ class Embassy < ActiveRecord::Base
   end
 
   def available_search_terms
-    assigned_slogan_ids = Slogan.where(mission_id: self.mission_ids).map(&:search_term_id)
-    SearchTerm.where(id: assigned_slogans.map(&:search_term_id))
+    SearchTerm.where(consul_id: consul_ids)
   end
 end

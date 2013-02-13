@@ -11,10 +11,10 @@ end
 
 Then /^my Embassy Search Terms should not include terms from other Embassies$/ do
   embassy = Embassy.first
-  embassy.available_search_terms.size.should == 1
+  embassy.available_search_terms.size.should == 2
 end
 
 Then /^I should not see Search Terms created by other Embassies$/ do
   visit rails_admin.index_path(model_name: :search_term)
-  page.all('td.id_field').count.should == 1
+  page.all('td.id_field').count.should == 2
 end
