@@ -32,7 +32,7 @@ end
 
 When /^I post the Slogan in my Facebook stream$/ do
   # create test account in Facebook - see support module 'facebook_test'
-  response = create_Facebook("perico", "publish_stream")
+  response = create_Facebook("perico", "publish_stream, read_stream")
   # update token in mock Ambassador to be able to call Facebook api
   ambassador = Ambassador.first
   ambassador.oauth_token = response["access_token"]
