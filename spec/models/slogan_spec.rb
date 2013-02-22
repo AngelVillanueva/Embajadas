@@ -23,6 +23,7 @@ describe "Slogans" do
     it { should be_valid }
     it { should respond_to :mission }
     it { should respond_to :search_term }
+    it { should respond_to :posts }
   end
   describe "belonging to a Mission" do
     #let(:mission) { FactoryGirl.create(:mission) }
