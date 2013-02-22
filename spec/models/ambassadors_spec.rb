@@ -21,6 +21,7 @@ describe "Ambassadors" do
     it { should respond_to :tracking_id }
     it { should respond_to :assignments }
     it { should respond_to :assigned_slogans }
+    it { should respond_to :posts }
     it { should be_valid }
   end
   describe "with with a mandatory attribute name" do
