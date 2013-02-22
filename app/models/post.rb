@@ -10,8 +10,12 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  ambassador_id :integer
+#  slogan_id     :integer
 #
 
 class Post < ActiveRecord::Base
   belongs_to :ambassador
+  belongs_to :slogan
+
+  validates :provider, :uid, :message, :created_time, :ambassador_id, :slogan_id, presence: true
 end

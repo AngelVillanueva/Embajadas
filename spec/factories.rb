@@ -36,4 +36,12 @@ FactoryGirl.define do
     mission
     search_term
   end
+  factory :post do
+    provider "facebook"
+    uid "123456"
+    message "The Embassy is cool"
+    created_time 2.days.ago
+    ambassador
+    slogan
+  end
 end
