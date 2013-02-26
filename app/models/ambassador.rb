@@ -65,11 +65,38 @@ class Ambassador < ActiveRecord::Base
     # example of block-ish Facebook method [ex: current_ambassador.friends_count]
     facebook { |fb| fb.get_connection("me", "friends").size }
   end
-  def fb_slogan_search(slogan)
+  def fb_slogan_search(slogan_id)
+    slogan = Slogan.find(slogan_id).search_term.term
     query = "select post_id, message, created_time from stream where source_id=me() and is_published=1 and strpos(lower(message), lower('#{slogan}'))>=0"
-    facebook { |fb| fb.fql_query(query) }
+    if matches = facebook { |fb| fb.fql_query(query) }
+      update_posts(slogan_id, matches, "facebook")
+    else
+      clean_posts("facebook", slogan_id)
+    end
   end
   ## end of FACEBOOK METHODS
+
+  ## Managing POSTS methods
+  def update_posts(slogan_id, matches, provider)
+    matches.each do |match|
+      Post.where(uid: match["post_id"]).first_or_initialize.tap do |post|
+        post.provider = provider
+        post.uid = match["post_id"]
+        post.message = match["message"]
+        post.created_time = Time.at(match["created_time"])
+        post.ambassador_id = self.id
+        post.slogan_id = slogan_id
+        post.save!
+      end
+    end
+    matches
+  end
+  def clean_posts(provider, slogan_id)
+    if old_posts = Post.where(ambassador_id: self.id, provider: provider, slogan_id: slogan_id)
+      old_posts.delete_all
+    end
+  end
+  ## End of Managing POSTS methods
   
   # helper method to recover Ambassador slogans
   def assigned_slogans

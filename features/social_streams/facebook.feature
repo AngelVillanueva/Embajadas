@@ -15,5 +15,6 @@ Scenario: an Ambassador can gain points by posting slogan in Facebook (or Twitte
   Then the post should be stored in the database
     And the points of the related Missions should be increased
 
-# remember to delete mock user
-#https://graph.facebook.com/#{userid}?method=delete&access_token=#{access_token}
+Scenario: if an Ambassador deletes a post in Facebook then it should be also deleted in the app
+Scenario: Posts cannot be accessed through admin
+  Given something

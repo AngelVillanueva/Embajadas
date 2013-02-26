@@ -6,6 +6,15 @@ module FacebookSteps
     response = open(url)
     code = JSON.parse(response.string)
   end
+  def delete_Facebook(uid, token = FACEBOOK_CONFIG['access_token'])
+    require 'open-uri'
+    uri = "https://graph.facebook.com/#{uid}?method=delete&access_token=#{token}"
+    url = URI.parse(URI.encode(uri.strip))
+    response = open(url)
+    code = response.string
+  end
 end
 
 World(FacebookSteps)
+
+#uri = "https://graph.facebook.com/#{uid}?method=delete&access_token=#{token}"
