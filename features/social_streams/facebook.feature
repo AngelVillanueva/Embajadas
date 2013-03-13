@@ -16,6 +16,5 @@ Scenario: an Ambassador can gain points by posting slogan in Facebook (or Twitte
     And the points of the related Missions should be increased
 
 Scenario: if an Ambassador deletes a post in Facebook then it should be also deleted in the app
-Scenario: pre-existing posts should not generate a new post
 Scenario: Posts cannot be accessed through admin
   Given something
