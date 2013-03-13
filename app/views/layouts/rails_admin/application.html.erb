@@ -11,11 +11,34 @@
     <%= stylesheet_link_tag "rails_admin/rails_admin.css", :media => :all %>
     <%= javascript_include_tag "rails_admin/rails_admin.js" %>
 </head>
-<body class="rails_admin">
+<body>
   <div id="loading" class="label label-warning" style="display:none; position: fixed; right: 20px; bottom: 20px; z-index: 10000;">
     <%= t('admin.home.loading') %>
   </div>
-  <div class="navbar navbar-fixed-top">
+  <!-- empieza Unicorn -->
+  <div id="header">
+    <h1>
+        <%= link_to dashboard_path, class: 'brand pjax' do %>
+          <%= _get_plugin_name[0] || 'Rails' %>
+          <%= content_tag(:small, _get_plugin_name[1] || 'Admin') %>
+        <% end %>
+    </h1>
+  </div>
+  <div id="user-nav" class="navbar navbar-inverse">
+    <%= render 'layouts/rails_admin/user_navigation' %>
+  </div>
+  <div id="sidebar">
+    <%= link_to "#", class: "visible-phone" do %>
+      <i class="icon icon-home"></i>
+      <%= t('admin.actions.dashboard.menu') %>
+    <% end %>
+    <%= render 'layouts/rails_admin/sidebar_menu' %>
+  </div>
+  <div id="content" data-pjax-container="">
+    <%= render :template => 'layouts/rails_admin/pjax' %>
+  </div>
+  <!-- acaba Unicorn -->
+<!--   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
         <%= link_to dashboard_path, class: "brand pjax" do %>
@@ -48,6 +71,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </body>
 </html>
