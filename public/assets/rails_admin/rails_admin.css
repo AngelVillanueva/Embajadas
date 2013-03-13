@@ -1716,6 +1716,9 @@ body {
     font-weight: bold;
     font-size: 85%;
 }
+#user-nav > ul > li > a > i {
+  background-image: url("../img/glyphicons-halflings.png")
+}
 li.btn [class*=" icon-"] {
   height: 14px;
   width: 14px;

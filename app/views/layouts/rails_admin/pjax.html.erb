@@ -1,6 +1,6 @@
 <script>//<![CDATA[
   $('#sidebar li.active').removeClass('active');
-  $('#sidebar li[data-model="#{@abstract_model.to_param}"]').addClass('active');
+  $('#sidebar li[data-model="<%= "#{@abstract_model.to_param}" %>"]').addClass('active');
 //]]></script>
 
 <title>
