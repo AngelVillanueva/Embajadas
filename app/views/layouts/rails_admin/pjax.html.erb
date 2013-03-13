@@ -1,12 +1,12 @@
 <script>//<![CDATA[
-  $('.nav.nav-list li.active').removeClass('active');
-  $('.nav.nav-list li[data-model="#{@abstract_model.to_param}"]').addClass('active');
+  $('#sidebar li.active').removeClass('active');
+  $('#sidebar li[data-model="#{@abstract_model.to_param}"]').addClass('active');
 //]]></script>
 
 <title>
   <%= "#{@abstract_model.try(:pretty_name) || @page_name} | #{[_get_plugin_name[0] || 'Rails', _get_plugin_name[1] || 'Admin'].join(' ')}" %>
 </title>
-<div class="page-header">
+<div id="content-header">
   <h1><%= @page_name %></h1>
   <% flash && flash.each do |key, value| %>
     <div class="alert alert-<%= "#{key}" %>">

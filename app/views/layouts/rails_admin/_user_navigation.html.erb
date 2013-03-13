@@ -1,0 +1,28 @@
+<ul class="nav btn-group" style="width: auto; margin: 0px;">
+  <% actions(:root).each do |action| %>
+    <li class="btn btn-inverse">
+      <%= link_to dashboard_path do %>
+        <i class="icon icon-signal"></i>
+        <span class="text"><%= wording_for(:menu, action) %></span>
+      <% end %>
+    </li>
+  <% end %>
+  <% if _current_user %>
+    <% if user_link = edit_user_link %>
+      <li class="btn btn-inverse">
+        <%= link_to url_for(:action => 'edit', :model_name => 'consul', :id => _current_user.id, :controller => 'rails_admin/main') do %>
+          <i class="icon icon-user"></i>
+          <span class="text"><%= _current_user.email %></span>
+        <% end %>
+      </li>
+    <% end %>
+    <% if main_app.destroy_consul_session_path.present? %>
+      <li class="btn btn-danger">
+        <%= link_to main_app.destroy_consul_session_path, :method => Devise.sign_out_via do %>
+          <i class="icon icon-share-alt"></i>
+          <span class="text"><%= t('admin.misc.log_out') %></span>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
