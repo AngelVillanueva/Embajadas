@@ -47,4 +47,7 @@ en:
   unauthorized:
     manage:
       all: "You are not authorized to access that page"
+  admin:
+    home:
+      loading: "Loading..."
 

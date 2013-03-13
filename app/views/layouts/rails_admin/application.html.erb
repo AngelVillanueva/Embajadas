@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <title><%= full_title(yield(:title)) %></title>
+  <meta name="description" content="<%= t('site_description') %>">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag "rails_admin/rails_admin.css", :media => :all %>
+    <%= javascript_include_tag "rails_admin/rails_admin.js" %>
+</head>
+<body class="rails_admin">
+  <div id="loading" class="label label-warning" style="display:none; position: fixed; right: 20px; bottom: 20px; z-index: 10000;">
+    <%= t('admin.home.loading') %>
+  </div>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <%= link_to dashboard_path, class: "brand pjax" do %>
+          <%= _get_plugin_name[0] || 'Rails' %>
+          <%= content_tag(:small, _get_plugin_name[1] || 'Admin') %>
+        <% end %>
+        <div class="nav-collapse">
+          <%= render 'layouts/rails_admin/secondary_navigation' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3">
+        <div class="well sidebar-nav">
+          <ul class="nav nav-list">
+            <%= main_navigation %>
+          </ul>
+          <ul class="nav nav-list">
+            <%= static_navigation %>
+          </ul>
+        </div>
+      </div>
+      <div class="span9">
+        <div class="row-fluid">
+          <div class="content" data-pjax-container="">
+            <%= render :template => 'layouts/rails_admin/pjax' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
