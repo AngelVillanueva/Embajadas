@@ -1,7 +1,7 @@
 <ul class="nav btn-group" style="width: auto; margin: 0px;">
   <% actions(:root).each do |action| %>
     <li class="btn btn-inverse">
-      <%= link_to dashboard_path do %>
+      <%= link_to localizing_path dashboard_path do %>
         <i class="icon icon-signal"></i>
         <span class="text"><%= wording_for(:menu, action) %></span>
       <% end %>
@@ -10,7 +10,7 @@
   <% if _current_user %>
     <% if user_link = edit_user_link %>
       <li class="btn btn-inverse">
-        <%= link_to url_for(:action => 'edit', :model_name => 'consul', :id => _current_user.id, :controller => 'rails_admin/main') do %>
+        <%= link_to locale_url_for(:action => 'edit', :model_name => 'consul', :id => _current_user.id, :controller => 'rails_admin/main') do %>
           <i class="icon icon-user"></i>
           <span class="text"><%= _current_user.email %></span>
         <% end %>
