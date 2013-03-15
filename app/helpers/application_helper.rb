@@ -8,4 +8,12 @@ module ApplicationHelper
        "#{page_title} | #{base_title}"                 # String interpolation
      end
    end
+  # Prepends locale to url in link if not english, useful if routing-filter not works (=rails_admin)
+   def locale_url_for(*args)
+    unless !locale || locale == 'en'
+      url_for(*args).sub('/', "/#{locale}/")
+    else
+      url_for(*args)
+    end
+   end
 end
