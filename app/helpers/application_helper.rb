@@ -16,4 +16,11 @@ module ApplicationHelper
       url_for(*args)
     end
    end
+   def localizing_path(path)
+    unless !locale || locale == 'en'
+      path.sub('/', "/#{locale}/")
+    else
+      path
+    end
+   end
 end
