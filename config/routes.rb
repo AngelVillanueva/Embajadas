@@ -1,14 +1,13 @@
 Incitatus::Application.routes.draw do
 
+  filter :locale
+  
   devise_for :consuls
 
   mount RailsAdmin::Engine => '/brands', :as => 'rails_admin'
 
   devise_for :ambassadors, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   resources :ambassadors
-
-  #filter :locale, exclude: /^\/ambassadors/  #routing-filter gem, possible to exclude some resources as admin etc
-  filter :locale
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
