@@ -12,6 +12,7 @@ class AdminAbility
       # Consuls can just manage its own resources
       else
         can :manage, Embassy, :id => consul.embassy_id
+        can :manage, Consul, :id => consul.id
         can :manage, Mission, :embassy_id => consul.embassy_id
         can :manage, Ambassador, ["id in (select ambassador_id from ambassadors_embassies where embassy_id=?)", consul.embassy_id] do |ambassador|
           ambassador.embassies.include? consul.embassy
