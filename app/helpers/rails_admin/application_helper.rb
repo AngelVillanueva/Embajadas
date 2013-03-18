@@ -94,19 +94,26 @@ module RailsAdmin
         (parent_actions ||= []) << action
       end while action.breadcrumb_parent && (action = action(*action.breadcrumb_parent))
 
-      content_tag(:ul, :class => "breadcrumb") do
+      content_tag(:ul, :class => "breadcrumb", :id => "breadcrumb") do
         parent_actions.map do |a|
           am = a.send(:eval, 'bindings[:abstract_model]')
           o = a.send(:eval, 'bindings[:object]')
           content_tag(:li, :class => current_action?(a, am, o) && "active") do
             crumb = if a.http_methods.include?(:get)
-              link_to locale_url_for(:action => a.action_name, :controller => 'rails_admin/main', :model_name => am.try(:to_param), :id => (o.try(:persisted?) && o.try(:id) || nil)), :class => 'pjax' do
-                wording_for(:breadcrumb, a, am, o)
+            current_action?(a, am, o) ? aclass = 'pjax current' : aclass = 'pjax'
+              link_to locale_url_for(:action => a.action_name, :controller => 'rails_admin/main', :model_name => am.try(:to_param), :id => (o.try(:persisted?) && o.try(:id) || nil)), :class => aclass do
+                if a.action_name == :dashboard
+                  icon = content_tag(:i, '', :class => 'icon-home')
+                else
+                  icon = ''
+                end
+                icon + wording_for(:breadcrumb, a, am, o)
               end
             else
               content_tag(:span, wording_for(:breadcrumb, a, am, o))
             end
-            crumb+= content_tag(:span, '/', :class => 'divider') unless current_action?(a, am, o)
+            #crumb+= content_tag(:span, '/', :class => 'divider') unless current_action?(a, am, o)
+            crumb+= content_tag(:span, '') unless current_action?(a, am, o)
             crumb
           end
         end.reverse.join().html_safe
