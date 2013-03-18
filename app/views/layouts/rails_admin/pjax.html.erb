@@ -21,16 +21,22 @@
   <% end %>
 </div>
 <%= breadcrumb %>
-<ul class="nav nav-tabs">
-  <%= menu_for((@abstract_model ? (@object.try(:persisted?) ? :member : :collection) : :root), @abstract_model, @object) %>
-  <%= content_for :contextual_tabs %>
-</ul>
-<div class="widget-box">
-  <div class="widget-title">
-    <span class="icon"><i class="icon-th"></i></span>
-    <h5><%= "#{@abstract_model.try(:pretty_name) || @page_name}" %></h5>
-  </div>
-  <div class="widget-content">
-    <%= yield %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="widget-box">
+        <div class="widget-title">
+          <span class="icon"><i class="icon-th"></i></span>
+          <h5><%= "#{@abstract_model.try(:pretty_name) || @page_name}" %></h5>
+        </div>
+        <div class="widget-content">
+          <ul class="nav nav-tabs">
+            <%= menu_for((@abstract_model ? (@object.try(:persisted?) ? :member : :collection) : :root), @abstract_model, @object) %>
+            <%= content_for :contextual_tabs %>
+          </ul>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
