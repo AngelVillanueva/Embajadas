@@ -59,8 +59,10 @@ module RailsAdmin
         nodes = nodes.select{ |n| n.parent.nil? || !n.parent.to_s.in?(node_model_names) }
         li_stack = navigation nodes_stack, nodes
 
-        label = navigation_label || t('admin.misc.navigation')
-        %{<li class='nav-header'>#{label}</li>#{li_stack}} if li_stack.present?
+        li_a_home = link_to localizing_path(dashboard_path), class: 'pjax' do
+          content_tag(:i, '', class: 'icon icon-home') + content_tag(:span, t('admin.actions.dashboard.menu'))
+        end
+        %{<li class="homelink">#{li_a_home}</li>#{li_stack}} if li_stack.present?
       end.join.html_safe
     end
 
