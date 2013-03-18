@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
 
   # override default Devise redirect after sign in
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || ambassador_path(current_ambassador)
+    if current_consul
+      rails_admin.dashboard_path
+    else
+      request.env['omniauth.origin'] || stored_location_for(resource) || ambassador_path(current_ambassador)
+    end
   end
 
   # CanCan customization
