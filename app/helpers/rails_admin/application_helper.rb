@@ -50,6 +50,7 @@ module RailsAdmin
       )
     end
 
+    #overrided to include Dashboard home link
     def main_navigation
       nodes_stack = RailsAdmin::Config.visible_models(:controller => self.controller)
       node_model_names = nodes_stack.map{ |c| c.abstract_model.model_name }
@@ -84,7 +85,11 @@ module RailsAdmin
         level_class = " nav-level-#{level}" if level > 0
 
         li = content_tag :li, "data-model"=>model_param do
-          link_to node.label_plural, url, :class => "pjax#{level_class}"
+          #content_tag(:i, '', class: "icon icon-#{model_param}")
+          #link_to(node.label_plural, url, :class => "pjax#{level_class}")
+          link_to url, class: "pjax#{level_class}" do
+            content_tag(:i, '', class: "icon icon-#{model_param}") + content_tag(:span, node.label_plural)
+          end
         end
         li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
       end.join.html_safe
