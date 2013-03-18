@@ -164,8 +164,7 @@ a:hover {
 }
 
 #sidebar > ul > li.active > a {
-  background: url("../img/menu-active.png") no-repeat scroll right center transparent !important;
-  background-image: image-url("rails_admin/menu-active.png");
+  background: image-url("rails_admin/menu-active.png") no-repeat scroll right center transparent !important;
 }
 
 #sidebar > ul > li > a > .label {
