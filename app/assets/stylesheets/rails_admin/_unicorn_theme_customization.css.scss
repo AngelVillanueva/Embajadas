@@ -1,0 +1,18 @@
+/** SINAPSE customization **/
+#header h1 a {
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-weight: 200;
+    padding: 10px 20px;
+}
+#header h1 a small {
+    color: #08c;
+    font-weight: bold;
+    font-size: 85%;
+}
+.navbar-inverse .nav li.btn-danger a {
+  color: #fff;
+}
+/** end of SINAPSE customization **/
