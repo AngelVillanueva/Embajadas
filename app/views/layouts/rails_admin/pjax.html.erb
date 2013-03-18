@@ -1,6 +1,11 @@
 <script>//<![CDATA[
   $('#sidebar li.active').removeClass('active');
-  $('#sidebar li[data-model="<%= "#{@abstract_model.to_param}" %>"]').addClass('active');
+  model = '<%= "#{@abstract_model.to_param}" %>';
+  if( model !== '') {
+    $('#sidebar li[data-model="<%= "#{@abstract_model.to_param}" %>"]').addClass('active');
+  } else {
+    $('#sidebar li.homelink').addClass('active');
+  }
 //]]></script>
 
 <title>
