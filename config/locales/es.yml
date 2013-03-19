@@ -246,6 +246,8 @@ es:
     manage:
       all: "No estás autorizado a acceder a esa página"
   admin:
+    menu:
+      Language: "Idioma"
     home:
       loading: "Cargando..."
 
