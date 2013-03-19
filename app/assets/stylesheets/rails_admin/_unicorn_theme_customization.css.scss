@@ -15,8 +15,8 @@
 .navbar-inverse .nav li.btn-danger a {
   color: #fff;
 }
-.nav > .active > a > [class^="icon-"] {
-  background-image: image-url("glyphicons-halflings.png");
+#user-nav > ul > li > a > i, #sidebar li a i {
+  background-image: none; // this is to move from background images to font awesome
 }
 #menu-languages b {
   margin-left: 4px;
@@ -24,16 +24,17 @@
 }
 
 // sidebar icons
-.icon-ambassador { background-position: -96px 0;} // as icon-heart
-.icon-assignment { background-position: -288px 0;} // as icon-ok
-.icon-badge { background-position: -72px -48px;} // as icon-bookmark
-.icon-consul { background-position: -168px 0;} // as icon-user
-.icon-embassy { background-position: -312px -24px;} // as icon-flag
-.icon-mission { background-position: -432px -144px;} // as icon-briefcase
-.icon-point { background-position: -96px -144px;} // as icon-thumbs-up
-.icon-reward { background-position: -24px -120px;} // as icon-gift
-.icon-search_term { background-position: 0px -48px;} // as icon-tag
-.icon-slogan { background-position: -24px -144px;} // as icon-bullhorn
+.icon-ambassador:before { content: "\f007"; } // as icon-heart
+.icon-assignment:before { content: "\f00c"; } // as icon-ok
+.icon-badge:before { content: "\f02e"; } // as icon-bookmark
+.icon-consul:before { content: "\f0f0"; } // as icon-user
+.icon-embassy:before { content: "\f024"; } // as icon-flag
+.icon-mission:before { content: "\f0b1"; } // as icon-briefcase
+.icon-point:before { content: "\f087"; } // as icon-thumbs-up
+.icon-post:before { content: "\f0e5"; } // as icon-comment-alt
+.icon-reward:before { content: "\f06b"; } // as icon-gift
+.icon-search_term:before { content: "\f02b"; } // as icon-tag
+.icon-slogan:before { content: "\f0a1"; } // as icon-bullhorn
 
 // breadcrumb
 #breadcrumb {
