@@ -50,6 +50,8 @@ en:
   admin:
     menu:
       Language: "Language"
+      Gohome: "Go to home"
+      Gosection: "Go to this section"
     home:
       loading: "Loading..."
 
