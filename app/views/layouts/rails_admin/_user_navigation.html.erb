@@ -16,6 +16,21 @@
         <% end %>
       </li>
     <% end %>
+    <% if Rails.configuration.i18n.available_locales.size > 1 %>
+    <li class="btn btn-inverse dropdown" id="menu-languages">
+      <%= link_to '#', "data-toggle" => "dropdown", "data-target" => "#menu-languages", class: "dropdown-toggle" do
+          icon = content_tag(:i, '', class: "icon icon-cog")
+          text = content_tag(:span, t('admin.menu.Language'), class: "text")
+          caret = content_tag(:b, '', class: "caret")
+          icon + text + caret
+      end %>
+      <ul class="dropdown-menu">
+        <li class="flag es"><%= link_to "Español", locale: 'es' %></li>
+        <li class="flag en"><%= link_to "English", locale: 'en' %></li>
+        <li class="flag ca"><%= link_to "Catalan", locale: 'ca' %></li>
+      </ul>
+    </li>
+    <% end %>
     <% if main_app.destroy_consul_session_path.present? %>
       <li class="btn btn-danger">
         <%= link_to main_app.destroy_consul_session_path, :method => Devise.sign_out_via do %>
@@ -24,8 +39,5 @@
         <% end %>
       </li>
     <% end %>
-    <li class="flag es"><%= link_to "Español", locale: 'es' %></li>
-    <li class="flag en"><%= link_to "English", locale: 'en' %></li>
-    <li class="flag ca"><%= link_to "Catalan", locale: 'ca' %></li>
   <% end %>
 </ul>

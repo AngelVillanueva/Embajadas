@@ -48,6 +48,9 @@ en:
     manage:
       all: "You are not authorized to access that page"
   admin:
+    menu:
+      Language: "Language"
     home:
       loading: "Loading..."
+
 
