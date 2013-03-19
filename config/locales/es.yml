@@ -248,6 +248,8 @@ es:
   admin:
     menu:
       Language: "Idioma"
+      Gohome: "Ir al inicio"
+      Gosection: "Ir a esta sección"
     home:
       loading: "Cargando..."
 
