@@ -29,7 +29,7 @@
           <span class="icon"><i class="icon-th"></i></span>
           <h5><%= "#{@abstract_model.try(:pretty_name) || @page_name}" %></h5>
         </div>
-        <div class="widget-content">
+        <div class="widget-content" id="list">
           <ul class="nav nav-tabs">
             <%= menu_for((@abstract_model ? (@object.try(:persisted?) ? :member : :collection) : :root), @abstract_model, @object) %>
             <%= content_for :contextual_tabs %>

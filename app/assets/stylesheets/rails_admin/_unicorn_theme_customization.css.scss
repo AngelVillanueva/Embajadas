@@ -15,6 +15,13 @@
 .navbar-inverse .nav li.btn-danger a {
   color: #fff;
 }
+.nav > .active > a > [class^="icon-"] {
+  background-image: image-url("glyphicons-halflings.png");
+}
+#menu-languages b {
+  margin-left: 4px;
+  margin-right: 4px;
+}
 
 // sidebar icons
 .icon-ambassador { background-position: -96px 0;} // as icon-heart
