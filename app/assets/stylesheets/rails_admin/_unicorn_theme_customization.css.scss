@@ -40,4 +40,27 @@
   margin: 0;
   padding: 0 0 0 10px;
 }
+
+// uniform.css background images
+div.selector, 
+div.selector span, 
+div.checker span,
+div.radio span, 
+div.uploader, 
+div.uploader span.action,
+div.button, div.button span {
+  background-image: image-url("rails_admin/sprite.png")
+}
+textarea.uniform {
+  background-image: image-url('rails_admin/bg-input-focus.png');
+  background-image: image-url('rails_admin/bg-input.png');
+}
+textarea.uniform:focus {
+  background-image: image-url('rails_admin/bg-input-focus.png');
+}
+
+// table actions menu
+.inline li {
+  display: inline-block;
+}
 /** end of SINAPSE customization **/
