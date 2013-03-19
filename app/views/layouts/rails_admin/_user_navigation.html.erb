@@ -18,7 +18,7 @@
     <% end %>
     <% if Rails.configuration.i18n.available_locales.size > 1 %>
     <li class="btn btn-inverse dropdown" id="menu-languages">
-      <%= link_to '#', "data-toggle" => "dropdown", "data-target" => "#menu-languages", class: "dropdown-toggle" do
+      <%= link_to '#', "data-toggle" => "dropdown", class: "dropdown-toggle" do
           icon = content_tag(:i, '', class: "icon icon-cog")
           text = content_tag(:span, t('admin.menu.Language'), class: "text")
           caret = content_tag(:b, '', class: "caret")
