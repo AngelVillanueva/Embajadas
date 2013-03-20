@@ -1,1 +1,9 @@
-<li><%= slogan.search_term.term %>: <%= current_ambassador.fb_slogan_search(slogan.id).size %> (Facebook).</li>
+<%
+if current_ambassador.oauth_token?
+  result = current_ambassador.fb_slogan_search(slogan.id).size
+else
+  result = t('You need to connect your account to a Social Network')
+end
+%>
+
+<li><%= slogan.search_term.term %>: <%= result %> (Facebook).</li>
