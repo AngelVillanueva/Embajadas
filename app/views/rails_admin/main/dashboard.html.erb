@@ -1,0 +1,59 @@
+<% @abstract_models = RailsAdmin::Config.visible_models(:controller => self).map(&:abstract_model) %>
+
+<% if @abstract_models %>
+  <table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th class="shrink model-name"><%= t('admin.table_headers.model-name') %></th>
+        <th class="shrink last-used"><%= t('admin.table_headers.last-used') %></th>
+        <th class="records"><%= t('admin.table_headers.records') %></th>
+        <th class="shrink controls"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @abstract_models.each do |abstract_model| %>
+        <% if authorized? :index, abstract_model %>
+          <% index_path = index_path(:model_name => abstract_model.to_param) %>
+          <% row_class = "#{cycle("odd", "even")}#{" link" if index_path}" %>
+          <tr class="<%= row_class %>" data-link="<%= index_path %>">
+            <% last_used = @most_recent_changes[abstract_model.pretty_name] %>
+            <% active = last_used.try(:today?) %>
+            <td>
+              <span class="show">
+                <%= link_to abstract_model.config.label_plural, index_path, :class => 'pjax' %>
+              </span>
+            </td>
+            <td>
+              <% if last_used %>
+                <%= time_ago_in_words last_used %>
+                <%= t('admin.misc.ago') %>
+              <% end %>
+            </td>
+            <td>
+              <% count = @count[abstract_model.pretty_name] %>
+              <% percent = count > 0 ? (@max <= 1 ? count : ((Math.log(count) * 100.0) / Math.log(@max)).to_i + 1) : -1 %>
+              <div class='progress progress-<%= "#{get_indicator(percent)} #{active && 'active progress-striped'}" %>' style="margin-bottom: 0px;">
+                <div class="label animate-width-to" data-animate-length="<%= ([1.0, percent].max.to_i * 20) %>" data-animate-width-to='<%= "#{[2.0, percent].max.to_i}%" %>' style="width: 2%;">
+                  <%= @count[abstract_model.pretty_name] %>
+                </div>
+              </div>
+            </td>
+            <td class="links">
+              <ul class="inline">
+                <%= menu_for :collection, abstract_model, nil, true %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    <tbody>
+  </table>
+<% end %>
+<% if @auditing_adapter && authorized?(:history) %>
+  <div id="block-tables" class="block">
+    <div class="content">
+      <h2><%= t('admin.actions.history_index.menu') %></h2>
+      <%= render 'rails_admin/main/dashboard_history' %>
+    </div>
+  </div>
+<% end %>
