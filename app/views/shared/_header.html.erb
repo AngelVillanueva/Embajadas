@@ -27,7 +27,8 @@
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
           <% if current_ambassador %>
-            <li><%= link_to t("Sign out"), destroy_ambassador_session_path, method: "delete", id: 'sign_out', rel: 'tooltip', 'data-original-title' => t("Sign out") %></li>
+          <% current_ambassador.oauth_token? ? amclass = 'fbker' : amclass = '' %>
+            <li><%= link_to t("Sign out"), destroy_ambassador_session_path, method: "delete", id: 'sign_out', rel: 'tooltip', 'data-original-title' => t("Sign out"), class: amclass %></li>
           <% else %>
             <li><%= link_to t("Sign in"), new_ambassador_session_path, rel: 'tooltip', 'data-original-title' => t("Sign in") %></li>
           <% end %>
