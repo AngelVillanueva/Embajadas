@@ -22,7 +22,7 @@
 </div>
 <%= breadcrumb %>
 <div class="container-fluid">
-  <% unless @abstract_model %>
+  <% unless @abstract_model # include charts just in dashboard page %>
     <div class="row-fluid">
       <%= render 'rails_admin/main/charts' %>
     </div>
