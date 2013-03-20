@@ -2,6 +2,7 @@ en:
   admin:
     home:
       name: "Home"
+      Embassy statistics: "Embassy statistics"
     pagination:
       previous: "&laquo; Prev"
       next: "Next &raquo;"

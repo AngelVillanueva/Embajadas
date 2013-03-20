@@ -10,11 +10,14 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require rails_admin/excanvas.min
 //= require rails_admin/jquery.uniform
 //= require rails_admin/select2.min
 //= require rails_admin/select2.min
 //= require rails_admin/jquery.dataTables.min
 //= require rails_admin/unicorn.tables
+//= require rails_admin/jquery.flot.min
+//= require rails_admin/jquery.flot.resize.min
 //= require rails_admin/jquery.peity.min
 //= require rails_admin/unicorn
 //= require rails_admin/unicorn.dashboard
