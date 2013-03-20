@@ -1,7 +1,8 @@
 es:
   admin:
     home:
-      name: Inicio
+      name: "Inicio"
+      Embassy statistics: "Estadísticas de la Embajada"
     pagination:
       previous: "&laquo; Anterior"
       next: "Siguiente &raquo;"
