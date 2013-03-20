@@ -36,6 +36,7 @@ en:
   Mission accepted: "Mission accepted"
   Are you sure?: "Are you sure?"
   Reject Mission: "Reject Mission"
+  You need to connect your account to a Social Network: "You need to connect your account to a Social Network"
   flash:
     Access not allowed: "Access not allowed"
     Code generated: "Code generated"
