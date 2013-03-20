@@ -15,3 +15,6 @@
 //= require rails_admin/select2.min
 //= require rails_admin/jquery.dataTables.min
 //= require rails_admin/unicorn.tables
+//= require rails_admin/jquery.peity.min
+//= require rails_admin/unicorn
+//= require rails_admin/unicorn.dashboard

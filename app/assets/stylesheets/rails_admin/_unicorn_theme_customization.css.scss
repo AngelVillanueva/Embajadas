@@ -70,4 +70,8 @@ textarea.uniform:focus {
   font-weight: normal;
   text-shadow: none;
 }
+// hide title bar in popovers
+.popover h3 {
+  display: none;
+}
 /** end of SINAPSE customization **/
