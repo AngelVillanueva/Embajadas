@@ -18,7 +18,13 @@ namespace :db do
     cesar = Consul.find_or_create_by_name("Cesar")
     pompeyo = Consul.find_or_create_by_name("Pompeyo")
     craso = Consul.find_or_create_by_name("Craso")
-    consuls = [cesar, pompeyo, craso]
+    consuls = [cesar, pompeyo, craso].each do |consul|
+      consul.email = consul.name << '@example.com' if consul.email.nil?
+      consul.password = "foobar"
+      consul.password_confirmation = "foobar"
+      consul.embassy_id = roma.id
+      consul.save!
+    end
     99.times do |n|
       name = Faker::Name.name
       email = Faker::Internet.email
