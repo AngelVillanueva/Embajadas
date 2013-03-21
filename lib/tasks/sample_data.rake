@@ -37,5 +37,13 @@ namespace :db do
       ambassador.save!
       ambassador.embassies << roma
     end
+    mission1 = Mission.find_or_create_by_name("Cruzar el Rubicón")
+    mission2 = Mission.find_or_create_by_name("Conquistar las Galias")
+    mission3 = Mission.find_or_create_by_name("Invadir Britannia")
+    missions = [mission1, mission2, mission3].each do |mission|
+      mission.embassy_id = roma.id
+      mission.short_description = Faker.Lorem.paragraph
+      mission.tracking_url = Faker.Internet.http_url
+    end
   end
 end
