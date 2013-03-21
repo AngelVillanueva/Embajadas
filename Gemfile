@@ -10,6 +10,7 @@ gem 'simple_form' # add gem 'country_select' if needed
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'routing-filter' # to prepend locale to url; other uses (pagination, extension, uuid,...)
+gem 'ffaker'
 
 # Devise
 gem 'devise'
