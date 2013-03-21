@@ -54,5 +54,13 @@ namespace :db do
         end
       end
     end
+    random_assignments = Assignment.offset(rand(Assignment.count)).each do |assignment|
+      (0 + rand(100)).times do |n|
+        p = Point.new
+        p.ambassador = assignment.ambassador
+        p.mission = assignment.mission
+        p.save!
+      end
+    end
   end
 end
