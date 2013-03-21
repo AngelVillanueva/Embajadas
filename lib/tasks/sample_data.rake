@@ -25,7 +25,7 @@ namespace :db do
       consul.embassy_id = roma.id
       consul.save!
     end
-        mission1 = Mission.find_or_create_by_name("Cruzar el Rubicón")
+    mission1 = Mission.find_or_create_by_name("Cruzar el Rubicón")
     mission2 = Mission.find_or_create_by_name("Conquistar las Galias")
     mission3 = Mission.find_or_create_by_name("Invadir Britannia")
     missions = [mission1, mission2, mission3].each do |mission|
@@ -46,10 +46,12 @@ namespace :db do
       ambassador.save!
       ambassador.embassies << roma
       random_missions = Mission.offset(rand(Mission.count)).each do |mission|
-        assignment = Assignment.new
-        assignment.mission = mission
-        assignment.ambassador = ambassador
-        assignment.save!
+        if mission.embassy == roma
+          assignment = Assignment.new
+          assignment.mission = mission
+          assignment.ambassador = ambassador
+          assignment.save!
+        end
       end
     end
   end
