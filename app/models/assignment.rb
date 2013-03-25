@@ -64,8 +64,15 @@ class Assignment < ActiveRecord::Base
     bitly = Bitly.new('embassyland', 'R_4a3b8272b7634f605382c8e02e809378')
     if short_url.nil?
       tu = build_tracking_url(mission_id, ambassador_id)
-      su = bitly.shorten(tu)
-      self.short_url = su.short_url
+      begin
+        su = bitly.shorten(tu)
+      rescue BitlyError, BitlyTimeout => error
+        self.short_url = tu
+        # any error coming from bitly implies that the full url is used as short_url to not break the flow
+        # pending: enque failing assignments to try later
+      else
+        self.short_url = su.short_url
+      end
     end
   end
 end
