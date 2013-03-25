@@ -39,13 +39,13 @@ namespace :db do
   task populate_search_terms: :environment do
     Consul.all.each do |consul|
       search_term_1 = SearchTerm.create([
-        { term: "Me gusta Roma", consul: consul }
+        { term: "Me gusta Roma", consul: consul, created_at: Date.today - 100 }
         ], without_protection: true)
       search_term_2 = SearchTerm.create([
-        { term: "Tienes que probar el nuevo Roma", consul: consul }
+        { term: "Tienes que probar el nuevo Roma", consul: consul, created_at: Date.today - 100 }
         ], without_protection: true)
       search_term_3 = SearchTerm.create([
-        { term: Faker::Lorem.sentence.sub(".", " Roma"), consul: consul }
+        { term: Faker::Lorem.sentence.sub(".", " Roma"), consul: consul, created_at: Date.today - 100 }
         ], without_protection: true)
     end
   end
@@ -90,5 +90,5 @@ namespace :db do
   task populate_all: [:populate_embassies, :populate_consuls, :populate_missions, :populate_search_terms, :populate_ambassadors, :populate_points]
 
   desc 'Alias'
-  task populate: 'populate_points'
+  task populate: 'populate_all'
 end
