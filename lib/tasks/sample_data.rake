@@ -61,6 +61,7 @@ namespace :db do
       ambassador.email = email
       ambassador.password = password
       ambassador.password_confirmation = password
+      ambassador.created_at = Date.today - (100*rand())
       ambassador.save!
       ambassador.embassies << roma
       random_missions = Mission.offset(rand(Mission.count)).each do |mission|
@@ -80,16 +81,14 @@ namespace :db do
         p = Point.new
         p.ambassador = assignment.ambassador
         p.mission = assignment.mission
+        p.created_at = p.ambassador.created_at.to_date + (40*rand())
         p.save!
       end
     end
   end
 
-  task populate: :environment do
-    [:populate_embassies, :populate_consuls, :populate_missions, :populate_search_terms, :populate_ambassadors, :populate_points]
-  end
+  task populate_all: [:populate_embassies, :populate_consuls, :populate_missions, :populate_search_terms, :populate_ambassadors, :populate_points]
 
-  task default: :environment do
-    :populate
-  end
+  desc 'Alias'
+  task populate: 'populate_points'
 end
