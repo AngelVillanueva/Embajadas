@@ -36,6 +36,21 @@ namespace :db do
     end
   end
 
+  task populate_rewards: :environment do
+    roma = Embassy.find_by_name("Roma")
+    missions = roma.missions
+    missions.each do |mission|
+      names = [1,2].inject([]) do |result, element|
+        result << "Nivel #{element} - " + mission.name
+      end
+      names.each do |name|
+        Reward.create([
+          {name: name, mission: mission, target_points: 100 + rand(400), created_at: mission.created_at + 1.day}
+          ], without_protection: true)
+      end
+    end
+  end
+
   task populate_search_terms: :environment do
     Consul.all.each do |consul|
       search_term_1 = SearchTerm.create([
@@ -87,7 +102,7 @@ namespace :db do
     end
   end
 
-  task populate_all: [:populate_embassies, :populate_consuls, :populate_missions, :populate_search_terms, :populate_ambassadors, :populate_points]
+  task populate_all: [:populate_embassies, :populate_consuls, :populate_missions, :populate_rewards, :populate_search_terms, :populate_ambassadors, :populate_points]
 
   desc 'Alias'
   task populate: 'populate_all'
