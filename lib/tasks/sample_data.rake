@@ -48,8 +48,8 @@ namespace :db do
       end
       # target precalculation to ensure that level target is higher than the previous one
       targets = levels_for_mission.inject([0]) do |result, element|
-        base = result[element - 1]
-        result << base + rand(100 * element)
+        base = result[element - 1] + 30
+        result << base + rand(70 * element)
       end
       targets.shift
       # reward creation
