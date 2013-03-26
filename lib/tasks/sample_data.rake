@@ -40,12 +40,22 @@ namespace :db do
     roma = Embassy.find_by_name("Roma")
     missions = roma.missions
     missions.each do |mission|
-      names = [1,2].inject([]) do |result, element|
+      # define how many levels of reward we want for each Mission
+      levels_for_mission = (1..3).to_a
+      # create an array of names for the rewards
+      names = levels_for_mission.inject([]) do |result, element|
         result << "Nivel #{element} - " + mission.name
       end
-      names.each do |name|
+      # target precalculation to ensure that level target is higher than the previous one
+      targets = levels_for_mission.inject([0]) do |result, element|
+        base = result[element - 1]
+        result << base + rand(100 * element)
+      end
+      targets.shift
+      # reward creation
+      names.each_with_index do |name, index|
         Reward.create([
-          {name: name, mission: mission, target_points: 100 + rand(400), created_at: mission.created_at + 1.day}
+          {name: name, mission: mission, target_points: targets[index], created_at: mission.created_at + 1.day}
           ], without_protection: true)
       end
     end
