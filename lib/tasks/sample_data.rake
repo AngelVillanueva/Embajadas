@@ -94,6 +94,7 @@ namespace :db do
           assignment = Assignment.new
           assignment.mission = mission
           assignment.ambassador = ambassador
+          assignment.created_at = ambassador.created_at + (rand(10)).days
           assignment.save!
         end
       end
