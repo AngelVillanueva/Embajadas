@@ -243,6 +243,7 @@ es:
     Mission rejected: "Misión rechazada"
     Mission could not be accepted: "Error aceptando la Misión"
     Mission could not be rejected: "Error rechazando la Misión"
+    Read_permission needed: "Necesitas autorizarnos a que consultemos tus publicaciones de Facebook"
   unauthorized:
     manage:
       all: "No estás autorizado a acceder a esa página"

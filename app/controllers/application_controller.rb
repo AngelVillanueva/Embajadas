@@ -21,6 +21,11 @@ class ApplicationController < ActionController::Base
     flash[:error] = exception.message
     redirect_to main_app.root_path
   end
+
+  # Fires flash notices if the user has not granted read_permissions through Facebook
+ def check_read_permission!
+  flash[:notice] = I18n.t("flash.Read_permission needed") unless current_ambassador.fb_read_permission?
+ end
   
 
   
