@@ -344,7 +344,7 @@ Then /^I should see the url to be shared for each available Mission$/ do
 end
 
 Then /^I should be at the Brand area dashboard$/ do
-  page.should have_css('.rails_admin')
+  page.should have_css('.r_admin')
   page.should have_css('.alert-notice', text: I18n.t("devise.sessions.signed_in"))
 end
 
