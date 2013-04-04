@@ -10,6 +10,7 @@
   <title><%= full_title(yield(:title)) %></title>
   <meta name="description" content="<%= t('site_description') %>">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <%= render 'shared/googlefonts' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
   <%= render 'shared/shim-respond-modernizr' %>
