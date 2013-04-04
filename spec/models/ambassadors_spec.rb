@@ -22,6 +22,10 @@ describe "Ambassadors" do
     it { should respond_to :assignments }
     it { should respond_to :assigned_slogans }
     it { should respond_to :posts }
+    it { should respond_to :fb_friends_count }
+    it { should respond_to :fb_slogan_search }
+    it { should respond_to :fb_permissions }
+    it { should respond_to :fb_read_permission? }
     it { should be_valid }
   end
   describe "with with a mandatory attribute name" do
