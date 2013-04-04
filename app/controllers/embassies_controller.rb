@@ -1,5 +1,6 @@
 class EmbassiesController < ApplicationController
   before_filter :authenticate_ambassador!, only: [:show]
+  before_filter :check_read_permission!, only: [:show]
   load_and_authorize_resource
   skip_authorize_resource :only => [:index]
   

@@ -61,9 +61,20 @@ class Ambassador < ActiveRecord::Base
     end
   end
 
-  def friends_count
+  def fb_friends_count
     # example of block-ish Facebook method [ex: current_ambassador.friends_count]
     facebook { |fb| fb.get_connection("me", "friends").size }
+  end
+  def fb_permissions
+    # return the hash of granted permissions for the user to the app
+    arr = facebook { |fb| fb.get_connection("me", "permissions") }[0]
+  end
+  def fb_read_permission?
+    if self.oauth_token.nil?
+      false
+    else
+      fb_permissions["read_stream"]
+    end
   end
   def fb_slogan_search(slogan_id)
     slogan = Slogan.find(slogan_id).search_term.term

@@ -45,6 +45,7 @@ en:
     Mission rejected: "Mission rejected"
     Mission could not be accepted: "Error accepting the Mission"
     Mission could not be rejected: "Error rejecting the Mission"
+    Read_permission needed: "You need to grant Facebook read_permission for your posts to be tracked"
   unauthorized:
     manage:
       all: "You are not authorized to access that page"
