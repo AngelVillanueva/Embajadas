@@ -16,21 +16,19 @@
   <%= render 'shared/shim-respond-modernizr' %>
 </head>
 <body>
-  <div class="container">
-    <header><%= render 'shared/header' %></header>
-    <div id="main" role="main">
+    <header id="main-header"><%= render 'shared/header' %></header>
+    <div id="main-area" role="main">
       <%= render 'shared/flash', flash: flash %>
       <%= yield %>
-    </div><!-- end of main -->
-    <footer id="footer"><%= render 'shared/footer' %></footer>
+    </div><!-- end of main-area -->
+    <footer id="main-footer"><%= render 'shared/footer' %></footer>
 
     <% unless Rails.env.production? %>
     <div><%= debug(params) %></div>
     <div><%= debug(cookies) %></div>
     <% end %>
-  </div><!-- end of container -->
 
-  <%= javascript_include_tag "application" %>
-  <%= render 'shared/analytics', analytics_code: 'UA-12345-6' if Rails.env.production? %>
+    <%= javascript_include_tag "application" %>
+    <%= render 'shared/analytics', analytics_code: 'UA-12345-6' if Rails.env.production? %>
 </body>
 </html>
