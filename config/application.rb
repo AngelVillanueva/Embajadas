@@ -57,7 +57,7 @@ module Incitatus
     # Enable the asset pipeline
     config.assets.enabled = true
     # Force admin_base precompilation
-    config.assets.precompile += %w( admin_base.css admin.js rails_admin/admin.js )
+    config.assets.precompile += %w( admin_base.css admin.js rails_admin/admin.js shim/modernizr.2-6-2.min.js shim/respond.1-1-0.min.js )
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
