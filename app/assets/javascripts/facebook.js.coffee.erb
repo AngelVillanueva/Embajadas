@@ -1,10 +1,14 @@
 <% FACEBOOK_CONFIG_js = YAML.load_file("#{::Rails.root}/config/facebook.yml")[::Rails.env] %>
 
 jQuery ->
+  locale = $("b.anchorSDK").attr("data-custom-locale")
+  vers = 'en_US'
+  if locale == 'es'
+    vers = 'es_LA' 
   $('body').prepend('<div id="fb-root"></div>')
 
   $.ajax
-    url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"
+    url: "#{window.location.protocol}//connect.facebook.net/#{vers}/all.js"
     dataType: 'script'
     cache: true
 

@@ -1,0 +1,30 @@
+/*** TWEAK TO NIMBLE THEME ***/
+  /* #main-area div nimble-like */
+  #main-area { background-color: rgb(230, 104, 71); padding-bottom: 30px; }
+  .devise-shared-links { width: 390px; text-align: right; padding: 10px 0; }
+  .devise-shared-links a { color: white; }
+  .et-protected, .devise-shared-links { margin: 0 auto;}
+  /* footer menu, p#copyright nimble-like */
+  #main-footer { padding-top: 20px; }
+  .footer_links { height: 40px; }
+  .footer_links ul { float: right; }
+  .footer_links li { display: inline-block; padding-right: 5px; }
+  .footer_links li a { color: #555e58; font-weight: 800; }
+
+/*** FACEBOOK ***/
+#facebook_sign_in, #facebook_sign_in:visited {
+  display: block;
+  background: image_url('frontend/fb_sprite_230x36.png') no-repeat 0 0;
+  text-indent: -9999em;
+  text-align: left;
+  height: 40px;
+  width: 233px;
+  margin: 0 auto;
+}
+#facebook_sign_in:hover, #facebook_sign_in:active, #facebook_sign_in:focus {
+  background-position: 0 -40px;
+}
+#facebook_sign_in:active {
+  margin-top: 2px;
+  height: 38px;
+}
