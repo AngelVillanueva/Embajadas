@@ -16,7 +16,9 @@
   <%= render 'shared/shim-respond-modernizr' %>
 </head>
 <body>
-    <header id="main-header"><%= render 'shared/header' %></header>
+    <header id="main-header">
+      <%= render 'shared/header', h1: yield(:h1), h3: yield(:h3) %>
+    </header>
     <div id="main-area" role="main">
       <%= render 'shared/flash', flash: flash %>
       <%= yield %>

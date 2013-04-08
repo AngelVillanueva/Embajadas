@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require frontend/style
+ *= require frontend/shortcodes
  *= require frontend/customization
  *= require z-development
  */

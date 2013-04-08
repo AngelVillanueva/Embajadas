@@ -1,0 +1,37 @@
+<% provide :h1, t("Sign in") %>
+<% if resource_name == :consul
+  subtitle = 'Enter your credentials'
+else
+  subtitle = 'Easy with your Facebook account'
+  end %>
+<% provide :h3, t(subtitle) %>
+
+<% if resource_name == :consul %>
+  <div class="et-protected">
+    <div class="et-protected-title">Member Login</div>
+    <div class="et-protected-form">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <p>
+        <%= f.label :email do %>
+          <span><%= Consul.human_attribute_name("email") %></span>
+          <%= f.email_field :email, :autofocus => true %>
+          <span class="et_protected_icon"></span>
+        <% end %>
+      </p>
+      <p>
+        <%= f.label :password do %>
+          <span><%= Consul.human_attribute_name("password") %></span>
+          <%= f.password_field :password %>
+          <span class="et_protected_icon et_protected_password"></span>
+        <% end %>
+      </p>
+      <% if devise_mapping.rememberable? -%>
+        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+      <% end -%>
+      <div><%= f.submit "Sign in", class: 'etlogin-button' %></div>
+      <% end %>
+    </div> <!-- .et-protected-form -->
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
