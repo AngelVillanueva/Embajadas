@@ -24,9 +24,15 @@
   letter-spacing: 3px;
   color: white;
 }
+
 /* footer menu, p#copyright nimble-like */
 #main-footer { padding-top: 20px; }
 .footer_links { height: 40px; }
 .footer_links ul { float: right; }
 .footer_links li { display: inline-block; padding-right: 5px; }
 .footer_links li a { color: #555e58; font-weight: 800; }
+
+#main-area { background-color: rgb(230, 104, 71); padding-bottom: 30px; }
+.devise-shared-links { width: 390px; text-align: right; padding: 10px 0; }
+.devise-shared-links a { color: white; }
+.et-protected, .devise-shared-links { margin: 0 auto;}
