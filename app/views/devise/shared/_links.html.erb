@@ -25,7 +25,7 @@
   <b class="anchorSDK" data-custom-locale="<%= I18n.locale %>" data-custom-resource="<%= resource_name.to_s.pluralize %>"></b>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <% if provider == :facebook %>
-      <%= link_to "Sign in with #{provider.to_s.titleize}", "/ambassadors/auth/#{provider}?locale=#{I18n.locale}", id: "#{provider}_sign_in" %>
+      <%= link_to "Sign in with #{provider.to_s.titleize}", "/ambassadors/auth/#{provider}?locale=#{I18n.locale}", id: "#{provider}_sign_in", class: "#{I18n.locale}" %>
     <% end %>
   <% end -%>
 <% end -%>

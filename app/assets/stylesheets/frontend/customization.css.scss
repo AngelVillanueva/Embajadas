@@ -10,21 +10,30 @@
   .footer_links ul { float: right; }
   .footer_links li { display: inline-block; padding-right: 5px; }
   .footer_links li a { color: #555e58; font-weight: 800; }
+  /* sign in button for consuls */
+  .etlogin-button:hover { cursor: pointer; }
+  .etlogin-button:active {
+    position: relative;
+    top: 2px;
+  }
 
 /*** FACEBOOK ***/
 #facebook_sign_in, #facebook_sign_in:visited {
   display: block;
-  background: image_url('frontend/fb_sprite_230x36.png') no-repeat 0 0;
+  background: image_url('frontend/fb_sprite_230x36_en.png') no-repeat 0 0;
   text-indent: -9999em;
   text-align: left;
   height: 40px;
   width: 233px;
   margin: 0 auto;
 }
-#facebook_sign_in:hover, #facebook_sign_in:active, #facebook_sign_in:focus {
+#facebook_sign_in.es, #facebook_sign_in.es:visited {
+  background-image: image_url('frontend/fb_sprite_230x36_es.png')
+}
+#facebook_sign_in:focus, #facebook_sign_in:hover, #facebook_sign_in:active {
   background-position: 0 -40px;
 }
 #facebook_sign_in:active {
-  margin-top: 2px;
-  height: 38px;
+  position: relative;
+  top: 1px;
 }
