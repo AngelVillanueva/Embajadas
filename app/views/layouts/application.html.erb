@@ -20,13 +20,15 @@
       <%= render 'shared/header', h1: yield(:h1), h3: yield(:h3) %>
     </header>
     <div id="main-area" role="main">
-      <%= render 'shared/flash', flash: flash %>
-      <%= yield %>
+      <div class="container">
+        <%= render 'shared/flash', flash: flash %>
+        <%= yield %>
+      </div>
     </div><!-- end of main-area -->
     <footer id="main-footer"><%= render 'shared/footer' %></footer>
 
     <% unless Rails.env.production? %>
-    <a href="#" class="debug">debug</a>
+    <a href="#" class="debug">debug<b></b></a>
     <div id="debug">
       <div><%= debug(params) %></div>
       <div><%= debug(cookies) %></div>

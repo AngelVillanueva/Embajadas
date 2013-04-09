@@ -20,6 +20,7 @@ $(document).ready ->
     $('#debug').hide()
     $('a.debug').click ->
       $('#debug').slideToggle()
+      $('a.debug b').toggleClass('clicked')
       event.stopPropagation()
   # duplicate and activate menu for mobile in frontend
   et_duplicate_menu( $('ul.nav'), $('#main-header .mobile_nav'), 'mobile_menu', 'et_mobile_menu' );
