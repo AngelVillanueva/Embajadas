@@ -15,6 +15,12 @@ et_duplicate_menu = ( menu, append_to, menu_id, menu_class ) ->
     event.stopPropagation();
 
 $(document).ready ->
+  # debug slider (not for production)
+  if ($('#debug').size())
+    $('#debug').hide()
+    $('a.debug').click ->
+      $('#debug').slideToggle()
+      event.stopPropagation()
   # duplicate and activate menu for mobile in frontend
   et_duplicate_menu( $('ul.nav'), $('#main-header .mobile_nav'), 'mobile_menu', 'et_mobile_menu' );
   # Get rid of facebook api url appending bug

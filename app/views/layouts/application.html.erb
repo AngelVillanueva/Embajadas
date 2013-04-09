@@ -26,8 +26,11 @@
     <footer id="main-footer"><%= render 'shared/footer' %></footer>
 
     <% unless Rails.env.production? %>
-    <div><%= debug(params) %></div>
-    <div><%= debug(cookies) %></div>
+    <a href="#" class="debug">debug</a>
+    <div id="debug">
+      <div><%= debug(params) %></div>
+      <div><%= debug(cookies) %></div>
+    </div>
     <% end %>
 
     <%= javascript_include_tag "application" %>

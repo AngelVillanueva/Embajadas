@@ -1,4 +1,6 @@
 /** STYLING THE DEBUG INFO (from github.com) **/
+#debug { display: none; }
+a.debug { color: #888; margin-left: 50px; text-decoration: underline; }
 .debug_dump {
   clear: both;
   margin: 15px 0;
