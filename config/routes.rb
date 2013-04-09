@@ -12,7 +12,9 @@ Incitatus::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  root to: 'static_pages#welcome'
+  devise_scope :ambassador do
+    root to: "devise/sessions#new"
+  end
 
   resources :embassies do
     resources :missions
