@@ -1,8 +1,8 @@
 Feature: As an Ambassador I need to accept a Mission in order to start gaining Points for it
-
+@now
 Scenario: A Mission needs to be accepted
-  Given I am an Ambassador
-  When I access the Mission page
+  Given I am a logged Ambassador through Facebook
+  When I visit the Mission page
   Then I am prompted to accept the Mission
 
 Scenario: An accepted Mission generates a new Assignment
