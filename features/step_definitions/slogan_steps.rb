@@ -14,11 +14,11 @@ When /^there are some Slogans created$/ do
   search_term_three = FactoryGirl.create(:search_term, term: "Term 3", consul_id: 3)
   step "there are Embassies from different Consuls"
   slogan_one = Slogan.new
-  slogan_one.mission = Mission.first
+  slogan_one.mission = Mission.find_by_name("Mission 1 for The Embassy")
   slogan_one.search_term = search_term_one
   slogan_one.save!
   slogan_two = Slogan.new
-  slogan_two.mission = Mission.first
+  slogan_two.mission = Mission.find_by_name("Mission 1 for The Embassy")
   slogan_two.search_term = search_term_two
   slogan_two.save!
   slogan_third = Slogan.new

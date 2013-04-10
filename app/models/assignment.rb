@@ -25,7 +25,7 @@ class Assignment < ActiveRecord::Base
   # ambassador and mission belongs to the same embassy?
   def same_scope?
     if ambassador && mission
-      errors.add(:base, "Ambassador and Mission do not belong to the same Embassy") unless ambassador.embassies.include? mission.embassy
+      errors.add(:base, "Ambassador and Mission do not belong to the same Embassy. Ambassador are " + ambassador.embassies.map(&:id).to_s + " and Mission is " + mission.embassy_id.to_s) unless ambassador.embassies.include? mission.embassy
     end
   end
   # automatically assigns a tracking_code for any new assignment (example: offline tracking?)
