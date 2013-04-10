@@ -1,6 +1,6 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def all
-    embassy = params[:etr] ? params[:etr] : "chulito"
+    embassy = params[:etr]
     ambassador = Ambassador.from_omniauth(request.env["omniauth.auth"], embassy)
     if ambassador.persisted?
       flash.notice = I18n.t("devise.sessions.signed_in") 
