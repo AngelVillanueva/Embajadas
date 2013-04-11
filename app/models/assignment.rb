@@ -45,16 +45,11 @@ class Assignment < ActiveRecord::Base
   # automatically builds the tracking url, containing both the ambassador tracking_id and the destination url (entered by the Consul for the Mission)
   def assign_tracking_url
     if tracking_url.nil?
-      self.tracking_url = build_tracking_url(mission_id, ambassador_id)
+      mission_tracker = Mission.find(mission_id).tracking_url
+      ambassador_tracker = Ambassador.find(ambassador_id).tracking_id
+      long_url = "#{Rails.configuration.custom_config_cookie_host}/cooker/?tamb=" << ambassador_tracker << '&emb_url='
+      mission_tracker.match(/^http:\/\//).nil? ? protocol = 'http://' : protocol = ''
+      self.tracking_url = long_url << protocol << mission_tracker
     end
-  end
-  def build_tracking_url(mission_id, ambassador_id)
-    mt = Mission.find(mission_id).tracking_url
-    at = Ambassador.find(ambassador_id).tracking_id
-    #own = 'http://127.0.0.1:3000/cooker/?tamb=' << at << '&emb_url='
-    own = "#{Rails.configuration.custom_config_cookie_host}/cooker/?tamb=" << at << '&emb_url='
-    protocol = ''
-    protocol = 'http://' unless mt.match /^http:\/\//
-    tracking_url = own << protocol << mt
   end
 end
