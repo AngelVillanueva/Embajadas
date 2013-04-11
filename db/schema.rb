@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410085924) do
+ActiveRecord::Schema.define(:version => 20130411142728) do
 
   create_table "ambassadors", :force => true do |t|
     t.string   "name"
@@ -90,6 +90,10 @@ ActiveRecord::Schema.define(:version => 20130410085924) do
     t.string   "tracking_code"
     t.integer  "embassy_id"
     t.datetime "expires_at"
+    t.text     "landing_url"
+    t.string   "short_url"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "missions", :force => true do |t|
