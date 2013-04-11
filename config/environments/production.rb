@@ -70,6 +70,6 @@ Incitatus::Application.configure do
     [u, p] == ['embajadas', 'embajadas']
   end
 
-  # Embassyland, for cookie seeding
-  config.custom_config_cookie_host = 'http://embajadas.herokuapp.com'
+  # Incitatus, for cookie seeding
+  config.custom_config_cookie_host = 'http://incitatus.herokuapp.com'
 end

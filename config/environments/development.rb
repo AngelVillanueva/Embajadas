@@ -38,6 +38,6 @@ Incitatus::Application.configure do
   # Devise reco
   config.action_mailer.default_url_options = { host: 'localhost:3000'}
 
-  # Embassyland, for cookie seeding
+  # Incitatus, for cookie seeding
   config.custom_config_cookie_host = 'http://127.0.0.1:3000'
 end
