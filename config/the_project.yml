@@ -1,0 +1,9 @@
+development:
+  host_ip: 'http://127.0.0.1:3000'
+  host: 'http://localhost:3000'
+test:
+  host_ip: 'http://127.0.0.1:3000'
+  host: 'http://localhost:3000'
+production:
+  host: 'http://incitatus.herokuapp.com'
+  host_ip: 'http://incitatus.herokuapp.com'
