@@ -4,7 +4,8 @@ class ShortenerObserver < ActiveRecord::Observer
   def after_create(model)
     require 'bitly'
     Bitly.use_api_version_3
-    bitly = Bitly.new('embassyland', 'R_4a3b8272b7634f605382c8e02e809378')
+    #bitly = Bitly.new('embassyland', 'R_4a3b8272b7634f605382c8e02e809378')
+    bitly = Bitly.new(BITLY_CONFIG['user'], BITLY_CONFIG['api_key'])
     if model.short_url.nil?
       tu = model.landing_url
       begin
