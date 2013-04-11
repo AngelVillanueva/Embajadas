@@ -16,9 +16,9 @@ class Assignment < ActiveRecord::Base
   belongs_to :ambassador
   belongs_to :mission
 
-  before_validation :assign_code, :assign_tracking_url, :assign_short_url
+  before_validation :assign_code, :assign_tracking_url
 
-  validates :ambassador_id, :mission_id, :code, :tracking_url, :short_url, presence: true
+  validates :ambassador_id, :mission_id, :code, :tracking_url, presence: true
   validate :same_scope?
 
   protected
@@ -56,23 +56,5 @@ class Assignment < ActiveRecord::Base
     protocol = ''
     protocol = 'http://' unless mt.match /^http:\/\//
     tracking_url = own << protocol << mt
-  end
-  # automatically shortens the tracking url through bitly api
-  def assign_short_url
-    require 'bitly'
-    Bitly.use_api_version_3
-    bitly = Bitly.new('embassyland', 'R_4a3b8272b7634f605382c8e02e809378')
-    if short_url.nil?
-      tu = build_tracking_url(mission_id, ambassador_id)
-      begin
-        su = bitly.shorten(tu)
-      rescue BitlyError, BitlyTimeout => error
-        self.short_url = tu
-        # any error coming from bitly implies that the full url is used as short_url to not break the flow
-        # pending: enque failing assignments to try later
-      else
-        self.short_url = su.short_url
-      end
-    end
   end
 end

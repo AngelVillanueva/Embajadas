@@ -13,4 +13,20 @@ describe ShortenerObserver do
 
     its(:short_url) { should_not be_nil }
   end
+  describe "auto generates short url from Assignment tracking url" do
+    let(:assignment) { Assignment.new }
+    let(:embassy) { FactoryGirl.create(:embassy) }
+    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
+    let(:ambassador) { FactoryGirl.create(:ambassador) }
+    before do
+      ambassador.embassies << embassy
+      assignment.mission_id = mission.id
+      assignment.ambassador_id = ambassador.id
+      assignment.save
+    end
+    subject { assignment }
+
+    it { should be_valid }
+    its(:short_url) { should_not be_nil }
+  end
 end

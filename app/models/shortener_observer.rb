@@ -1,13 +1,17 @@
 class ShortenerObserver < ActiveRecord::Observer
-  observe :mailing_code
+  observe :mailing_code, :assignment
 
   def after_create(model)
-    require 'bitly'
-    Bitly.use_api_version_3
-    #bitly = Bitly.new('embassyland', 'R_4a3b8272b7634f605382c8e02e809378')
-    bitly = Bitly.new(BITLY_CONFIG['user'], BITLY_CONFIG['api_key'])
     if model.short_url.nil?
-      tu = model.landing_url
+      require 'bitly'
+      Bitly.use_api_version_3
+      bitly = Bitly.new(BITLY_CONFIG['user'], BITLY_CONFIG['api_key'])
+      case model
+        when MailingCode
+          tu = model.landing_url
+        when Assignment
+          tu = model.tracking_url
+      end
       begin
         su = bitly.shorten(tu)
       rescue BitlyError, BitlyTimeout => error
