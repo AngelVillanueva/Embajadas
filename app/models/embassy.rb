@@ -16,6 +16,8 @@ class Embassy < ActiveRecord::Base
   has_many :slogans
   has_many :mailing_codes
 
+  after_create :assign_mailing_code
+
   validates :name, presence: true
   validates :name, uniqueness: true
 
@@ -25,5 +27,13 @@ class Embassy < ActiveRecord::Base
 
   def available_search_terms
     SearchTerm.where(consul_id: consul_ids)
+  end
+
+  protected
+  def assign_mailing_code
+    mc = MailingCode.new
+    mc.embassy = self
+    mc.expires_at = 2.week.from_now
+    mc.save!
   end
 end

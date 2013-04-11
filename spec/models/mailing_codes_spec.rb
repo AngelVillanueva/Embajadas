@@ -7,6 +7,7 @@ describe "MailingCodes" do
       mailing_code.embassy_id = "1"
       mailing_code.expires_at = 1.week.from_now
     end
+  
   describe "Model" do
     subject { mailing_code }
 
@@ -14,6 +15,8 @@ describe "MailingCodes" do
     it { should respond_to :tracking_code }
     it { should respond_to :embassy_id }
     it { should respond_to :expires_at }
+    it { should respond_to :landing_url }
+    it { should respond_to :short_url }
   end
   describe "with all fields mandatory" do
     before do
@@ -60,5 +63,15 @@ describe "MailingCodes" do
     subject { mc }
 
     it { should_not be_valid }
+  end
+  describe "auto-generated when a new Embassy is created" do
+    let(:embassy) { Embassy.new }
+    before do
+      embassy.name = "One Embassy with an auto-generated MailingCode"
+      embassy.save!
+    end
+    subject { embassy.mailing_codes }
+
+    its(:size) { should == 1 }
   end
 end
