@@ -6,6 +6,8 @@ describe "MailingCodes" do
       mailing_code.tracking_code = "aaa"
       mailing_code.embassy_id = "1"
       mailing_code.expires_at = 1.week.from_now
+      mailing_code.landing_url = "http://127.0.0.1:3000/landing"
+      mailing_code.short_url = "http://bitlty/short"
     end
   
   describe "Model" do
@@ -23,6 +25,8 @@ describe "MailingCodes" do
       mailing_code.tracking_code = nil
       mailing_code.embassy_id = nil
       mailing_code.expires_at = nil
+      mailing_code.landing_url = nil
+      mailing_code.short_url = nil
       mailing_code.save
     end
     subject { mailing_code }
@@ -32,7 +36,7 @@ describe "MailingCodes" do
   describe "with auto-generated tracking code" do
     before do
       mailing_code.tracking_code = nil
-      mailing_code.save
+      mailing_code.save!
     end
     subject { mailing_code }
 
@@ -51,6 +55,16 @@ describe "MailingCodes" do
     subject { mc }
 
     it { should_not be_valid }
+  end
+  describe "with auto-generated landing url" do
+    before do
+      mailing_code.landing_url = nil
+      mailing_code.save
+    end
+    subject { mailing_code }
+
+    its(:landing_url) { should_not be_nil }
+    it { should be_valid }
   end
   describe "with accessible embassy_id field" do
     let(:mc) { MailingCode.new(embassy_id: 1) }

@@ -16,12 +16,12 @@ class MailingCode < ActiveRecord::Base
   belongs_to :embassy
   attr_accessible :embassy_id, :expires_at
 
-  before_validation :assign_random_tracking_code
+  before_validation :assign_random_tracking_code, :build_landing_url
 
-  validates :tracking_code, :embassy_id, :expires_at, presence: true
+  validates :tracking_code, :embassy_id, :expires_at, :landing_url, presence: true
   validates :tracking_code, uniqueness: true
 
-  private
+  protected
   # assign a random tracking_code on MailingCode creation to avoid using externally app ids
   def assign_random_tracking_code
     if tracking_code.nil?
@@ -36,6 +36,14 @@ class MailingCode < ActiveRecord::Base
       tracking_code
     else
       get_unique_tracking_code
+    end
+  end
+  # builds the landing url for mailings to customers (long version)
+  def build_landing_url(locale = I18n.locale)
+    if self.landing_url.nil?
+      own_domain = "#{Rails.configuration.custom_config_cookie_host}"
+      sign_in_route = Rails.application.routes.url_helpers.new_ambassador_session_path(locale: locale)
+      self.landing_url = own_domain << sign_in_route << "?etr=" << self.tracking_code
     end
   end
 end
