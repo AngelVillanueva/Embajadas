@@ -6,6 +6,10 @@
 #  tracking_code :string(255)
 #  embassy_id    :integer
 #  expires_at    :datetime
+#  landing_url   :text
+#  short_url     :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class MailingCode < ActiveRecord::Base

@@ -64,14 +64,4 @@ describe "MailingCodes" do
 
     it { should_not be_valid }
   end
-  describe "auto-generated when a new Embassy is created" do
-    let(:embassy) { Embassy.new }
-    before do
-      embassy.name = "One Embassy with an auto-generated MailingCode"
-      embassy.save!
-    end
-    subject { embassy.mailing_codes }
-
-    its(:size) { should == 1 }
-  end
 end
