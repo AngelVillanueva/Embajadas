@@ -11,7 +11,7 @@ describe ShortenerObserver do
     end
     subject { mc }
 
-    its(:short_url) { should_not be_nil }
+    its(:short_url) { should match /^http:\/\/bit.ly/ }
   end
   describe "auto generates short url from Assignment tracking url" do
     let(:assignment) { Assignment.new }
@@ -27,6 +27,6 @@ describe ShortenerObserver do
     subject { assignment }
 
     it { should be_valid }
-    its(:short_url) { should_not be_nil }
+    its(:short_url) { should match /^http:\/\/bit.ly/ }
   end
 end
