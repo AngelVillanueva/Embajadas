@@ -229,6 +229,7 @@ es:
   Ambassador tracking_id for test: "Ambassador tracking_ID for the test is %{ambassador_tracking_id}"
   Mission tracking_id for test: "Mission tracking_ID for the test is %{mission_tracking_id}"
   Sharing URL: "URL para compartir"
+  Tracking URL: "URL que será fomentada"
   Pixel: "Pixel"
   Generate Code: "Generar código"
   Code: "Código"
