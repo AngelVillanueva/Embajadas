@@ -20,6 +20,11 @@ When /^I visit the Ambassador area of other Ambassador$/ do
   visit ambassador_path(ambassador_two)
 end
 
+When /^a potential Ambassador follows a link to join my Embassy$/ do
+  code = MailingCode.first.tracking_code
+  visit new_ambassador_session_path(etr: code)
+end
+
 Then /^I should be prompted to authenticate myself through (.*?)$/ do |provider|
   page.should have_css("##{provider.downcase}_sign_in")
 end
