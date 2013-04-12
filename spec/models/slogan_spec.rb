@@ -53,4 +53,10 @@ describe "Slogans" do
 
     it { should_not be_valid }
   end
+  describe "with accessible attributes" do
+    let(:new_slogan) { Slogan.new(mission_id: 1, search_term_id: 1) }
+    subject { new_slogan }
+
+    it { should be_valid } 
+  end
 end
