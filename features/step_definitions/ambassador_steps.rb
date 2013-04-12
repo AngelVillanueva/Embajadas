@@ -25,6 +25,10 @@ When /^a potential Ambassador follows a link to join my Embassy$/ do
   visit new_ambassador_session_path(etr: code)
 end
 
+When /^she accepts to join my Embassy$/ do
+  step "I am a logged Ambassador through Facebook"
+end
+
 Then /^I should be prompted to authenticate myself through (.*?)$/ do |provider|
   page.should have_css("##{provider.downcase}_sign_in")
 end
@@ -35,6 +39,12 @@ end
 
 Then /^her auth Token should be stored$/ do
   Ambassador.last.oauth_token.should == "456"
+end
+
+Then /^she should join the Embassy$/ do
+  page.should have_content(I18n.t("ambassador_area.hello", name: @current_ambassador.name))
+  page.should have_content(Embassy.first.name)
+  page.should have_css('a', href: embassy_path(Embassy.first))
 end
 
 

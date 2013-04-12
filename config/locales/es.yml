@@ -257,4 +257,5 @@ es:
       Gosection: "Ir a esta sección"
     home:
       loading: "Cargando..."
-
+  ambassador_area:
+    hello: "Hola, %{name}" 

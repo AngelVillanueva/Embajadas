@@ -235,7 +235,7 @@ Then /^I should not be redirected to the global homepage$/ do
 end
 
 Then /^I should be redirected to my own Ambassador page$/ do
-  current_path.should == ambassador_path(Ambassador.first)
+  current_path.should == ambassador_path(@current_ambassador)
 end
 
 Then /^I should see the Mission name$/ do

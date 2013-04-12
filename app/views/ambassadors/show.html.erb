@@ -1,4 +1,4 @@
-<p>Hello, <%= current_ambassador.name %></p>
+<p><%= t("ambassador_area.hello", name: current_ambassador.name) %></p>
 <ul id="embassies">
   <%= render @embassies %>
 <ul>
