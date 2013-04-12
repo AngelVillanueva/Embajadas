@@ -48,7 +48,7 @@ class Assignment < ActiveRecord::Base
       mission_track_url = Mission.find(mission_id).tracking_url
       ambassador_tracker = Ambassador.find(ambassador_id).tracking_id
       project_host = "#{PROJECT_CONFIG['host_ip']}"
-      mission_track_url.match(/^http:\/\//).nil? ? protocol = 'http://' : protocol = ''
+      protocol = (mission_track_url.match(/^http:\/\//).nil? && 'http://') || ''
       mission_tracker = protocol + mission_track_url
       long_url = Rails.application.routes.url_helpers.cooker_path(tamb: ambassador_tracker, emb_url: mission_tracker)
       ## maybe problems with the emb_url param due to the rails conversion; keep an eye
