@@ -78,4 +78,13 @@ describe "MailingCodes" do
 
     it { should_not be_valid }
   end
+  describe "destroyed when its Embassy is deleted" do
+    let(:embassy_to_delete) { FactoryGirl.create(:embassy, name: "To be deleted") }
+    before do
+      embassy_to_delete.destroy
+    end
+    subject { embassy_to_delete.mailing_codes }
+
+    it { should be_empty }
+  end
 end
