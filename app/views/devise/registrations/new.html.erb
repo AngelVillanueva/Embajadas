@@ -1,4 +1,10 @@
-<h2>Sign up</h2>
+<% code = params[:etr] %>
+<% provide :h1, t("Sign up") %>
+<% unless code.nil? || code.empty?
+  provide :h3, t('Welcome to the Embassy of brand', brand: MailingCode.find_by_tracking_code(code).embassy.name)
+else
+  provide :h3, t('Easy with your Facebook account')
+  end %>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -16,13 +22,6 @@
     <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %></div>
   <% end %>
-
-  <% for embassy in Embassy.find(:all) %>
-    <div>
-      <%= check_box_tag "ambassador[embassy_ids][]", embassy.id, resource.embassies.include?(embassy) %>
-      <%= embassy.name %>
-    </div>
-<% end %>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

@@ -22,7 +22,7 @@ end
 
 When /^a potential Ambassador follows a link to join my Embassy$/ do
   code = MailingCode.first.tracking_code
-  visit new_ambassador_session_path(etr: code)
+  visit new_ambassador_registration_path(etr: code)
 end
 
 When /^she accepts to join my Embassy$/ do

@@ -42,7 +42,7 @@ class MailingCode < ActiveRecord::Base
   def build_landing_url(locale = I18n.locale)
     if self.landing_url.nil?
       project_host = "#{PROJECT_CONFIG['host']}"
-      sign_in_route = Rails.application.routes.url_helpers.new_ambassador_session_path(locale: locale, etr: self.tracking_code)
+      sign_in_route = Rails.application.routes.url_helpers.new_ambassador_registration_path(locale: locale, etr: self.tracking_code)
       self.landing_url = project_host + sign_in_route
     end
   end
