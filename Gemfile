@@ -33,7 +33,6 @@ gem 'koala'
 # gem 'localeapp' # issues with pull-push in dev mode
  
 group :development, :test do
-  gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.10.0'
   gem 'guard-rspec', '0.5.5'
   gem 'guard-cucumber'
@@ -42,6 +41,11 @@ group :development, :test do
 
 group :development do
   gem 'annotate', '2.5.0'
+  gem 'awesome_print' # cool console object output
+  gem 'better_errors' # cool error info pages in development. Trace last error also by navigating to 0.0.0.0:3000/__better_errors
+  gem 'binding_of_caller' # cool error info pages in development
+  gem 'meta_request', '0.2.1' # rails_panel chrome extension.
+  gem 'sextant' # Navigate to 0.0.0.0:3000/rails/routes to see routes in the browser
 end
 # Gems used only for assets and not required
 # in production environments by default.
