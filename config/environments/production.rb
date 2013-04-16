@@ -1,4 +1,4 @@
-Incitatus::Application.configure do
+ Incitatus::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -9,7 +9,8 @@ Incitatus::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=31104000"
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -64,6 +65,11 @@ Incitatus::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  # Serve pre-gzipped static assets
+    middleware.insert_after(
+    'Rack::Cache', Middleware::CompressedStaticAssets,
+    paths["public"].first, config.assets.prefix, config.static_cache_control)
 
   # user / pwd protected
   config.middleware.insert_after(::Rack::Lock, "::Rack::Auth::Basic", "Embajadas") do |u, p|
