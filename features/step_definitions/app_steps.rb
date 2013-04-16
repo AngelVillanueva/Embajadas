@@ -367,7 +367,8 @@ Then /^I should not see the generated Code$/ do
 end
 
 Then /^I should see the url to be shared for each available Mission$/ do
-  page.should have_content("http://www.sinapse.es/sandbox/pixel/destination_p.html")
+  short_url = Assignment.last.short_url
+  page.should have_content short_url
 end
 
 Then /^I should be at the Brand area dashboard$/ do

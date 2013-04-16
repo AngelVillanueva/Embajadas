@@ -19,6 +19,7 @@ Scenario: Embassy homepage contains the short description of each Mission
 Scenario: Embassy homepage contains the sharing URL for the Mission
   Given I am a logged Ambassador through Facebook
   When I visit my Embassy homepage
+    And I accept the Mission
   Then I should see the url to be shared for each available Mission
 
 Scenario: Embassy homepage contains the list for available rewards for each Mission
