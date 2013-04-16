@@ -23,6 +23,9 @@
 *.sublime-project
 *.sublime-workspace
 
+# Zeus
+*.zeus.sock
+
 # Ignore other unneeded files.
 doc/
 *.swp
