@@ -66,11 +66,6 @@
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  # Serve pre-gzipped static assets
-    middleware.insert_after(
-    'Rack::Cache', Middleware::CompressedStaticAssets,
-    paths["public"].first, config.assets.prefix, config.static_cache_control)
-
   # user / pwd protected
   config.middleware.insert_after(::Rack::Lock, "::Rack::Auth::Basic", "Embajadas") do |u, p|
     [u, p] == ['embajadas', 'embajadas']

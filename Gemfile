@@ -66,6 +66,10 @@ group :test do
   gem 'factory_girl_rails', '1.4.0'
 end
 
+group :production do
+  gem 'heroku-deflater'
+end
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

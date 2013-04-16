@@ -133,6 +133,8 @@ GEM
       spork (>= 0.8.4)
     haml (3.1.7)
     hashie (1.2.0)
+    heroku-deflater (0.3.0)
+      rack (>= 1.4.2)
     hike (1.2.1)
     http_parser.rb (0.5.3)
     httparty (0.10.2)
@@ -341,6 +343,7 @@ DEPENDENCIES
   guard-cucumber
   guard-rspec (= 0.5.5)
   guard-spork (= 0.3.2)
+  heroku-deflater
   jquery-rails (= 2.0.2)
   koala
   meta_request (= 0.2.1)
