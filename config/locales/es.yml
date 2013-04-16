@@ -198,6 +198,9 @@ es:
     errors:
       <<: *errors
   activerecord:
+    models:
+      reward: "Recompensa"
+      post: "Post"
     errors:
       <<: *errors
   Brandname: "Incitatus"
@@ -231,6 +234,9 @@ es:
   Sharing URL: "URL para compartir"
   Tracking URL: "URL que será fomentada"
   Pixel: "Pixel"
+  Your embassies: "Tus embajadas"
+  Click to see details: "Haz click para ver los detalles"
+  Active Missions: "Misiones disponibles"
   Generate Code: "Generar código"
   Code: "Código"
   Test points: "Teníamos %{points} puntos hasta ahora"

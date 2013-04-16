@@ -1,12 +1,23 @@
 <% tracking_URL = "http://" + mission.tracking_url + "?ambassador=" + current_ambassador.tracking_id %>
+<% assignment = mission.assignments.where(ambassador_id: current_ambassador.id) %>
 
-<li>
-  <ul>
-    <li><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></li>
-    <li><%= mission.short_description %></li>
-    <li><%= t("Tracking URL") %>: <%= link_to tracking_URL, tracking_URL %></li>
-    <li><ul><%= render mission.rewards %></ul></li>
-    <li><ul><%= render mission.slogans %></ul></li>
-    <%= render 'missions/accept_form', mission: mission %>
-  </ul>
+<li class="mission">
+  <article>
+    <hgroup>
+      <h1><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></h1>
+      <h2><%= mission.short_description %></h2>
+    </hgroup>
+    <% unless assignment.empty? %>
+      <p>Short: <%= link_to assignment.first.short_url, assignment.first.short_url %></p>
+    <% end %>
+    <ul>
+      <h4><%= Reward.model_name.human.pluralize %>:</h4>
+      <%= render mission.rewards %>
+    </ul>
+    <ul>
+      <h4><%= Post.model_name.human.pluralize %>:</h4>
+      <%= render mission.slogans %>
+    </ul>
+    <%= render 'missions/accept_form', mission: mission, assignment: assignment %>
+  </article>
 </li>
