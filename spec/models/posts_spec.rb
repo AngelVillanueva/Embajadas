@@ -19,6 +19,7 @@ describe Post do
     it { should respond_to :created_time }
     it { should respond_to :ambassador }
     it { should respond_to :slogan }
+    it { should respond_to :week }
     it { should be_valid }
   end
   describe "with mandatory field provider" do
