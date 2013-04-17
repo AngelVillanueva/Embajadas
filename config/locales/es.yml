@@ -199,8 +199,42 @@ es:
       <<: *errors
   activerecord:
     models:
-      reward: "Recompensa"
-      post: "Post"
+      ambassador: 
+        one: "Embajador"
+        other: "Embajadores"
+      assignment:
+        one: "Misión aceptada"
+        other: "Misiones aceptadas"
+      badge:
+        one: "Badge"
+        other: "Badges"
+      consul:
+        one: "Consul"
+        other: "Cónsules"
+      embassy:
+        one: "Embajada"
+        other: "Embajadas"
+      mailing_code:
+        one: "Link para emailings"
+        other: "Link para emailings"
+      mission: 
+        one: "Misión"
+        other: "Misiones"
+      point:
+        one: "Punto"
+        other: "Puntos"
+      post:
+        one: "Post"
+        other: "Posts"
+      reward:
+        one: "Objetivo"
+        other: "Objetivos"
+      search_term:
+        one: "Tag"
+        other: "Tags"
+      slogan:
+        one: "Topic"
+        other: "Topics"
     errors:
       <<: *errors
   Brandname: "Incitatus"
@@ -262,6 +296,19 @@ es:
       Language: "Idioma"
       Gohome: "Ir al inicio"
       Gosection: "Ir a esta sección"
+      tip:
+        ambassador: "¡Estos son los que más quieren a tu marca!"
+        assignment: "Qué Misiones ha aceptado cada Embajador"
+        badge: "Qué logros ha conseguido cada Embajador"
+        consul: "Los administradores de la cuenta de tu Embajada"
+        embassy: "Configuración de tu Embajada"
+        mailing_code: "Utiliza este enlace cuando invites a un potencial Embajador"
+        mission: "Qué quieres que hagan tus Embajadores"
+        point: "El desempeño de cada Embajador"
+        post: "Cuándo hablan de ti tus Embajadores"
+        reward: "Qué hace falta para conseguir cada Badge"
+        search_term: "Términos que luego utilizarás como Topics"
+        slogan: "Qué buscamos en las redes sociales para saber si hablan de ti"
     home:
       loading: "Cargando..."
   ambassador_area:

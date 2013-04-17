@@ -87,7 +87,8 @@ module RailsAdmin
         li = content_tag :li, "data-model"=>model_param do
           #content_tag(:i, '', class: "icon icon-#{model_param}")
           #link_to(node.label_plural, url, :class => "pjax#{level_class}")
-          link_to url, class: "pjax#{level_class}" do
+          adata = t('admin.menu.tip.'"#{model_param}")
+          link_to url, class: "tip-right pjax#{level_class}", 'data-original-title' => adata do
             content_tag(:i, '', class: "icon icon-#{model_param}") + content_tag(:span, node.label_plural)
           end
         end

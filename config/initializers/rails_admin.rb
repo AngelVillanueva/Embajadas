@@ -38,6 +38,12 @@ RailsAdmin.config do |config|
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
 
+  # Static Links
+  # config.navigation_static_links = {
+  #   'Google' => 'http://www.google.com'
+  # }
+  # config.navigation_static_label = "My Links"
+
 
   ################  Model configuration  ################
 
@@ -52,6 +58,43 @@ RailsAdmin.config do |config|
 
   # Now you probably need to tour the wiki a bit: https://github.com/sferik/rails_admin/wiki
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
+
+  config.model 'Embassy' do
+    weight -120
+  end
+  config.model 'Ambassador' do
+    weight -110
+  end
+  config.model 'Consul' do
+    weight -100
+  end
+  config.model 'Mission' do
+    weight -90
+  end
+  config.model 'MailingCode' do
+    weight -80
+  end
+  config.model 'Assignment' do
+    weight -70
+  end
+  config.model 'Point' do
+    weight -60
+  end
+  config.model 'Reward' do
+    weight -50
+  end
+  config.model 'Badge' do
+    weight -40
+  end
+  config.model 'SearchTerm' do
+    weight -30
+  end
+  config.model 'Slogan' do
+    weight -20
+  end
+  config.model 'Post' do
+    weight -10
+  end
 
 
 

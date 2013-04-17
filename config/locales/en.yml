@@ -61,6 +61,19 @@ en:
       Language: "Language"
       Gohome: "Go to home"
       Gosection: "Go to this section"
+      tip:
+        ambassador: "They love your Brand!"
+        assignment: "When an Ambassador accepts a Mission"
+        badge: "Rewards for your Ambassadors' performance"
+        consul: "Admin users for your Brand"
+        embassy: "Embassy configuration"
+        mailing_code: "Use this link to invite a potential Ambassador"
+        mission: "What do you want from your Ambassadors"
+        point: "Every Ambassador performance"
+        post: "When are they talking about you?"
+        reward: "What do they need to get a Badge"
+        search_term: "You will use them later as Topics"
+        slogan: "What shall we look for in the Social Media"
     home:
       loading: "Loading..."
   ambassador_area:
