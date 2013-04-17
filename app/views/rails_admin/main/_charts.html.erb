@@ -8,11 +8,11 @@ $(document).ready(function(){
 
 <div style="text-align: center;" class="span12 center">         
   <ul class="stat-boxes">
-    <li class="popover-visits" data-original-title="" title="">
-      <div class="left peity_bar_good"><span><span style="display: none;">2,4,9,7,12,10,12</span><canvas width="50" height="24"></canvas></span>+10%</div>
+    <li class="popover-ambassadors" data-original-title="" title="">
+      <div class="left peity_bar_good"><span><span style="display: none;"><%= ambassadors_evolution %></span><canvas width="50" height="24"></canvas></span><%= ambassadors_growth %></div>
       <div class="right">
-        <strong>36094</strong>
-        Visits
+        <strong><%= active_ambassadors.size %></strong>
+        <%= t('activerecord.models.ambassador.other') %>
       </div>
     </li>
     <li class="popover-users" data-original-title="" title="">

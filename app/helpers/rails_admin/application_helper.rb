@@ -165,6 +165,47 @@ module RailsAdmin
       end.html_safe
     end
 
+    ## NEW CUSTOM HELPERS
+    # custom for the charts
+    def active_ambassadors
+      ( current_consul.minister? && Ambassador.all ) || current_consul.embassy.ambassadors
+    end
+
+    def ambassadors_evolution
+      weekly_array = []
+      active_ambassadors.group_by(&:week).sort.first(7).reverse.collect do |week, ambs|
+        weekly_array << ambs.size.to_s
+      end
+      padleft(weekly_array, 7, 0).join(",")
+    end
+
+    def ambassadors_growth
+      weekly_array = []
+      active_ambassadors.group_by(&:week).sort.first(7).reverse.collect do |week, ambs|
+        weekly_array << ambs.size.to_s
+      end
+      case weekly_array[6]
+        when nil? || weekly_array[5]
+          "= 0%"
+        when "0"
+          if weekly_array[5].to_f > 0
+            "+100%"
+          else
+            "= 0%"
+          end
+        else
+          growth = (weekly_array[6].to_f - weekly_array[5].to_f) / weekly_array[5].to_f * 100
+          sign = ( growth < 0 && "" ) || "+"
+          sign + growth.to_s + "%"
+      end
+    end
+
+    # helper for the helpers
+    def padleft(a, n, x)
+      return a if n <= a.length
+      return [x] * (n - a.length) + a
+    end
+
   end
 end
 
