@@ -197,8 +197,43 @@ module RailsAdmin
       padleft(weekly_array, number_of_weeks).join(",")
     end
 
+    def daily_evolution collection, number_of_days
+      collection = clean_days collection
+      daily_array = []
+      today = Date.today.yday
+      number_of_days.times { |n| daily_array << 0 }
+      max_index = number_of_days - 1
+      collection.sort.reverse.first(number_of_days).collect do |day, collection|
+        if (today - day) <= max_index
+          daily_index = max_index - (today - day)
+          daily_array[daily_index] = collection.size.to_s
+        end
+      end
+      padleft(daily_array, number_of_days).join(",")
+    end
+
     def last_growth collection
       serie = weekly_evolution(collection, 2).split(",")
+      last = serie.last
+      prev = serie[serie.count - 2]
+      case serie.last
+        when nil? || prev
+          "= 0%"
+        when "0"
+          if prev.to_f > 0
+            "-100%"
+          else
+            "= 0%"
+          end
+        else
+          growth = (last.to_f - prev.to_f) / prev.to_f * 100
+          sign = (growth < 0 && "") || "+"
+          result = (growth == 100 && "+100%") || sign + growth.round(2).to_s + "%"
+        end
+    end
+
+    def last_growth_d collection
+      serie = daily_evolution(collection, 2).split(",")
       last = serie.last
       prev = serie[serie.count - 2]
       case serie.last
@@ -233,6 +268,20 @@ module RailsAdmin
           week = week - ly_weeks
         end
         new_serie[week] = collection
+      end
+      new_serie
+    end
+    def clean_days collection
+      new_serie = Hash.new
+      as = collection.group_by(&:created_at).collect do |day, collection|
+        day = day.yday
+        now = Date.today.yday
+        last_year = Time.now.year - 1
+        ly_days = Date.new(last_year,12,31).yday
+        if day > now
+          day = day - ly_days
+        end
+        new_serie[day] = collection
       end
       new_serie
     end

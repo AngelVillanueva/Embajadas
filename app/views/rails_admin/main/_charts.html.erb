@@ -16,7 +16,7 @@ $(document).ready(function(){
       </div>
     </li>
     <li class="popover-points" data-original-title="" title="">
-      <div class="left peity_bar_neutral"><span><span style="display: none;"><%= weekly_evolution(current_points,7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(current_points) %></div>
+      <div class="left peity_bar_neutral"><span><span style="display: none;"><%= daily_evolution(current_points,7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth_d(current_points) %></div>
       <div class="right">
         <strong><%= current_points.size %></strong>
         <%= t('activerecord.models.point.other') %>
