@@ -9,7 +9,7 @@ $(document).ready(function(){
 <div style="text-align: center;" class="span12 center">         
   <ul class="stat-boxes">
     <li class="popover-ambassadors" data-original-title="" title="">
-      <div class="left peity_bar_good"><span><span style="display: none;"><%= weekly_evolution(active_ambassadors,7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(active_ambassadors) %></div>
+      <div class="left peity_line_good"><span><span style="display: none;"><%= weekly_evolution(active_ambassadors,7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(active_ambassadors) %></div>
       <div class="right">
         <strong><%= active_ambassadors.size %></strong>
         <%= t('activerecord.models.ambassador.other') %>
@@ -23,7 +23,7 @@ $(document).ready(function(){
       </div>
     </li>
     <li class="popover-posts" data-original-title="" title="">
-      <div class="left peity_bar_bad"><span><span style="display: none;"><%= weekly_evolution(current_posts, 7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(current_posts) %></div>
+      <div class="left peity_line_bad"><span><span style="display: none;"><%= weekly_evolution(current_posts, 7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(current_posts) %></div>
       <div class="right">
         <strong><%= current_posts.size %></strong>
         <%= t('activerecord.models.post.other') %>

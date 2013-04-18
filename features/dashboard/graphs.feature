@@ -12,7 +12,7 @@ Scenario: Creating the Ambassador evolution graph
 Scenario: Creating the Point evolution graph
   Given I am a Consul
     And my Embassy has available Missions as well as Ambassadors
-    And one of the Ambassadors got a Point for a Mission in each of the preceeding weeks
+    And one of the Ambassadors got a Point for a Mission in each of the 3 preceeding weeks
   When I access the Brand area
   Then I should see the Point evolution graph
     And I should see a total of 3 Points

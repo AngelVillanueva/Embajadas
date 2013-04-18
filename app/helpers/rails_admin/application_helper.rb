@@ -182,23 +182,17 @@ module RailsAdmin
       ( current_consul.minister? && Badge.all ) || Badge.where(reward_id: reward_ids)
     end
 
-    def weekly_evolution_old collection, number_of_weeks
-      weekly_array = []
-      number_of_weeks.times { |n| weekly_array << 0 }
-      collection.group_by(&:week).sort.reverse.first(number_of_weeks).collect do |week, collection|
-        week_index = (number_of_weeks - 1) - (Time.now.strftime("%W").to_i - week.to_i)
-        weekly_array[week_index] = collection.size.to_s
-      end
-      padleft(weekly_array, number_of_weeks).join(",")
-    end
-
     def weekly_evolution collection, number_of_weeks
       collection = clean_weeks collection
       weekly_array = []
+      this_week = Time.now.strftime("%W").to_i
       number_of_weeks.times { |n| weekly_array << 0 }
+      max_index = number_of_weeks - 1
       collection.sort.reverse.first(number_of_weeks).collect do |week, collection|
-        week_index = (number_of_weeks - 1) - (Time.now.strftime("%W").to_i - week.to_i)
-        weekly_array[week_index] = collection.size.to_s
+        if (this_week - week.to_i) <= max_index
+          week_index = max_index - (this_week - week.to_i)
+          weekly_array[week_index] = collection.size.to_s
+        end
       end
       padleft(weekly_array, number_of_weeks).join(",")
     end
@@ -212,7 +206,7 @@ module RailsAdmin
           "= 0%"
         when "0"
           if prev.to_f > 0
-            "+100%"
+            "-100%"
           else
             "= 0%"
           end

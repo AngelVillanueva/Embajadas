@@ -11,17 +11,16 @@ Given /^my Embassy has available Missions as well as Ambassadors$/ do
   ambassador.embassies << Embassy.first
 end
 
-Given /^one of the Ambassadors got a Point for a Mission in each of the preceeding weeks$/ do
+Given /^one of the Ambassadors got a Point for a Mission in each of the (\d+) preceeding weeks$/ do |t|
   mission = Mission.first
   ambassador = Ambassador.first
-  3.times do |n|
+  t.to_i.times do |n|
     p = Point.new
     p.mission = mission
     p.ambassador = ambassador
-    p.created_at = (n-1).weeks.ago
+    p.created_at = n.weeks.ago
     p.save!
   end
-  Point.all.size.should == 3
 end
 
 Given /^one of them Post about my brand once four weeks ago, and again the last two weeks$/ do
@@ -70,8 +69,11 @@ Then /^I should see no Posts for the first two weeks and one for (\d+)rd, and on
 end
 
 Then /^I should see a the right (.*?) growth from previous to last week$/ do |model_name|
-  if model_name == "Badge"
-    growth = "+100%"
+  case model_name
+    when "Ambassador"
+      growth = "-100%"
+    when "Badge"
+      growth = "+100%"
   else
     growth = "= 0%"
   end
