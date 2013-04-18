@@ -9,31 +9,31 @@ $(document).ready(function(){
 <div style="text-align: center;" class="span12 center">         
   <ul class="stat-boxes">
     <li class="popover-ambassadors" data-original-title="" title="">
-      <div class="left peity_bar_good"><span><span style="display: none;"><%= ambassadors_evolution %></span><canvas width="50" height="24"></canvas></span><%= ambassadors_growth %></div>
+      <div class="left peity_bar_good"><span><span style="display: none;"><%= weekly_evolution(active_ambassadors,7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(active_ambassadors) %></div>
       <div class="right">
         <strong><%= active_ambassadors.size %></strong>
         <%= t('activerecord.models.ambassador.other') %>
       </div>
     </li>
     <li class="popover-points" data-original-title="" title="">
-      <div class="left peity_bar_neutral"><span><span style="display: none;">20,15,18,14,10,9,9,9</span><canvas width="50" height="24"></canvas></span>0%</div>
+      <div class="left peity_bar_neutral"><span><span style="display: none;"><%= weekly_evolution(current_points,7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(current_points) %></div>
       <div class="right">
-        <strong>1433</strong>
-        Users
+        <strong><%= current_points.size %></strong>
+        <%= t('activerecord.models.point.other') %>
       </div>
     </li>
     <li class="popover-posts" data-original-title="" title="">
-      <div class="left peity_bar_bad"><span><span style="display: none;">3,5,9,7,12,20,10</span><canvas width="50" height="24"></canvas></span>-50%</div>
+      <div class="left peity_bar_bad"><span><span style="display: none;"><%= weekly_evolution(current_posts, 7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(current_posts) %></div>
       <div class="right">
-        <strong>8650</strong>
-        Orders
+        <strong><%= current_posts.size %></strong>
+        <%= t('activerecord.models.post.other') %>
       </div>
     </li>
     <li class="popover-badges" data-original-title="" title="">
-      <div class="left peity_line_good"><span><span style="display: none;">12,6,9,23,14,10,17</span><canvas width="50" height="24"></canvas></span>+70%</div>
+      <div class="left peity_line_good"><span><span style="display: none;"><%= weekly_evolution(current_badges, 7) %></span><canvas width="50" height="24"></canvas></span><%= last_growth(current_badges) %></div>
       <div class="right">
-        <strong>2968</strong>
-        Tickets
+        <strong><%= current_badges.size %></strong>
+        <%= t('activerecord.models.badge.other') %>
       </div>
     </li>
   </ul>

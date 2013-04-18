@@ -170,38 +170,50 @@ module RailsAdmin
     def active_ambassadors
       ( current_consul.minister? && Ambassador.all ) || current_consul.embassy.ambassadors
     end
-
-    def ambassadors_evolution
-      weekly_array = []
-      active_ambassadors.group_by(&:week).sort.first(7).reverse.collect do |week, ambs|
-        weekly_array << ambs.size.to_s
-      end
-      padleft(weekly_array, 7, 0).join(",")
+    def current_points
+      ( current_consul.minister? && Point.all ) || Point.where(mission_id: current_consul.embassy.mission_ids)
+    end
+    def current_posts
+      slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
+      ( current_consul.minister? && Post.all ) || Post.where(slogan_id: slogan_ids)
+    end
+    def current_badges
+      reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
+      ( current_consul.minister? && Badge.all ) || Badge.where(reward_id: reward_ids)
     end
 
-    def ambassadors_growth
+    def weekly_evolution collection, number_of_weeks
       weekly_array = []
-      active_ambassadors.group_by(&:week).sort.first(7).reverse.collect do |week, ambs|
-        weekly_array << ambs.size.to_s
+      number_of_weeks.times { |n| weekly_array << 0 }
+      collection.group_by(&:week).sort.reverse.first(number_of_weeks).collect do |week, collection|
+        week_index = (number_of_weeks - 1) - (Time.now.strftime("%W").to_i - week.to_i)
+        weekly_array[week_index] = collection.size.to_s
       end
-      case weekly_array[6]
-        when nil? || weekly_array[5]
+      padleft(weekly_array, number_of_weeks).join(",")
+    end
+
+    def last_growth collection
+      serie = weekly_evolution(collection, 2).split(",")
+      last = serie.last
+      prev = serie[serie.count - 2]
+      case serie.last
+        when nil? || prev
           "= 0%"
         when "0"
-          if weekly_array[5].to_f > 0
+          if prev.to_f > 0
             "+100%"
           else
             "= 0%"
           end
         else
-          growth = (weekly_array[6].to_f - weekly_array[5].to_f) / weekly_array[5].to_f * 100
-          sign = ( growth < 0 && "" ) || "+"
-          sign + growth.to_s + "%"
-      end
+          growth = (last.to_f - prev.to_f) / prev.to_f * 100
+          sign = (growth < 0 && "") || "+"
+          result = (growth == 100 && "+100%") || sign + growth.round(2).to_s + "%"
+        end
     end
 
     # helper for the helpers
-    def padleft(a, n, x)
+    def padleft(a, n, x=0)
       return a if n <= a.length
       return [x] * (n - a.length) + a
     end
