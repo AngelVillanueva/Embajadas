@@ -182,10 +182,21 @@ module RailsAdmin
       ( current_consul.minister? && Badge.all ) || Badge.where(reward_id: reward_ids)
     end
 
-    def weekly_evolution collection, number_of_weeks
+    def weekly_evolution_old collection, number_of_weeks
       weekly_array = []
       number_of_weeks.times { |n| weekly_array << 0 }
       collection.group_by(&:week).sort.reverse.first(number_of_weeks).collect do |week, collection|
+        week_index = (number_of_weeks - 1) - (Time.now.strftime("%W").to_i - week.to_i)
+        weekly_array[week_index] = collection.size.to_s
+      end
+      padleft(weekly_array, number_of_weeks).join(",")
+    end
+
+    def weekly_evolution collection, number_of_weeks
+      collection = clean_weeks collection
+      weekly_array = []
+      number_of_weeks.times { |n| weekly_array << 0 }
+      collection.sort.reverse.first(number_of_weeks).collect do |week, collection|
         week_index = (number_of_weeks - 1) - (Time.now.strftime("%W").to_i - week.to_i)
         weekly_array[week_index] = collection.size.to_s
       end
@@ -216,6 +227,20 @@ module RailsAdmin
     def padleft(a, n, x=0)
       return a if n <= a.length
       return [x] * (n - a.length) + a
+    end
+    def clean_weeks collection
+      new_serie = Hash.new
+      as = collection.group_by(&:week).collect do |week, collection|
+        week = week.to_i
+        now = Time.now.strftime("%W").to_i
+        last_year = Time.now.year - 1
+        ly_weeks = Date.new(last_year,12,31).strftime("%W").to_i
+        if week > now
+          week = week - ly_weeks
+        end
+        new_serie[week] = collection
+      end
+      new_serie
     end
 
   end
