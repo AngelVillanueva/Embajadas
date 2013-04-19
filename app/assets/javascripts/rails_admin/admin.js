@@ -18,6 +18,7 @@
 //= require rails_admin/unicorn.tables
 //= require rails_admin/jquery.flot.min
 //= require rails_admin/jquery.flot.resize.min
+//= require rails_admin/jquery.flot.time
 //= require rails_admin/jquery.peity.min
 //= require rails_admin/unicorn
 //= require rails_admin/unicorn.dashboard

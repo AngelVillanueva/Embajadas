@@ -4,6 +4,8 @@ en:
       name: "Home"
       Embassy statistics: "Embassy statistics"
       Update stats: "Update stats"
+      Daily graph: "Daily graph"
+      Monthly graph: "Monthly graph"
     pagination:
       previous: "&laquo; Prev"
       next: "Next &raquo;"

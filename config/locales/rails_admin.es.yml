@@ -4,6 +4,12 @@ es:
       name: "Inicio"
       Embassy statistics: "Estadísticas de la Embajada"
       Update stats: "Actualizar estadísticas"
+      Daily graph: "Gráfico diario"
+      dm:
+        tip: "Evolución en los últimos 90 días"
+      Monthly graph: "Gráfico mensual"
+      mm:
+        tip: "Evolución por meses del año en curso"
     pagination:
       previous: "&laquo; Anterior"
       next: "Siguiente &raquo;"
