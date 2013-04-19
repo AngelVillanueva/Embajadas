@@ -40,19 +40,19 @@ mainchart = {
   mychart: function(){
   // === Prepare the main chart data ===/
     var sin = [], cos = [];
-      for (var i = 0; i < 14; i += 0.5) {
-          sin.push([i, Math.sin(i)]);
-          cos.push([i, Math.cos(i)]);
-      }
+    for (var i = 0; i < 90; i += 1) {
+        sin.push([i, $('#serie_1 span.'+i).html()]);
+        cos.push([i, $('#serie_2 span.'+i).html()]);
+    }
   // === Make chart === //
     var plot = $.plot($(".chart"),
-           [ { data: sin, label: "sin(x)", color: "#BA1E20"}, { data: cos, label: "cos(x)",color: "#459D1C" } ], {
+           [ { data: sin, label: $('#serie_1').attr('data-custom-label')}, { data: cos, label: $('#serie_2').attr('data-custom-label'), yaxis: 2 } ], {
                series: {
                    lines: { show: true },
-                   points: { show: true }
+                   points: { show: false }
                },
                grid: { hoverable: true, clickable: true },
-               yaxis: { min: -1.6, max: 1.6 }
+               yaxes: [{min: 0, max: 10}, {min: 0, max: 50, position: 'right'}]
     });
 
     // === Point hover in chart === //

@@ -186,21 +186,8 @@ module RailsAdmin
 
     
     # helpers for the peity charts
-    def range_for_days model, number_of_days
-      graph_range = []
-      number_of_days.times do |day_ago|
-        count = model.where("DATE(created_at) = ?", day_ago.days.ago).count
-        graph_range << count
-      end
-      graph_range.reverse.join(",")
-    end
-    def range_for_weeks model, number_of_weeks
-      graph_range = []
-      number_of_weeks.times do |week_ago|
-        count = model.where(created_at: (week_ago+1).weeks.ago..(week_ago).weeks.ago).count
-        graph_range << count
-      end
-      graph_range.reverse.join(",")
+    def daily_count model, days_ago
+      count = model.where("DATE(created_at) = ?", days_ago.days.ago).count
     end
     def range_for_graph model, interval, type
       graph_range = []

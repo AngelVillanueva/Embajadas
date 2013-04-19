@@ -11,6 +11,20 @@ $(document).ready(function(){
       <i class="icon-signal"></i>
     </span>
     <h5><%= t('admin.home.Embassy statistics') %></h5>
+    <div id="chart_data" style="display:none;">
+      <% serie_1 = serie_2 = [] %>
+      <% days = 90 %>
+      <div id="serie_1" data-custom-label="Ambassadors">
+        <% 0..(days).times do |n| %>
+          <span style="display: none;" class='<%= "#{n}" %>'><%= daily_count Ambassador, days-1-n %></span>
+        <% end %>
+      </div>
+      <div id="serie_2" data-custom-label="Points">
+        <% 0..(days).times do |n| %>
+          <span style="display: none;" class='<%= "#{n}" %>'><%= daily_count Point, days-1-n %></span>
+        <% end %>
+      </div>
+    </div>
     <div class="buttons">
       <a class="btn btn-mini" href="#">
         <i class="icon-refresh"></i>
