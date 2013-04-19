@@ -25,12 +25,12 @@ $("#monthly_graph").click(function () {
     <div id="chart_data" style="display:none;" data-custom-fdate='<%= total_days = 90 %>'>
       <% serie_1 = serie_2 = [] %>
       <% days = total_days %>
-      <div id="serie_1" data-custom-label="Ambassadors">
+      <div id="serie_1" data-custom-label="<%= t('activerecord.models.ambassador.other') %>">
         <% 0..(days).times do |n| %>
           <span style="display: none;" data-custom-date='<%= "#{(days-n).days.ago.to_i*1000}" %>' class='<%= "#{n}" %>'><%= daily_count Ambassador, days-1-n %></span>
         <% end %>
       </div>
-      <div id="serie_2" data-custom-label="Points">
+      <div id="serie_2" data-custom-label="<%= t('activerecord.models.point.other') %>">
         <% 0..(days).times do |n| %>
           <span style="display: none;" data-custom-date='<%= "#{(days-n).days.ago.to_i*1000}" %>' class='<%= "#{n}" %>'><%= daily_count Point, days-1-n %></span>
         <% end %>
@@ -53,12 +53,12 @@ $("#monthly_graph").click(function () {
     <div class="row-fluid">
       <div class="span4">
         <ul class="site-stats">
-          <li><i class="icon-user"></i> <strong>1433</strong> <small>Total Users</small></li>
-          <li><i class="icon-arrow-right"></i> <strong>16</strong> <small>New Users (last week)</small></li>
+          <li><i class="icon-heart"></i> <strong><%= active_ambassadors %></strong> <small><%= t('admin.home.total', model: t('activerecord.models.ambassador.other')) %></small></li>
+          <li><i class="icon-arrow-right"></i> <strong><%= range_for_graph Ambassador, 1, "weeks" %></strong> <small><%= t('admin.home.total_new_last_week', model: t('activerecord.models.ambassador.other')) %></small></li>
           <li class="divider"></li>
-          <li><i class="icon-shopping-cart"></i> <strong>259</strong> <small>Total Shop Items</small></li>
-          <li><i class="icon-tag"></i> <strong>8650</strong> <small>Total Orders</small></li>
-          <li><i class="icon-repeat"></i> <strong>29</strong> <small>Pending Orders</small></li>
+          <li><i class="icon-thumbs-up"></i> <strong><%= current_points %></strong> <small><%= t('admin.home.total', model: t('activerecord.models.point.other')) %></small></li>
+          <li><i class="icon-arrow-right"></i> <strong><%= range_for_graph Point, 1, "weeks" %></strong> <small><%= t('admin.home.total_new_last_week', model: t('activerecord.models.point.other')) %></small></li>
+          <li><i class="icon-bullhorn"></i> <strong><%= current_posts  %></strong> <small><%= t('admin.home.total', model: t('activerecord.models.post.other')) %></small></li>
         </ul>
       </div>
       <div class="span8">

@@ -10,6 +10,8 @@ es:
       Monthly graph: "Gráfico mensual"
       mm:
         tip: "Evolución por meses del año en curso"
+      total: "Total %{model}"
+      total_new_last_week: "Nuevos %{model} (última semana)"
     pagination:
       previous: "&laquo; Anterior"
       next: "Siguiente &raquo;"

@@ -2,6 +2,44 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    models:
+      ambassador: 
+        one: "Ambassador"
+        other: "Ambassadors"
+      assignment:
+        one: "Assignment"
+        other: "Assignments"
+      badge:
+        one: "Badge"
+        other: "Badges"
+      consul:
+        one: "Consul"
+        other: "Consuls"
+      embassy:
+        one: "Embassy"
+        other: "Embassies"
+      mailing_code:
+        one: "Emailing Code"
+        other: "Emailing Codes"
+      mission: 
+        one: "Mission"
+        other: "Missions"
+      point:
+        one: "Point"
+        other: "Points"
+      post:
+        one: "Post"
+        other: "Posts"
+      reward:
+        one: "Reward"
+        other: "Rewards"
+      search_term:
+        one: "Search Term"
+        other: "Search Terms"
+      slogan:
+        one: "Slogan"
+        other: "Slogans"
   Brandname: "Incitatus"
   Brandtag: "Alea jacta est"
   site_description: "Incitatus, a world of Brand Ambassadors"
