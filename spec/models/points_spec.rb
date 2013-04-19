@@ -11,7 +11,6 @@ describe "Points" do
 
     it { should respond_to :ambassador }
     it { should respond_to :mission }
-    it { should respond_to :week }
     it { should be_valid }
   end
   describe "with mandatory attribute ambassador_id" do

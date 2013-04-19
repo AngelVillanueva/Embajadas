@@ -10,7 +10,6 @@
 #
 
 class Badge < ActiveRecord::Base
-  include SharedMethods
   belongs_to :ambassador
   belongs_to :reward
 

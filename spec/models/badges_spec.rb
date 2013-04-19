@@ -11,7 +11,6 @@ describe "Badges" do
 
     it { should respond_to :ambassador }
     it { should respond_to :reward }
-    it { should respond_to :week }
     it { should be_valid }
   end
   describe "with mandatory ambassador_id field" do
