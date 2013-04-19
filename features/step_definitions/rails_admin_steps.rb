@@ -11,14 +11,14 @@ Given /^my Embassy has available Missions as well as Ambassadors$/ do
   ambassador.embassies << Embassy.first
 end
 
-Given /^one of the Ambassadors got a Point for a Mission in each of the (\d+) preceeding weeks$/ do |t|
+Given /^one of the Ambassadors got a Point for a Mission in each of the (\d+) preceeding days$/ do |t|
   mission = Mission.first
   ambassador = Ambassador.first
   t.to_i.times do |n|
     p = Point.new
     p.mission = mission
     p.ambassador = ambassador
-    p.created_at = n.weeks.ago
+    p.created_at = n.days.ago
     p.save!
   end
 end
@@ -60,7 +60,7 @@ Then /^I should see none Ambassadors for the first five weeks and two for the la
   page.find(".popover-ambassadors div span span").should have_content("0,0,0,0,1,1,0")
 end
 
-Then /^I should see no Points for the first four weeks and one for the last three ones$/ do
+Then /^I should see no Points for the first four days and one for the last three ones$/ do
   page.find(".popover-points div span span").should have_content("0,0,0,0,1,1,1")
 end
 
@@ -68,7 +68,11 @@ Then /^I should see no Posts for the first two weeks and one for (\d+)rd, and on
   page.find(".popover-posts div span span").should have_content("0,0,1,0,0,1,1")
 end
 
-Then /^I should see a the right (.*?) growth from previous to last week$/ do |model_name|
+Then /^I should see a Badge in the first week, no Badges for the next four weeks and one for previous week, and two for this week$/ do
+  page.find(".popover-badges div span span").should have_content("1,0,0,0,0,1,2")
+end
+
+Then /^I should see the right (.*?) growth from previous to last week$/ do |model_name|
   case model_name
     when "Ambassador"
       growth = "-100%"
@@ -78,10 +82,6 @@ Then /^I should see a the right (.*?) growth from previous to last week$/ do |mo
     growth = "= 0%"
   end
   page.find(".popover-#{get_class model_name} div").should have_content(growth)
-end
-
-Then /^I should see a Badge in the first week, no Badges for the next four weeks and one for previous week, and two for this week$/ do
-  page.find(".popover-badges div span span").should have_content("1,0,0,0,0,1,2")
 end
 
 private

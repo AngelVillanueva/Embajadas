@@ -168,124 +168,75 @@ module RailsAdmin
     ## NEW CUSTOM HELPERS
     # custom for the charts
     def active_ambassadors
-      ( current_consul.minister? && Ambassador.all ) || current_consul.embassy.ambassadors
+      ( current_consul.minister? && Ambassador.count ) || current_consul.embassy.ambassadors.count
     end
     def current_points
-      ( current_consul.minister? && Point.all ) || Point.where(mission_id: current_consul.embassy.mission_ids)
+      ( current_consul.minister? && Point.count ) || Point.where(mission_id: current_consul.embassy.mission_ids).count
     end
     def current_posts
       slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
-      ( current_consul.minister? && Post.all ) || Post.where(slogan_id: slogan_ids)
+      ( current_consul.minister? && Post.count ) || Post.where(slogan_id: slogan_ids).count
     end
     def current_badges
       reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
-      ( current_consul.minister? && Badge.all ) || Badge.where(reward_id: reward_ids)
+      ( current_consul.minister? && Badge.count ) || Badge.where(reward_id: reward_ids).count
     end
 
-    def weekly_evolution collection, number_of_weeks
-      collection = clean_weeks collection
-      weekly_array = []
-      this_week = Time.now.strftime("%W").to_i
-      number_of_weeks.times { |n| weekly_array << 0 }
-      max_index = number_of_weeks - 1
-      collection.sort.reverse.first(number_of_weeks).collect do |week, collection|
-        if (this_week - week.to_i) <= max_index
-          week_index = max_index - (this_week - week.to_i)
-          weekly_array[week_index] = collection.size.to_s
-        end
+    
+
+    
+    # helpers for the peity charts
+    def range_for_days model, number_of_days
+      graph_range = []
+      number_of_days.times do |day_ago|
+        count = model.where("DATE(created_at) = ?", day_ago.days.ago).count
+        graph_range << count
       end
-      padleft(weekly_array, number_of_weeks).join(",")
+      graph_range.reverse.join(",")
     end
-
-    def daily_evolution collection, number_of_days
-      collection = clean_days collection
-      daily_array = []
-      today = Date.today.yday
-      number_of_days.times { |n| daily_array << 0 }
-      max_index = number_of_days - 1
-      collection.sort.reverse.first(number_of_days).collect do |day, collection|
-        if (today - day) <= max_index
-          daily_index = max_index - (today - day)
-          daily_array[daily_index] = collection.size.to_s
-        end
+    def range_for_weeks model, number_of_weeks
+      graph_range = []
+      number_of_weeks.times do |week_ago|
+        count = model.where(created_at: (week_ago+1).weeks.ago..(week_ago).weeks.ago).count
+        graph_range << count
       end
-      padleft(daily_array, number_of_days).join(",")
+      graph_range.reverse.join(",")
     end
-
-    def last_growth collection
-      serie = weekly_evolution(collection, 2).split(",")
-      last = serie.last
-      prev = serie[serie.count - 2]
-      case serie.last
-        when nil? || prev
+    def range_for_graph model, interval, type
+      graph_range = []
+      interval.times do |time_ago|
+        if type == "days"
+          count = model.where("DATE(created_at) = ?", time_ago.days.ago).count
+        else
+          count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago).count
+        end
+        graph_range << count
+      end
+      graph_range.reverse.join(",")
+    end
+    def growth_perc model, day_range, type
+      return "N/A" unless model.count > 0
+      pair = range_for_graph(model, day_range, type).split(",")
+      case pair.last
+        when nil? || pair[0]
           "= 0%"
         when "0"
-          if prev.to_f > 0
+          if pair[0].to_f > 0
             "-100%"
           else
             "= 0%"
           end
         else
-          growth = (last.to_f - prev.to_f) / prev.to_f * 100
-          sign = (growth < 0 && "") || "+"
-          result = (growth == 100 && "+100%") || sign + growth.round(2).to_s + "%"
-        end
-    end
-
-    def last_growth_d collection
-      serie = daily_evolution(collection, 2).split(",")
-      last = serie.last
-      prev = serie[serie.count - 2]
-      case serie.last
-        when nil? || prev
-          "= 0%"
-        when "0"
-          if prev.to_f > 0
-            "-100%"
+          if pair[0] == "0"
+            growth = 100
           else
-            "= 0%"
+            growth = ((pair.last.to_f / pair[0].to_f - 1) * 100).round(0)
           end
-        else
-          growth = (last.to_f - prev.to_f) / prev.to_f * 100
           sign = (growth < 0 && "") || "+"
-          result = (growth == 100 && "+100%") || sign + growth.round(2).to_s + "%"
+          result = (growth == 100 && "+100%") || sign + growth.to_s + "%"
         end
     end
-
-    # helper for the helpers
-    def padleft(a, n, x=0)
-      return a if n <= a.length
-      return [x] * (n - a.length) + a
-    end
-    def clean_weeks collection
-      new_serie = Hash.new
-      as = collection.group_by(&:week).collect do |week, collection|
-        week = week.to_i
-        now = Time.now.strftime("%W").to_i
-        last_year = Time.now.year - 1
-        ly_weeks = Date.new(last_year,12,31).strftime("%W").to_i
-        if week > now
-          week = week - ly_weeks
-        end
-        new_serie[week] = collection
-      end
-      new_serie
-    end
-    def clean_days collection
-      new_serie = Hash.new
-      as = collection.group_by(&:created_at).collect do |day, collection|
-        day = day.yday
-        now = Date.today.yday
-        last_year = Time.now.year - 1
-        ly_days = Date.new(last_year,12,31).yday
-        if day > now
-          day = day - ly_days
-        end
-        new_serie[day] = collection
-      end
-      new_serie
-    end
-
+    # end of helpers for the peity charts
   end
 end
 
