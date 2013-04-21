@@ -36,18 +36,18 @@ $("#monthly_graph").click(function () {
         <% end %>
       </div>
     </div>
+    <% if Rails.env.development? %>
     <div class="buttons">
       <a id="monthly_graph" class="btn btn-mini tip-top" href="#" data-original-title="<%= t('admin.home.mm.tip') %>">
         <i class="icon-refresh"></i>
         <%= t('admin.home.Monthly graph') %>
       </a>
-      <% if Rails.env.development? %>
       <a id="daily_graph" class="btn btn-mini tip-bottom" href="#" data-original-title="<%= t('admin.home.dm.tip') %>">
         <i class="icon-refresh"></i>
         <%= t('admin.home.Daily graph') %>
       </a>
-      <% end %>
     </div>
+    <% end %>
   </div>
   <div class="widget-content">
     <div class="row-fluid">

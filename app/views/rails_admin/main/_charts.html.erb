@@ -1,7 +1,7 @@
 <%= javascript_tag do %>
 $(document).ready(function(){
   unicorn.peity(); // mini charts
-  poppies.popnow(); // popovers on mini charts
+  <% if Rails.env.development? %> poppies.popnow(); // popovers on mini charts <% end %>
 });
 <% end %>
 

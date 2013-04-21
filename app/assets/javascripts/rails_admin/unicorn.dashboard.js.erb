@@ -71,12 +71,12 @@ mainchart = {
                 var x = item.datapoint[0].toFixed(2),
           y = item.datapoint[1].toFixed(2);
                     
-                unicorn.flot_tooltip(item.pageX, item.pageY, $.datepicker.formatDate('dd/mm', new Date(x*1000)) + " = " + parseInt(y) + " " +
+                unicorn.flot_tooltip(item.pageX, item.pageY, $.datepicker.formatDate("dd/mm", new Date(parseInt(x))) + " = " + parseInt(y) + " " +
                    item.series.label);
             }
             
         } else {
-      $('#tooltip').fadeOut(200,function(){
+      $('#tooltip').fadeOut(50,function(){
           $(this).remove();
         });
             previousPoint = null;           
@@ -121,12 +121,12 @@ mainchart_month = {
                 var x = item.datapoint[0].toFixed(2),
           y = item.datapoint[1].toFixed(2);
                     
-                unicorn.flot_tooltip(item.pageX, item.pageY, $.datepicker.formatDate('dd/mm', new Date(x*1000)) + " = " + parseInt(y) + " " +
+                unicorn.flot_tooltip(item.pageX, item.pageY, $.datepicker.formatDate('dd/mm', new Date(parseInt(x))) + " = " + parseInt(y) + " " +
                    item.series.label);
             }
             
         } else {
-      $('#tooltip').fadeOut(200,function(){
+      $('#tooltip').fadeOut(20,function(){
           $(this).remove();
         });
             previousPoint = null;           
