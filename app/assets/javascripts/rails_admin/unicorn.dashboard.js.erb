@@ -37,29 +37,31 @@ poppies = {
 
 mainchart = {
   // main chart
-  mychart: function(){
+  mychart: function(s1, s2){
+    s1 = typeof s1 !== 'undefined' ? s1 : 1;
+    s2 = typeof s2 !== 'undefined' ? s2 : 2;
   // === Prepare the main chart data ===/
     var sin = [], cos = [];
     var first_date = $('#chart_data').attr('data-custom-fdate');
     for (var i = 0; i < first_date; i += 1) {
-        sin.push([$('#serie_1 span.'+i).attr('data-custom-date'), $('#serie_1 span.'+i).html()]);
-        cos.push([$('#serie_1 span.'+i).attr('data-custom-date'), $('#serie_2 span.'+i).html()]);
+        sin.push([$('#serie_'+s1+' span.'+i).attr('data-custom-date'), $('#serie_'+s1+' span.'+i).html()]);
+        cos.push([$('#serie_'+s2+' span.'+i).attr('data-custom-date'), $('#serie_'+s2+' span.'+i).html()]);
     }
     var maxY1 = 0;
     var maxY2 = 0;
     var sparray1 = [];
     var sparray2 = [];
-    $('#serie_1 span').each(function(){
+    $('#serie_'+s1+' span').each(function(){
       sparray1.push(parseInt($(this).html()));
     });
     maxY1 = Math.max.apply(Math, sparray1);
-    $('#serie_2 span').each(function(){
+    $('#serie_'+s2+' span').each(function(){
       sparray2.push(parseInt($(this).html()));
     });
     maxY2 = Math.max.apply(Math, sparray2);
   // === Make chart === //
     var plot = $.plot($(".chart"),
-           [ { data: sin, label: $('#serie_1').attr('data-custom-label'), color: '#B1FFA9' }, { data: cos, label: $('#serie_2').attr('data-custom-label'), yaxis: 2, color: '#afd8f8' } ], {
+           [ { data: sin, label: $('#serie_'+s1).attr('data-custom-label'), color: '#B1FFA9' }, { data: cos, label: $('#serie_'+s2).attr('data-custom-label'), yaxis: 2, color: '#afd8f8' } ], {
                series: {
                    lines: { show: true },
                    points: { show: false }
