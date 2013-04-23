@@ -181,15 +181,47 @@ module RailsAdmin
       reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
       ( current_consul.minister? && Badge.count ) || Badge.where(reward_id: reward_ids).count
     end
+    
+    def relevant_filters model
+      relevant = {}
+      case model.to_s
+      when "Ambassador"
+        related = "id"
+        ids = current_consul.embassy.ambassador_ids
+      when "Point"
+        related = "mission_id"
+        ids = current_consul.embassy.mission_ids
+      when "Post"
+        slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
+        related = "slogan_id"
+        ids = slogan_ids
+      when "Badge"
+        reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
+        related = "reward_id"
+        ids = reward_ids
+      end
+      relevant["field"] = related
+      relevant["ids"] = ids
+      relevant
+    end
 
     
 
     
     # helpers for the peity charts
     def daily_count model, days_ago
-      count = model.where("DATE(created_at) = ?", days_ago.days.ago).count
+      if current_consul.minister?
+        count = model.where("DATE(created_at) = ?", days_ago.days.ago).count
+      else
+      query_hash = {}
+      relevant = relevant_filters model
+      field = relevant["field"]
+      query_hash[:date] = days_ago.days.ago
+      query_hash[:ids] = relevant["ids"]
+      count = model.where("DATE(created_at) = :date and #{field} in (:ids)", query_hash).count
+      end
     end
-    def range_for_graph model, interval, type
+    def range_for_graph_OK model, interval, type
       graph_range = []
       interval.times do |time_ago|
         if type == "days"
@@ -201,6 +233,55 @@ module RailsAdmin
       end
       graph_range.reverse.join(",")
     end
+
+    def range_for_graph model, interval, type
+      graph_range = []
+      interval.times do |time_ago|
+        case current_consul.minister?
+        when true
+          if type == "days"
+            count = model.where("DATE(created_at) = ?", time_ago.days.ago).count
+          else
+            count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago).count
+          end
+        else
+          if type == "days"
+            case model.to_s
+            when "Ambassador"
+              count = model.where("DATE(created_at) = :date and id in (:ids)", date: time_ago.days.ago, ids: current_consul.embassy.ambassador_ids).count
+            when "Point"
+              count = model.where("DATE(created_at) = :date and mission_id in (:ids)", date: time_ago.days.ago, ids: current_consul.embassy.mission_ids).count
+            when "Post"
+              slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
+              count = model.where("DATE(created_at) = :date and slogan_id in (:ids)", date: time_ago.days.ago, ids: slogan_ids).count
+            when "Badge"
+              reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
+              count = model.where("DATE(created_at) = :date and reward_id in (:ids)", date: time_ago.days.ago, ids: reward_ids).count
+            else
+              count = model.where("DATE(created_at) = ?", time_ago.days.ago).count
+            end
+          else
+            case model.to_s
+            when "Ambassador"
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago, id: current_consul.embassy.ambassador_ids).count
+            when "Point"
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago, mission_id: current_consul.embassy.mission_ids).count
+            when "Post"
+              slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago, slogan_id: slogan_ids).count
+            when "Badge"
+              reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago, reward_id: reward_ids).count
+            else
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago).count
+            end
+          end
+        end
+        graph_range << count
+      end
+      graph_range.reverse.join(",")
+    end
+
     def growth_perc model, day_range, type
       return "N/A" unless model.count > 0
       pair = range_for_graph(model, day_range, type).split(",")
