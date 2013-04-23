@@ -21,8 +21,8 @@ class AdminAbility
         can :manage, Reward, :mission => { :embassy_id => consul.embassy_id }
         can :manage, Assignment, mission: { embassy_id: consul.embassy_id } 
         can :manage, Point, :mission => { :embassy_id => consul.embassy_id }
-        can :manage, Badge, ["ambassador_id in (select ambassador_id from ambassadors_embassies where embassy_id=?)", consul.embassy_id] do |badge|
-          badge.ambassador.embassies.include? consul.embassy
+        can :manage, Badge, ["reward_id in (select id from rewards where mission_id in (select id from missions where embassy_id=?))", consul.embassy_id] do |badge|
+          badge.reward.mission.embassy == consul.embassy
         end
         can :manage, SearchTerm, :consul_id => consul.id
         can :manage, Slogan, :mission => { :embassy_id => consul.embassy_id }
