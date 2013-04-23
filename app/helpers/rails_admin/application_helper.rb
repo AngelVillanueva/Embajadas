@@ -166,6 +166,21 @@ module RailsAdmin
     end
 
     ## NEW CUSTOM HELPERS
+    # main chart html
+    def main_chart total_days
+      models = RailsAdmin::Config.visible_models(:controller => self.controller)
+      model_names = models.map{ |c| c.abstract_model.model_name }
+      content_tag :div, { id: 'chart_data', style: 'display:none;', 'data-custom-fdate' => total_days } do
+        model_names.each_with_index.map do |model, i|
+          content_tag :div, { id: "serie_#{i+1}", "data-custom-label" => I18n.t("activerecord.models.#{model.to_s.underscore.downcase}.other")} do
+            (0..total_days).to_a.collect do |day|
+              concat content_tag(:span, daily_count(model.constantize, total_days-1-day), class: day, style: 'display:none;', "data-custom-date" => (total_days-day).days.ago.to_i*1000)
+            end
+          end
+        end.join.html_safe
+      end.html_safe
+    end
+
     # custom for the charts
     def active_ambassadors
       ( current_consul.minister? && Ambassador.count ) || current_consul.embassy.ambassadors.count
@@ -199,6 +214,9 @@ module RailsAdmin
         reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
         related = "reward_id"
         ids = reward_ids
+      else
+        related = "id"
+        ids = [1]
       end
       relevant["field"] = related
       relevant["ids"] = ids
@@ -220,18 +238,6 @@ module RailsAdmin
       query_hash[:ids] = relevant["ids"]
       count = model.where("DATE(created_at) = :date and #{field} in (:ids)", query_hash).count
       end
-    end
-    def range_for_graph_OK model, interval, type
-      graph_range = []
-      interval.times do |time_ago|
-        if type == "days"
-          count = model.where("DATE(created_at) = ?", time_ago.days.ago).count
-        else
-          count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago).count
-        end
-        graph_range << count
-      end
-      graph_range.reverse.join(",")
     end
 
     def range_for_graph model, interval, type

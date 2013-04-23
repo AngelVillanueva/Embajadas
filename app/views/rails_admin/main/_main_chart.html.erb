@@ -22,20 +22,7 @@ $("#monthly_graph").click(function () {
       <i class="icon-signal"></i>
     </span>
     <h5><%= t('admin.home.Embassy statistics') %></h5>
-    <div id="chart_data" style="display:none;" data-custom-fdate='<%= total_days = 90 %>'>
-      <% serie_1 = serie_2 = [] %>
-      <% days = total_days %>
-      <div id="serie_1" data-custom-label="<%= t('activerecord.models.ambassador.other') %>">
-        <% 0..(days).times do |n| %>
-          <span style="display: none;" data-custom-date='<%= "#{(days-n).days.ago.to_i*1000}" %>' class='<%= "#{n}" %>'><%= daily_count Ambassador, days-1-n %></span>
-        <% end %>
-      </div>
-      <div id="serie_2" data-custom-label="<%= t('activerecord.models.point.other') %>">
-        <% 0..(days).times do |n| %>
-          <span style="display: none;" data-custom-date='<%= "#{(days-n).days.ago.to_i*1000}" %>' class='<%= "#{n}" %>'><%= daily_count Point, days-1-n %></span>
-        <% end %>
-      </div>
-    </div>
+    <%= main_chart 90 %>
     <% if Rails.env.development? %>
     <div class="buttons">
       <a id="monthly_graph" class="btn btn-mini tip-top" href="#" data-original-title="<%= t('admin.home.mm.tip') %>">
