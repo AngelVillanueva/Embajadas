@@ -3,12 +3,12 @@ $(document).ready(function(){
   mainchart.mychart(8,10);  // main chart
 
 $("#daily_graph").click(function () {
-  mainchart.mychart();  // main chart
+  mainchart.mychart(8,10);  // main chart
   return false;
 });
 
 $("#monthly_graph").click(function () {
-    mainchart_month.mychart();  // main chart by months
+    mainchart.mychart(8,10,'monthly');  // main chart by months
     return false;
   });
 
@@ -22,14 +22,14 @@ $("#monthly_graph").click(function () {
       <i class="icon-signal"></i>
     </span>
     <h5><%= t('admin.home.Embassy statistics') %></h5>
-    <%= main_chart 90 %>
+    <%= main_chart g_days=Date.today.yday %>
     <% if Rails.env.development? %>
     <div class="buttons">
       <a id="monthly_graph" class="btn btn-mini tip-top" href="#" data-original-title="<%= t('admin.home.mm.tip') %>">
         <i class="icon-refresh"></i>
         <%= t('admin.home.Monthly graph') %>
       </a>
-      <a id="daily_graph" class="btn btn-mini tip-bottom" href="#" data-original-title="<%= t('admin.home.dm.tip') %>">
+      <a id="daily_graph" class="btn btn-mini tip-bottom" href="#" data-original-title="<%= t('admin.home.dm.tip', days: g_days) %>">
         <i class="icon-refresh"></i>
         <%= t('admin.home.Daily graph') %>
       </a>

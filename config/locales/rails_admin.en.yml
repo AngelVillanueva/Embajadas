@@ -6,7 +6,7 @@ en:
       Update stats: "Update stats"
       Daily graph: "Daily graph"
       dm:
-        tip: "Last 90 days Evolution"
+        tip: "Last %{days} days Evolution"
       Monthly graph: "Monthly graph"
       mm:
         tip: "Monthly Evolution for current year"

@@ -6,7 +6,7 @@ es:
       Update stats: "Actualizar estadísticas"
       Daily graph: "Gráfico diario"
       dm:
-        tip: "Evolución en los últimos 90 días"
+        tip: "Evolución en los últimos %{days} días"
       Monthly graph: "Gráfico mensual"
       mm:
         tip: "Evolución por meses del año en curso"

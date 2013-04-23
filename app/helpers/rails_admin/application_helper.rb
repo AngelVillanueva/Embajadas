@@ -173,8 +173,8 @@ module RailsAdmin
       content_tag :div, { id: 'chart_data', style: 'display:none;', 'data-custom-fdate' => total_days } do
         model_names.each_with_index.map do |model, i|
           content_tag :div, { id: "serie_#{i+1}", "data-custom-label" => I18n.t("activerecord.models.#{model.to_s.underscore.downcase}.other")} do
-            (0..total_days).to_a.collect do |day|
-              concat content_tag(:span, daily_count(model.constantize, total_days-1-day), class: day, style: 'display:none;', "data-custom-date" => (total_days-day).days.ago.to_i*1000)
+            (2..total_days).to_a.collect do |day|
+              concat content_tag(:span, daily_count(model.constantize, total_days-day), class: day, style: 'display:none;', "data-custom-date" => (total_days-day).days.ago.to_i*1000)
             end
           end
         end.join.html_safe
@@ -228,13 +228,14 @@ module RailsAdmin
     
     # helpers for the peity charts
     def daily_count model, days_ago
+      the_date = Date.today - days_ago
       if current_consul.minister?
-        count = model.where("DATE(created_at) = ?", days_ago.days.ago).count
+        count = model.where("DATE(created_at) = ?", the_date).count
       else
       query_hash = {}
       relevant = relevant_filters model
       field = relevant["field"]
-      query_hash[:date] = days_ago.days.ago
+      query_hash[:date] = the_date
       query_hash[:ids] = relevant["ids"]
       count = model.where("DATE(created_at) = :date and #{field} in (:ids)", query_hash).count
       end

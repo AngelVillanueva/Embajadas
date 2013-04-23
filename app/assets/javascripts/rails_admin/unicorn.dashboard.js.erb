@@ -37,127 +37,83 @@ poppies = {
 
 mainchart = {
   // main chart
-  mychart: function(s1, s2){
+  mychart: function(s1, s2, type){
+    // default parameters
     s1 = typeof s1 !== 'undefined' ? s1 : 1;
     s2 = typeof s2 !== 'undefined' ? s2 : 2;
-  // === Prepare the main chart data ===/
-    var sin = [], cos = [];
-    var first_date = $('#chart_data').attr('data-custom-fdate');
-    for (var i = 0; i < first_date; i += 1) {
-        sin.push([$('#serie_'+s1+' span.'+i).attr('data-custom-date'), $('#serie_'+s1+' span.'+i).html()]);
-        cos.push([$('#serie_'+s2+' span.'+i).attr('data-custom-date'), $('#serie_'+s2+' span.'+i).html()]);
+    type = typeof type !== 'undefined' ? type : 'daily';
+    // prepare the main chart data
+    var s1_data = [], s2_data = [];
+    $( '#serie_' + s1 + ' span' ).each(function(i) {
+      s1_data.push( [$('#serie_'+s1+' span.'+i).attr('data-custom-date'), $('#serie_'+s1+' span.'+i).html()] );
+    });
+    $( '#serie_' + s2 + ' span' ).each(function(i) {
+      s2_data.push( [$('#serie_'+s2+' span.'+i).attr('data-custom-date'), $('#serie_'+s2+' span.'+i).html()] );
+    });
+    var s1_label = $('#serie_'+s1).attr('data-custom-label');
+    var s1_color = '#B1FFA9';
+    var s2_label = $('#serie_'+s2).attr('data-custom-label');
+    var s2_color = '#AFD8F8';
+    // calculate max value for Y axis from data series
+    var maxY1 = 0, maxY2 = 0;
+    var mxarray1 = [], mxarray2 = [];
+    $('#serie_' +s1+ ' span').each(function(){
+      mxarray1.push(parseInt($(this).html()));
+    });
+    maxY1 = Math.max.apply(Math, mxarray1);
+    $('#serie_' +s2+ ' span').each(function(){
+      mxarray2.push(parseInt($(this).html()));
+    });
+    maxY2 = Math.max.apply(Math, mxarray2);
+    // xAxis
+    var xaxs = { mode: "time", timezone: "browser" };
+    if ( type=='monthly' ) {
+      xaxs = { mode: "time", timezone: "browser", minTickSize: [1, "month"], min: (new Date(2013, 0, 1)).getTime(), max: (new Date(2014, 0, 1)).getTime() }
     }
-    var maxY1 = 0;
-    var maxY2 = 0;
-    var sparray1 = [];
-    var sparray2 = [];
-    $('#serie_'+s1+' span').each(function(){
-      sparray1.push(parseInt($(this).html()));
-    });
-    maxY1 = Math.max.apply(Math, sparray1);
-    $('#serie_'+s2+' span').each(function(){
-      sparray2.push(parseInt($(this).html()));
-    });
-    maxY2 = Math.max.apply(Math, sparray2);
-  // === Make chart === //
-    var plot = $.plot($(".chart"),
-           [ { data: sin, label: $('#serie_'+s1).attr('data-custom-label'), color: '#B1FFA9' }, { data: cos, label: $('#serie_'+s2).attr('data-custom-label'), yaxis: 2, color: '#afd8f8' } ], {
-               series: {
-                   lines: { show: true },
-                   points: { show: false }
-               },
-               grid: { hoverable: true, clickable: true },
-               xaxis: { mode: "time", timezone: "browser" },
-               yaxes: [{min: 0, max: Math.round(maxY1*1.2)}, {min: 0, max: Math.round(maxY2*1.2), position: 'right'}]
-    });
-
+    // Make chart
+    var plot = $.plot(
+      $('.chart'),
+        [ {data: s1_data, label: s1_label, color: s1_color}, {data: s2_data, label: s2_label, color: s2_color, yaxis: 2} ],
+        {
+          series: {
+            lines: { show: true },
+            points: { show: false }
+          },
+          grid: {
+            hoverable: true,
+            clickable: true
+          },
+          xaxis: xaxs,
+          yaxes: [
+            { min: 0, max: Math.round( maxY1 * 1.2 ) },
+            { min: 0, max: Math.round( maxY2 * 1.2 ), position: "rigth" }
+          ]
+        }
+      );
     // === Point hover in chart === //
     var previousPoint = null;
-    $(".chart").bind("plothover", function (event, pos, item) {
-    
-        if (item) {
-            if (previousPoint != item.dataIndex) {
-                previousPoint = item.dataIndex;
-                
-                $('#tooltip').fadeOut(200,function(){
+    $('.chart').bind('plothover', function (event, pos, item){
+      if( item ) {
+        if( previousPoint != item.dataIndex ) {
+          previousPoint = item.dataIndex;
+          $('#tooltip').fadeOut(50,function(){
+            $(this).remove();
+          });
+          var x = item.datapoint[0].toFixed(2), y = item.datapoint[1].toFixed(2);
+          unicorn.flot_tooltip(
+            item.pageX,
+            item.pageY,
+            $.datepicker.formatDate("dd/mm", new Date(parseInt(x))) + " = " + parseInt(y) + " " +
+                   item.series.label
+          );
+        }
+      } else {
+        $('#tooltip').fadeOut(50,function(){
           $(this).remove();
         });
-                var x = item.datapoint[0].toFixed(2),
-          y = item.datapoint[1].toFixed(2);
-                    
-                unicorn.flot_tooltip(item.pageX, item.pageY, $.datepicker.formatDate("dd/mm", new Date(parseInt(x))) + " = " + parseInt(y) + " " +
-                   item.series.label);
-            }
-            
-        } else {
-      $('#tooltip').fadeOut(50,function(){
-          $(this).remove();
-        });
-            previousPoint = null;           
-        }   
-    }); 
-  }
-}
-
-mainchart_month = {
-  // main chart
-  mychart: function(){
-  // === Prepare the main chart data ===/
-    var sin = [], cos = [];
-    var first_date = $('#chart_data').attr('data-custom-fdate');
-    for (var i = 0; i < first_date; i += 1) {
-        sin.push([$('#serie_1 span.'+i).attr('data-custom-date'), $('#serie_1 span.'+i).html()]);
-        cos.push([$('#serie_1 span.'+i).attr('data-custom-date'), $('#serie_2 span.'+i).html()]);
-    }
-    var maxY1 = 0;
-    var maxY2 = 0;
-    var sparray1 = [];
-    var sparray2 = [];
-    $('#serie_1 span').each(function(){
-      sparray1.push(parseInt($(this).html()));
+        previousPoint = null;
+      }
     });
-    maxY1 = Math.max.apply(Math, sparray1);
-    $('#serie_2 span').each(function(){
-      sparray2.push(parseInt($(this).html()));
-    });
-    maxY2 = Math.max.apply(Math, sparray2);
-  // === Make chart === //
-    var plot = $.plot($(".chart"),
-           [ { data: sin, label: $('#serie_1').attr('data-custom-label'), color: '#B1FFA9' }, { data: cos, label: $('#serie_2').attr('data-custom-label'), yaxis: 2, color: '#afd8f8' } ], {
-               series: {
-                   lines: { show: true },
-                   points: { show: false }
-               },
-               grid: { hoverable: true, clickable: true },
-               xaxis: { mode: "time", timezone: "browser", minTickSize: [1, "month"], min: (new Date(2013, 0, 1)).getTime(), max: (new Date(2014, 0, 1)).getTime() },
-               yaxes: [{min: 0, max: Math.round(maxY1*1.2)}, {min: 0, max: Math.round(maxY2*1.2), position: 'right'}]
-    });
-
-    // === Point hover in chart === //
-    var previousPoint = null;
-    $(".chart").bind("plothover", function (event, pos, item) {
-    
-        if (item) {
-            if (previousPoint != item.dataIndex) {
-                previousPoint = item.dataIndex;
-                
-                $('#tooltip').fadeOut(200,function(){
-          $(this).remove();
-        });
-                var x = item.datapoint[0].toFixed(2),
-          y = item.datapoint[1].toFixed(2);
-                    
-                unicorn.flot_tooltip(item.pageX, item.pageY, $.datepicker.formatDate('dd/mm', new Date(parseInt(x))) + " = " + parseInt(y) + " " +
-                   item.series.label);
-            }
-            
-        } else {
-      $('#tooltip').fadeOut(20,function(){
-          $(this).remove();
-        });
-            previousPoint = null;           
-        }   
-    }); 
   }
 }
 
