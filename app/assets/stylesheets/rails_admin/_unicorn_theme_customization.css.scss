@@ -1,4 +1,20 @@
 /** SINAPSE customization **/
+#loading {
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+}
+#loading.label-warning {
+  background-color: #f6f6f6;
+}
+#loading.label {
+  color: #aaa;
+  font-weight: normal;
+}
+#loading img {
+  display: block;
+  margin: 10px auto;
+}
 #header h1 a {
     color: #fff;
     display: block;
