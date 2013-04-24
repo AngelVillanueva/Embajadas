@@ -172,7 +172,7 @@ module RailsAdmin
         models.each_with_index.map do |model, i|
           filters = relevant_filters model
           content_tag :div, { id: "serie_#{i+1}", "data-custom-label" => I18n.t("activerecord.models.#{model.to_s.underscore.downcase}.other")} do
-            (2..total_days).to_a.collect do |day|
+            (0..total_days).to_a.collect do |day|
               concat content_tag(:span, daily_count(model, total_days-day, filters), class: day, style: 'display:none;', "data-custom-date" => (total_days-day).days.ago.to_i*1000)
             end
           end
