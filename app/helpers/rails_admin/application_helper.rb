@@ -89,7 +89,7 @@ module RailsAdmin
           #link_to(node.label_plural, url, :class => "pjax#{level_class}")
           adata = t('admin.menu.tip.'"#{model_param}")
           link_to url, class: "tip-right pjax#{level_class}", 'data-original-title' => adata do
-            content_tag(:i, '', class: "icon icon-#{model_param}") + content_tag(:span, node.label_plural)
+            content_tag(:i, '', class: "icon icon-#{model_param}") + content_tag(:span, node.label_plural )
           end
         end
         li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
@@ -219,10 +219,6 @@ module RailsAdmin
       relevant
     end
 
-    
-
-    
-    # helpers for the peity charts
     def daily_count model, days_ago, filters
       the_date = Date.today - days_ago
       if current_consul.minister?
@@ -237,6 +233,8 @@ module RailsAdmin
       end
     end
 
+    
+    # helpers for the peity charts
     def range_for_graph model, interval, type
       graph_range = []
       interval.times do |time_ago|
