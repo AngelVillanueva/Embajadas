@@ -167,14 +167,13 @@ module RailsAdmin
 
     ## NEW CUSTOM HELPERS
     # main chart html
-    def main_chart total_days
-      models = RailsAdmin::Config.visible_models(:controller => self.controller)
-      model_names = models.map{ |c| c.abstract_model.model_name }
+    def main_chart total_days, models
       content_tag :div, { id: 'chart_data', style: 'display:none;', 'data-custom-fdate' => total_days } do
-        model_names.each_with_index.map do |model, i|
+        models.each_with_index.map do |model, i|
+          filters = relevant_filters model
           content_tag :div, { id: "serie_#{i+1}", "data-custom-label" => I18n.t("activerecord.models.#{model.to_s.underscore.downcase}.other")} do
             (2..total_days).to_a.collect do |day|
-              concat content_tag(:span, daily_count(model.constantize, total_days-day), class: day, style: 'display:none;', "data-custom-date" => (total_days-day).days.ago.to_i*1000)
+              concat content_tag(:span, daily_count(model, total_days-day, filters), class: day, style: 'display:none;', "data-custom-date" => (total_days-day).days.ago.to_i*1000)
             end
           end
         end.join.html_safe
@@ -214,9 +213,6 @@ module RailsAdmin
         reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
         related = "reward_id"
         ids = reward_ids
-      else
-        related = "id"
-        ids = [1]
       end
       relevant["field"] = related
       relevant["ids"] = ids
@@ -227,13 +223,13 @@ module RailsAdmin
 
     
     # helpers for the peity charts
-    def daily_count model, days_ago
+    def daily_count model, days_ago, filters
       the_date = Date.today - days_ago
       if current_consul.minister?
         count = model.where("DATE(created_at) = ?", the_date).count
       else
       query_hash = {}
-      relevant = relevant_filters model
+      relevant = filters
       field = relevant["field"]
       query_hash[:date] = the_date
       query_hash[:ids] = relevant["ids"]

@@ -1,14 +1,14 @@
 <%= javascript_tag do %>
 $(document).ready(function(){
-  mainchart.mychart(8,10);  // main chart
+  mainchart.mychart(1,2);  // main chart
 
 $("#daily_graph").click(function () {
-  mainchart.mychart(8,10);  // main chart
+  mainchart.mychart(1,2);  // main chart
   return false;
 });
 
 $("#monthly_graph").click(function () {
-    mainchart.mychart(8,10,'monthly');  // main chart by months
+    mainchart.mychart(1,2,'monthly');  // main chart by months
     return false;
   });
 
@@ -22,7 +22,7 @@ $("#monthly_graph").click(function () {
       <i class="icon-signal"></i>
     </span>
     <h5><%= t('admin.home.Embassy statistics') %></h5>
-    <%= main_chart graph_days=Date.today.yday %>
+    <%= main_chart graph_days=Date.today.yday, models=[Ambassador, Point] %>
     <% if Rails.env.development? %>
     <div class="buttons">
       <a id="monthly_graph" class="btn btn-mini tip-top" href="#" data-original-title="<%= t('admin.home.mm.tip') %>">
