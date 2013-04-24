@@ -95,4 +95,19 @@ textarea.uniform:focus {
 .popover h3 {
   display: none;
 }
+
+// autocomplete in forms
+ul.ui-autocomplete {
+  list-style: none;
+  background-color: white;
+  width: 10%;
+}
+ul.ui-autocomplete li {
+  border: 1px solid #e5e5e5;
+}
+ul.ui-autocomplete a {
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+}
 /** end of SINAPSE customization **/
