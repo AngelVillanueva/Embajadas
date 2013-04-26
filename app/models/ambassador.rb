@@ -57,7 +57,8 @@ class Ambassador < ActiveRecord::Base
       logger.info e.to_s
       nil
     else
-      raise e.to_yaml
+      raise e
+      ### e.fb_error_xx parses the error, as in e.fb_error_type, e.fb_error_code, ...
     end
   end
 

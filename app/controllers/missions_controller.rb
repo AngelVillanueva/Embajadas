@@ -1,5 +1,7 @@
 class MissionsController < ApplicationController
   before_filter :authenticate_ambassador!, only: [:show]
+  # check and renew facebook oauth token if an Ambassador is logged
+  before_filter :check_facebook_token!, only: [:show]
   load_and_authorize_resource
   
   def show
