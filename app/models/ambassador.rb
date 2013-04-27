@@ -149,7 +149,9 @@ class Ambassador < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |ambassador|
       ambassador.provider = auth.provider
       ambassador.uid = auth.uid
-      ambassador.name = auth.info.nickname
+      nick = auth.info.nickname
+      name = (!nick.empty? && nick) || auth.info.name
+      ambassador.name = name
       ambassador.email = auth.info.email if auth.info.email
       ambassador.oauth_token = auth.credentials.token
       ambassador.oauth_expires_at = Time.at(auth.credentials.expires_at) if auth.credentials.expires_at
