@@ -11,6 +11,7 @@ describe "Embassies" do
     it { should respond_to :consuls }
     it { should respond_to :assigned_slogans }
     it { should respond_to :available_search_terms }
+    it { should respond_to :mailing_codes }
     it { should be_valid }
   end
   describe "with mandatory attribute name" do

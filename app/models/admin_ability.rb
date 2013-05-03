@@ -13,6 +13,7 @@ class AdminAbility
       else
         can :manage, Embassy, :id => consul.embassy_id
         can :manage, Consul, :id => consul.id
+        can :manage, MailingCode, :embassy_id => consul.embassy_id
         can :manage, Mission, :embassy_id => consul.embassy_id
         can :manage, Ambassador, ["id in (select ambassador_id from ambassadors_embassies where embassy_id=?)", consul.embassy_id] do |ambassador|
           ambassador.embassies.include? consul.embassy
@@ -25,6 +26,9 @@ class AdminAbility
         end
         can :manage, SearchTerm, :consul_id => consul.id
         can :manage, Slogan, :mission => { :embassy_id => consul.embassy_id }
+        can :manage, Post, ["slogan_id in (select id from slogans where mission_id in (select id from missions where embassy_id=?))", consul.embassy_id] do |post|
+          post.slogan.mission.embassy == consul.embassy
+        end
       end
     end
     # Define abilities for the passed in user here. For example:

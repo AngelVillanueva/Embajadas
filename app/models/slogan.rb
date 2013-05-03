@@ -10,9 +10,10 @@
 #
 
 class Slogan < ActiveRecord::Base
+  attr_accessible :mission_id, :search_term_id
   belongs_to :mission
   belongs_to :search_term
   has_many :posts
 
-  validates :mission, :search_term, presence: true
+  validates :mission_id, :search_term_id, presence: true
 end

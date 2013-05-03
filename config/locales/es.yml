@@ -198,12 +198,51 @@ es:
     errors:
       <<: *errors
   activerecord:
+    models:
+      ambassador: 
+        one: "Embajador"
+        other: "Embajadores"
+      assignment:
+        one: "Misión aceptada"
+        other: "Misiones aceptadas"
+      badge:
+        one: "Badge"
+        other: "Badges"
+      consul:
+        one: "Consul"
+        other: "Cónsules"
+      embassy:
+        one: "Embajada"
+        other: "Embajadas"
+      mailing_code:
+        one: "Link para emailings"
+        other: "Link para emailings"
+      mission: 
+        one: "Misión"
+        other: "Misiones"
+      point:
+        one: "Punto"
+        other: "Puntos"
+      post:
+        one: "Post"
+        other: "Posts"
+      reward:
+        one: "Objetivo"
+        other: "Objetivos"
+      search_term:
+        one: "Tag"
+        other: "Tags"
+      slogan:
+        one: "Topic"
+        other: "Topics"
     errors:
       <<: *errors
   Brandname: "Incitatus"
   Brandtag: "Alea jacta est"
   site_description: "Incitatus, un mundo de Embajadores de Marca"
-  Sign in: "Ingresar"
+  Sign in: "Acceso"
+  Enter your credentials: "Introduce tus datos"
+  Easy with your Facebook account: "En 5 segundos con tu cuenta de Facebook"
   Sign out: "Salir"
   Sign up: "Registrarse"
   Home: "Inicio"
@@ -215,6 +254,7 @@ es:
   Back to top: "Ir arriba"
   Legal notice: "Aviso legal"
   Terms & Conditions: "Condiciones de uso"
+  Brands: "Marcas"
   About us: "Conócenos"
   All what you always want to know: "Lo que siempre quisiste saber"
   I am an Ambassador: "Soy un Embajador"
@@ -226,7 +266,11 @@ es:
   Ambassador tracking_id for test: "Ambassador tracking_ID for the test is %{ambassador_tracking_id}"
   Mission tracking_id for test: "Mission tracking_ID for the test is %{mission_tracking_id}"
   Sharing URL: "URL para compartir"
+  Tracking URL: "URL que será fomentada"
   Pixel: "Pixel"
+  Your embassies: "Tus embajadas"
+  Click to see details: "Haz click para ver los detalles"
+  Active Missions: "Misiones disponibles"
   Generate Code: "Generar código"
   Code: "Código"
   Test points: "Teníamos %{points} puntos hasta ahora"
@@ -252,6 +296,20 @@ es:
       Language: "Idioma"
       Gohome: "Ir al inicio"
       Gosection: "Ir a esta sección"
+      tip:
+        ambassador: "¡Estos son los que más quieren a tu marca!"
+        assignment: "Qué Misiones ha aceptado cada Embajador"
+        badge: "Qué logros ha conseguido cada Embajador"
+        consul: "Los administradores de la cuenta de tu Embajada"
+        embassy: "Configuración de tu Embajada"
+        mailing_code: "Utiliza este enlace cuando invites a un potencial Embajador"
+        mission: "Qué quieres que hagan tus Embajadores"
+        point: "El desempeño de cada Embajador"
+        post: "Cuándo hablan de ti tus Embajadores"
+        reward: "Qué hace falta para conseguir cada Badge"
+        search_term: "Términos que luego utilizarás como Topics"
+        slogan: "Qué buscamos en las redes sociales para saber si hablan de ti"
     home:
       loading: "Cargando..."
-
+  ambassador_area:
+    hello: "Hola, %{name}" 

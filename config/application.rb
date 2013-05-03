@@ -17,6 +17,7 @@ module Incitatus
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -24,6 +25,7 @@ module Incitatus
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+    config.active_record.observers = :embassy_observer, :shortener_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -31,8 +33,8 @@ module Incitatus
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.available_locales = [:en, :es, :ca]
-    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:es, :en, :ca]
+    config.i18n.default_locale = :es
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -57,7 +59,7 @@ module Incitatus
     # Enable the asset pipeline
     config.assets.enabled = true
     # Force admin_base precompilation
-    config.assets.precompile += %w( admin_base.css admin.js rails_admin/admin.js )
+    config.assets.precompile += %w( admin_base.css admin.js rails_admin/admin.js shim/modernizr.2-6-2.min.js shim/respond.1-1-0.min.js )
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

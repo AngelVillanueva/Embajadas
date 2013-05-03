@@ -1,4 +1,4 @@
-Incitatus::Application.configure do
+ Incitatus::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -9,7 +9,8 @@ Incitatus::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=31104000"
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -70,6 +71,6 @@ Incitatus::Application.configure do
     [u, p] == ['embajadas', 'embajadas']
   end
 
-  # Embassyland, for cookie seeding
-  config.custom_config_cookie_host = 'http://embajadas.herokuapp.com'
+  # Incitatus, for cookie seeding
+  config.custom_config_cookie_host = 'http://incitatus.herokuapp.com'
 end

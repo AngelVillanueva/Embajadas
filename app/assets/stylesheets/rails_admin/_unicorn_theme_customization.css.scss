@@ -24,17 +24,19 @@
 }
 
 // sidebar icons
+#sidebar li:hover .icon { font-size: 1.5em; }
 .icon-ambassador:before { content: "\f004"; } // as icon-heart
 .icon-assignment:before { content: "\f00c"; } // as icon-ok
 .icon-badge:before { content: "\f02e"; } // as icon-bookmark
 .icon-consul:before { content: "\f007"; } // as icon-user
 .icon-embassy:before { content: "\f024"; } // as icon-flag
 .icon-mission:before { content: "\f0b1"; } // as icon-briefcase
+.icon-mailing_code:before { content: "\f003"; } // as icon-envelope
 .icon-point:before { content: "\f087"; } // as icon-thumbs-up
-.icon-post:before { content: "\f0e5"; } // as icon-comment-alt
-.icon-reward:before { content: "\f06b"; } // as icon-gift
+.icon-post:before { content: "\f0a1"; } // as icon-comment-alt
+.icon-reward:before { content: "\f05b"; } // as icon-check
 .icon-search_term:before { content: "\f02b"; } // as icon-tag
-.icon-slogan:before { content: "\f0a1"; } // as icon-bullhorn
+.icon-slogan:before { content: "\f06e"; } // as icon-bullhorn
 
 // breadcrumb
 #breadcrumb {
@@ -69,6 +71,9 @@ textarea.uniform:focus {
   background-color: #40b5ef;
   font-weight: normal;
   text-shadow: none;
+}
+.low.label {
+  background-color: #f4a1a1;
 }
 // hide title bar in popovers
 .popover h3 {

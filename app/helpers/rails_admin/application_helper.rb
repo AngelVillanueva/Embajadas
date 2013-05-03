@@ -87,7 +87,8 @@ module RailsAdmin
         li = content_tag :li, "data-model"=>model_param do
           #content_tag(:i, '', class: "icon icon-#{model_param}")
           #link_to(node.label_plural, url, :class => "pjax#{level_class}")
-          link_to url, class: "pjax#{level_class}" do
+          adata = t('admin.menu.tip.'"#{model_param}")
+          link_to url, class: "tip-right pjax#{level_class}", 'data-original-title' => adata do
             content_tag(:i, '', class: "icon icon-#{model_param}") + content_tag(:span, node.label_plural)
           end
         end
@@ -164,6 +165,78 @@ module RailsAdmin
       end.html_safe
     end
 
+    ## NEW CUSTOM HELPERS
+    # custom for the charts
+    def active_ambassadors
+      ( current_consul.minister? && Ambassador.count ) || current_consul.embassy.ambassadors.count
+    end
+    def current_points
+      ( current_consul.minister? && Point.count ) || Point.where(mission_id: current_consul.embassy.mission_ids).count
+    end
+    def current_posts
+      slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
+      ( current_consul.minister? && Post.count ) || Post.where(slogan_id: slogan_ids).count
+    end
+    def current_badges
+      reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
+      ( current_consul.minister? && Badge.count ) || Badge.where(reward_id: reward_ids).count
+    end
+
+    
+
+    
+    # helpers for the peity charts
+    def range_for_days model, number_of_days
+      graph_range = []
+      number_of_days.times do |day_ago|
+        count = model.where("DATE(created_at) = ?", day_ago.days.ago).count
+        graph_range << count
+      end
+      graph_range.reverse.join(",")
+    end
+    def range_for_weeks model, number_of_weeks
+      graph_range = []
+      number_of_weeks.times do |week_ago|
+        count = model.where(created_at: (week_ago+1).weeks.ago..(week_ago).weeks.ago).count
+        graph_range << count
+      end
+      graph_range.reverse.join(",")
+    end
+    def range_for_graph model, interval, type
+      graph_range = []
+      interval.times do |time_ago|
+        if type == "days"
+          count = model.where("DATE(created_at) = ?", time_ago.days.ago).count
+        else
+          count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago).count
+        end
+        graph_range << count
+      end
+      graph_range.reverse.join(",")
+    end
+    def growth_perc model, day_range, type
+      return "N/A" unless model.count > 0
+      pair = range_for_graph(model, day_range, type).split(",")
+      case pair.last
+        when nil? || pair[0]
+          "= 0%"
+        when "0"
+          if pair[0].to_f > 0
+            "-100%"
+          else
+            "= 0%"
+          end
+        else
+          if pair[0] == "0"
+            growth = 100
+          else
+            growth = ((pair.last.to_f / pair[0].to_f - 1) * 100).round(0)
+          end
+          sign = (growth < 0 && "") || "+"
+          result = (growth == 100 && "+100%") || sign + growth.to_s + "%"
+        end
+    end
+    # end of helpers for the peity charts
   end
 end
 

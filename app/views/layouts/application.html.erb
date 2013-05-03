@@ -10,26 +10,36 @@
   <title><%= full_title(yield(:title)) %></title>
   <meta name="description" content="<%= t('site_description') %>">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <%= favicon_link_tag %>
+  <%= render 'shared/googlefonts' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
   <%= render 'shared/shim-respond-modernizr' %>
 </head>
 <body>
-  <div class="container">
-    <header><%= render 'shared/header' %></header>
-    <div id="main" role="main">
-      <%= render 'shared/flash', flash: flash %>
-      <%= yield %>
-    </div><!-- end of main -->
-    <footer id="footer"><%= render 'shared/footer' %></footer>
+    <header id="main-header">
+      <%= render 'shared/header', h1: yield(:h1), h3: yield(:h3) %>
+    </header>
+    <div id="main-area" role="main">
+      <div class="container">
+        <%= render 'shared/flash', flash: flash %>
+        <%= render 'shared/welcome' %>
+        <%= yield %>
+      </div>
+    </div><!-- end of main-area -->
+    <footer id="main-footer"><%= render 'shared/footer' %></footer>
 
     <% unless Rails.env.production? %>
-    <div><%= debug(params) %></div>
-    <div><%= debug(cookies) %></div>
+    <a href="#" class="debug">debug<b></b></a>
+    <div id="debug">
+      <a href="http://0.0.0.0:3000/rails/routes" target="_blank" class="debug">Routes</a>
+      <a href="http://0.0.0.0:3000/__better_errors" target="_blank" class="debug">Better errors</a>
+      <div><%= debug(params) %></div>
+      <div><%= debug(cookies) %></div>
+    </div>
     <% end %>
-  </div><!-- end of container -->
 
-  <%= javascript_include_tag "application" %>
-  <%= render 'shared/analytics', analytics_code: 'UA-12345-6' if Rails.env.production? %>
+    <%= javascript_include_tag "application" %>
+    <%= render 'shared/analytics', analytics_code: 'UA-39997684-1' if Rails.env.production? %>
 </body>
 </html>

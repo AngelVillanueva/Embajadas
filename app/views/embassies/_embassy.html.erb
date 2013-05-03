@@ -1,1 +1,8 @@
-<li><%= link_to embassy.name, embassy %></li>
+<li class="embassy">
+  <article>
+    <hgroup>
+      <h1><%= link_to embassy.name, embassy %></h1>
+      <h2><%= t("Active Missions") + ": " + embassy.missions.size.to_s %></h2>
+    </hgroup>
+  </article>
+</li>

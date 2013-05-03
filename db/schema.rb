@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222094552) do
+ActiveRecord::Schema.define(:version => 20130418164655) do
 
   create_table "ambassadors", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130222094552) do
     t.datetime "oauth_expires_at"
   end
 
+  add_index "ambassadors", ["created_at"], :name => "index_ambassadors_on_created_at"
   add_index "ambassadors", ["email"], :name => "index_ambassadors_on_email", :unique => true
   add_index "ambassadors", ["reset_password_token"], :name => "index_ambassadors_on_reset_password_token", :unique => true
 
@@ -58,6 +59,8 @@ ActiveRecord::Schema.define(:version => 20130222094552) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "badges", ["created_at"], :name => "index_badges_on_created_at"
 
   create_table "consuls", :force => true do |t|
     t.string   "name"
@@ -86,6 +89,16 @@ ActiveRecord::Schema.define(:version => 20130222094552) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "mailing_codes", :force => true do |t|
+    t.string   "tracking_code"
+    t.integer  "embassy_id"
+    t.datetime "expires_at"
+    t.text     "landing_url"
+    t.string   "short_url"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "missions", :force => true do |t|
     t.string   "name"
     t.integer  "embassy_id"
@@ -103,6 +116,8 @@ ActiveRecord::Schema.define(:version => 20130222094552) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "points", ["created_at"], :name => "index_points_on_created_at"
+
   create_table "posts", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -113,6 +128,8 @@ ActiveRecord::Schema.define(:version => 20130222094552) do
     t.integer  "ambassador_id"
     t.integer  "slogan_id"
   end
+
+  add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"

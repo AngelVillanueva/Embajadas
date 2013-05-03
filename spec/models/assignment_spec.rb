@@ -124,19 +124,6 @@ describe "Assignments" do
 
     it { should be_valid }
   end
-  describe "with mandatory short_url field" do
-    let(:embassy) { FactoryGirl.create(:embassy) }
-    let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }
-    let(:ambassador) { FactoryGirl.create(:ambassador) }
-    let(:assignment) { FactoryGirl.create(:assignment, mission: mission, ambassador: ambassador) }
-    before do
-      ambassador.embassies << embassy
-      assignment.short_url = ""
-    end
-    subject { assignment }
-
-    it { should_not be_valid }
-  end
   describe "with automatically created short_url field" do
     let(:embassy) { FactoryGirl.create(:embassy) }
     let(:mission) { FactoryGirl.create(:mission, embassy: embassy) }

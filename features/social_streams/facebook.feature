@@ -1,4 +1,3 @@
-@pending
 Feature: as an Ambassador I should be able to gain points by posting in my Facebook stream
 
 Scenario: any Mission can select relevant "slogans" to be used to gain points
@@ -21,7 +20,3 @@ Scenario: an Ambassador needs to authorize the app for their slogans to be track
     And I have not authorized the app with read_permissions
   When I visit the homepage for the "The Embassy" Embassy
   Then I should be noticed that the permission is needed
-
-Scenario: if an Ambassador deletes a post in Facebook then it should be also deleted in the app
-Scenario: Posts cannot be accessed through admin
-  Given something
