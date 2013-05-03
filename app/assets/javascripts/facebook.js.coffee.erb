@@ -1,10 +1,14 @@
-<% FACEBOOK_CONFIG_js = YAML.load_file("#{::Rails.root}/config/facebook.yml")[::Rails.env] %>
+<% FACEBOOK_CONFIG_js = YAML.load_file("#{::Rails.root}/config/custom/facebook.yml")[::Rails.env] %>
 
 jQuery ->
+  locale = $("b.anchorSDK").attr("data-custom-locale")
+  vers = 'en_US'
+  if locale == 'es'
+    vers = 'es_LA' 
   $('body').prepend('<div id="fb-root"></div>')
 
   $.ajax
-    url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"
+    url: "#{window.location.protocol}//connect.facebook.net/#{vers}/all.js"
     dataType: 'script'
     cache: true
 
@@ -16,7 +20,8 @@ window.fbAsyncInit = ->
     # recover resource and locale in order to build the right callback address
     locale = $("b.anchorSDK").attr("data-custom-locale")
     resource = $("b.anchorSDK").attr("data-custom-resource")
-    callback_address = "/#{resource}/auth/facebook/callback?locale=#{locale}"
+    tracking = $("b.anchorSDK").attr("data-custom-etr")
+    callback_address = "/#{resource}/auth/facebook/callback?locale=#{locale}&etr=#{tracking}"
     # now fire FB login function
     FB.login (response) ->
       window.location = callback_address if response.authResponse
