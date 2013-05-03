@@ -84,6 +84,10 @@ Then /^I should see the right (.*?) growth from previous to last week$/ do |mode
   page.find(".popover-#{get_class model_name} div").should have_content(growth)
 end
 
+Then /^I should see the total number of Facebook friends from my Ambassadors$/ do
+  page.find(".fb_friends").should have_content(facebook_friends)
+end
+
 private
 def get_class model_name
   model_name.downcase.singularize.pluralize
@@ -105,4 +109,7 @@ def mock_badge ambassador, reward, weeks_ago
   b.reward = reward
   b.created_at = weeks_ago.weeks.ago
   b.save!
+end
+def facebook_friends
+  friends = Ambassador.where("id" => Embassy.first.ambassador_ids).sum(&:facebook_friends)
 end
