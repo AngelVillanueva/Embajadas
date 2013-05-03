@@ -25,6 +25,15 @@ namespace :facebook do
   end
 
 
+  task make_friends: :environment do
+    ambassadors = Ambassador.where("provider = :provider and oauth_expires_at > :expires", provider: "facebook", expires: Time.now  )
+    ambassadors.each do |ambassador|
+      random_ambassador = Ambassador.offset(rand(Ambassador.count)).where("provider = :provider and oauth_expires_at > :expires", provider: "facebook", expires: Time.now  ).each do |potential_friend|
+        friends = @koala.befriend( {id: ambassador.uid, access_token: ambassador.oauth_token}, {id: potential_friend.uid, access_token: potential_friend.oauth_token} )
+      end
+    end
+  end
+
   task update_friends: :environment do
     ambassadors = Ambassador.where("provider = :provider and oauth_expires_at > :expires", provider: "facebook", expires: Time.now  )
     ambassadors.each do |ambassador|
