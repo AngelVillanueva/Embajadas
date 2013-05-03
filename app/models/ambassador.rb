@@ -57,7 +57,8 @@ class Ambassador < ActiveRecord::Base
       logger.info e.to_s
       nil
     else
-      raise e.to_yaml
+      raise e
+      ### e.fb_error_xx parses the error, as in e.fb_error_type, e.fb_error_code, ...
     end
   end
 
@@ -117,6 +118,15 @@ class Ambassador < ActiveRecord::Base
   def password_required?
     super && provider.blank?
   end
+  def extend_fb_token
+    @oauth = Koala::Facebook::OAuth.new(FACEBOOK_CONFIG['app_id'], FACEBOOK_CONFIG['app_secret'])
+    new_token = @oauth.exchange_access_token_info self.oauth_token
+    if new_token
+      self.oauth_token = new_token["access_token"] if new_token["access_token"]
+      self.oauth_expires_at = new_token["expires"].to_i.seconds.from_now if new_token["expires"]
+      self.save!
+    end
+  end
   protected
   # assign a random tracking_id on Ambassador creation to avoid using the Ambassador id externally
   def assign_random_tracking_id
@@ -139,7 +149,9 @@ class Ambassador < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |ambassador|
       ambassador.provider = auth.provider
       ambassador.uid = auth.uid
-      ambassador.name = auth.info.nickname
+      nick = auth.info.nickname
+      name = (!nick.empty? && nick) || auth.info.name
+      ambassador.name = name
       ambassador.email = auth.info.email if auth.info.email
       ambassador.oauth_token = auth.credentials.token
       ambassador.oauth_expires_at = Time.at(auth.credentials.expires_at) if auth.credentials.expires_at
@@ -147,6 +159,7 @@ class Ambassador < ActiveRecord::Base
       mailing_code = MailingCode.find_by_tracking_code(embassy_tracking)
       embassy = mailing_code.embassy unless mailing_code.nil?
       ambassador.embassies << embassy unless embassy.nil? || ambassador.embassies.include?(embassy)
+      ambassador.extend_fb_token if ambassador.oauth_token?
     end
   end
   # if there is an error saving the Ambassador via OmniAuth, the info is sent back to the create form to show the errors

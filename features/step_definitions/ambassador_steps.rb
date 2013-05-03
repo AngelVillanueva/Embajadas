@@ -4,6 +4,18 @@ Given /^I am an Ambassador$/ do
   ambassador.embassies << Embassy.first
 end
 
+Given /^I am an Ambassador signed in with provider "(.*?)"$/ do |provider|
+  ambs = Ambassador.count
+  #Capybara.default_host = 'example.org' # makes to fail all the other tests
+  visit "/ambassadors/auth/#{provider.downcase}"
+  Ambassador.count.should == ambs + 1
+  ambassador = Ambassador.last
+  f_ambassador = create_Facebook("pepe", "")
+  ambassador.oauth_token = f_ambassador["access_token"]
+  ambassador.extend_fb_token
+  delete_Facebook f_ambassador["id"]
+end
+
 Given /^I am a logged Ambassador through (.*?)$/ do |provider|
   step "I am an Ambassador"
   @current_ambassador = Ambassador.last
@@ -29,6 +41,10 @@ When /^she accepts to join my Embassy$/ do
   step "I am a logged Ambassador through Facebook"
 end
 
+When /^I log in through Facebook$/ do
+  step 'I am an Ambassador signed in with provider "Facebook"'
+end
+
 Then /^I should be prompted to authenticate myself through (.*?)$/ do |provider|
   page.should have_css("##{provider.downcase}_sign_in")
 end
@@ -38,13 +54,18 @@ Then /^the Ambassador should persist in the database$/ do
 end
 
 Then /^her auth Token should be stored$/ do
-  Ambassador.last.oauth_token.should == "456"
+  Ambassador.last.oauth_token.should_not == nil
 end
 
 Then /^she should join the Embassy$/ do
   page.should have_content(I18n.t("ambassador_area.hello", name: @current_ambassador.name))
   page.should have_content(Embassy.first.name)
   page.should have_css('a', href: embassy_path(Embassy.first))
+end
+
+Then /^my oauth token expires_at should be extended$/ do
+  ambassador = Ambassador.last
+  ambassador.oauth_expires_at.should > 50.days.from_now
 end
 
 

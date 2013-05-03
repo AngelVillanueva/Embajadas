@@ -74,11 +74,11 @@ OmniAuth.config.add_mock(:facebook, {
   :uid => '100005201376696',
   :info => {
     :nickname => 'facebookman',
+    :name => 'facebookman',
     :email => 'perico_lozjywc_perico@tfbnw.net'
   },
   :credentials => {
-    :token => '456',
-    :expires_at => 1200 # 20 minutes
+    :expires_at => 2.hours.from_now.to_i # 20 minutes
   }
 })
 

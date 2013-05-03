@@ -288,6 +288,7 @@ es:
     Mission could not be accepted: "Error aceptando la Misión"
     Mission could not be rejected: "Error rechazando la Misión"
     Read_permission needed: "Necesitas autorizarnos a que consultemos tus publicaciones de Facebook"
+    Facebook reconnect needed: "Has salido de Facebook tu sesión ha caducado. Por favor, accede de nuevo."
   unauthorized:
     manage:
       all: "No estás autorizado a acceder a esa página"

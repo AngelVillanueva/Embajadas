@@ -33,6 +33,31 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Forces the renewal of Facebook oauth_token if neeed
+  def check_facebook_token!
+    if Rails.env.test? # not testing OAuth
+      true
+    else
+      if current_ambassador
+        #check if oauth_token is valid; @oauth will be nil if oauth_token is not valid or expired
+        @oauth = Koala::Facebook::OAuth.new(FACEBOOK_CONFIG['app_id'], FACEBOOK_CONFIG['app_secret'])
+        #if not signs out and forces to request a new token
+        if @oauth.get_user_info_from_cookies(cookies).nil?
+          flash[:error] = I18n.t("flash.Facebook reconnect needed")
+          sign_out current_ambassador
+          redirect_to root_path
+        end
+      else
+        true
+      end
+    end
+    rescue Koala::Facebook::APIError => e
+      # sign out from app and request a new login if the oauth_token fails
+      flash[:error] = I18n.t("flash.Facebook reconnect needed")
+      sign_out current_ambassador
+      redirect_to root_path
+  end
+
   # Fires flash notices if the user has not granted read_permissions through Facebook
  def check_read_permission!
   flash[:notice] = I18n.t("flash.Read_permission needed") unless current_ambassador.fb_read_permission?

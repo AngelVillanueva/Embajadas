@@ -4,6 +4,14 @@ en:
       name: "Home"
       Embassy statistics: "Embassy statistics"
       Update stats: "Update stats"
+      Daily graph: "Daily graph"
+      dm:
+        tip: "Last %{days} days Evolution"
+      Monthly graph: "Monthly graph"
+      mm:
+        tip: "Monthly Evolution for current year"
+      total: "Total %{model}"
+      total_new_last_week: "New %{model} (last week)"
     pagination:
       previous: "&laquo; Prev"
       next: "Next &raquo;"

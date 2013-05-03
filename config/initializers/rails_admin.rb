@@ -63,37 +63,37 @@ RailsAdmin.config do |config|
     weight -120
   end
   config.model 'Ambassador' do
-    weight -110
+    weight -109
   end
   config.model 'Consul' do
-    weight -100
+    weight -118
   end
   config.model 'Mission' do
-    weight -90
+    weight -114
   end
   config.model 'MailingCode' do
-    weight -80
+    weight -116
   end
   config.model 'Assignment' do
-    weight -70
+    weight -108
   end
   config.model 'Point' do
-    weight -60
+    weight -106
   end
   config.model 'Reward' do
-    weight -50
+    weight -112
   end
   config.model 'Badge' do
-    weight -40
+    weight -104
   end
   config.model 'SearchTerm' do
-    weight -30
+    weight -111
   end
   config.model 'Slogan' do
-    weight -20
+    weight -110
   end
   config.model 'Post' do
-    weight -10
+    weight -102
   end
 
 

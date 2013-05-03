@@ -1,4 +1,20 @@
 /** SINAPSE customization **/
+#loading {
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+}
+#loading.label-warning {
+  background-color: #f6f6f6;
+}
+#loading.label {
+  color: #aaa;
+  font-weight: normal;
+}
+#loading img {
+  display: block;
+  margin: 10px auto;
+}
 #header h1 a {
     color: #fff;
     display: block;
@@ -78,5 +94,20 @@ textarea.uniform:focus {
 // hide title bar in popovers
 .popover h3 {
   display: none;
+}
+
+// autocomplete in forms
+ul.ui-autocomplete {
+  list-style: none;
+  background-color: white;
+  width: 10%;
+}
+ul.ui-autocomplete li {
+  border: 1px solid #e5e5e5;
+}
+ul.ui-autocomplete a {
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 /** end of SINAPSE customization **/

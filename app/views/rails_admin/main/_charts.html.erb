@@ -1,7 +1,7 @@
 <%= javascript_tag do %>
 $(document).ready(function(){
   unicorn.peity(); // mini charts
-  poppies.popnow(); // popovers on mini charts
+  <% if Rails.env.development? %> poppies.popnow(); // popovers on mini charts <% end %>
 });
 <% end %>
 
@@ -16,14 +16,14 @@ $(document).ready(function(){
       </div>
     </li>
     <li class="popover-points" data-original-title="" title="">
-      <div class="left peity_bar_neutral"><span><span style="display: none;"><%= range_for_graph(Point, 7, "days") %></span><canvas width="50" height="24"></canvas></span><%= growth_perc(Point,2,"days") %></div>
+      <div class="left peity_line_bad"><span><span style="display: none;"><%= range_for_graph(Point, 7, "days") %></span><canvas width="50" height="24"></canvas></span><%= growth_perc(Point,2,"days") %></div>
       <div class="right">
         <strong><%= current_points %></strong>
         <%= t('activerecord.models.point.other') %>
       </div>
     </li>
     <li class="popover-posts" data-original-title="" title="">
-      <div class="left peity_line_bad"><span><span style="display: none;"><%= range_for_graph(Post,7, "weeks") %></span><canvas width="50" height="24"></canvas></span><%= growth_perc(Post,2,"weeks") %></div>
+      <div class="left peity_line_neutral"><span><span style="display: none;"><%= range_for_graph(Post,7, "weeks") %></span><canvas width="50" height="24"></canvas></span><%= growth_perc(Post,2,"weeks") %></div>
       <div class="right">
         <strong><%= current_posts %></strong>
         <%= t('activerecord.models.post.other') %>

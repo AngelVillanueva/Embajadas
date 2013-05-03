@@ -89,7 +89,7 @@ module RailsAdmin
           #link_to(node.label_plural, url, :class => "pjax#{level_class}")
           adata = t('admin.menu.tip.'"#{model_param}")
           link_to url, class: "tip-right pjax#{level_class}", 'data-original-title' => adata do
-            content_tag(:i, '', class: "icon icon-#{model_param}") + content_tag(:span, node.label_plural)
+            content_tag(:i, '', class: "icon icon-#{model_param}") + content_tag(:span, node.label_plural )
           end
         end
         li + navigation(nodes_stack, nodes_stack.select{ |n| n.parent.to_s == node.abstract_model.model_name}, level+1)
@@ -166,6 +166,20 @@ module RailsAdmin
     end
 
     ## NEW CUSTOM HELPERS
+    # main chart html
+    def main_chart total_days, models
+      content_tag :div, { id: 'chart_data', style: 'display:none;', 'data-custom-fdate' => total_days } do
+        models.each_with_index.map do |model, i|
+          filters = relevant_filters model
+          content_tag :div, { id: "serie_#{i+1}", "data-custom-label" => I18n.t("activerecord.models.#{model.to_s.underscore.downcase}.other")} do
+            (0..total_days).to_a.collect do |day|
+              concat content_tag(:span, daily_count(model, total_days-day, filters), class: day, style: 'display:none;', "data-custom-date" => (total_days-day).days.ago.to_i*1000)
+            end
+          end
+        end.join.html_safe
+      end.html_safe
+    end
+
     # custom for the charts
     def active_ambassadors
       ( current_consul.minister? && Ambassador.count ) || current_consul.embassy.ambassadors.count
@@ -181,39 +195,94 @@ module RailsAdmin
       reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
       ( current_consul.minister? && Badge.count ) || Badge.where(reward_id: reward_ids).count
     end
-
     
+    def relevant_filters model
+      relevant = {}
+      case model.to_s
+      when "Ambassador"
+        related = "id"
+        ids = current_consul.embassy.ambassador_ids
+      when "Point"
+        related = "mission_id"
+        ids = current_consul.embassy.mission_ids
+      when "Post"
+        slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
+        related = "slogan_id"
+        ids = slogan_ids
+      when "Badge"
+        reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
+        related = "reward_id"
+        ids = reward_ids
+      end
+      relevant["field"] = related
+      relevant["ids"] = ids
+      relevant
+    end
+
+    def daily_count model, days_ago, filters
+      the_date = Date.today - days_ago
+      if current_consul.minister?
+        count = model.where("DATE(created_at) = ?", the_date).count
+      else
+      query_hash = {}
+      relevant = filters
+      field = relevant["field"]
+      query_hash[:date] = the_date
+      query_hash[:ids] = relevant["ids"]
+      count = model.where("DATE(created_at) = :date and #{field} in (:ids)", query_hash).count
+      end
+    end
 
     
     # helpers for the peity charts
-    def range_for_days model, number_of_days
-      graph_range = []
-      number_of_days.times do |day_ago|
-        count = model.where("DATE(created_at) = ?", day_ago.days.ago).count
-        graph_range << count
-      end
-      graph_range.reverse.join(",")
-    end
-    def range_for_weeks model, number_of_weeks
-      graph_range = []
-      number_of_weeks.times do |week_ago|
-        count = model.where(created_at: (week_ago+1).weeks.ago..(week_ago).weeks.ago).count
-        graph_range << count
-      end
-      graph_range.reverse.join(",")
-    end
     def range_for_graph model, interval, type
       graph_range = []
       interval.times do |time_ago|
-        if type == "days"
-          count = model.where("DATE(created_at) = ?", time_ago.days.ago).count
+        case current_consul.minister?
+        when true
+          if type == "days"
+            count = model.where("DATE(created_at) = ?", time_ago.days.ago).count
+          else
+            count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago).count
+          end
         else
-          count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago).count
+          if type == "days"
+            case model.to_s
+            when "Ambassador"
+              count = model.where("DATE(created_at) = :date and id in (:ids)", date: time_ago.days.ago, ids: current_consul.embassy.ambassador_ids).count
+            when "Point"
+              count = model.where("DATE(created_at) = :date and mission_id in (:ids)", date: time_ago.days.ago, ids: current_consul.embassy.mission_ids).count
+            when "Post"
+              slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
+              count = model.where("DATE(created_at) = :date and slogan_id in (:ids)", date: time_ago.days.ago, ids: slogan_ids).count
+            when "Badge"
+              reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
+              count = model.where("DATE(created_at) = :date and reward_id in (:ids)", date: time_ago.days.ago, ids: reward_ids).count
+            else
+              count = model.where("DATE(created_at) = ?", time_ago.days.ago).count
+            end
+          else
+            case model.to_s
+            when "Ambassador"
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago, id: current_consul.embassy.ambassador_ids).count
+            when "Point"
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago, mission_id: current_consul.embassy.mission_ids).count
+            when "Post"
+              slogan_ids = Slogan.where(mission_id: current_consul.embassy.mission_ids)
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago, slogan_id: slogan_ids).count
+            when "Badge"
+              reward_ids = Reward.where(mission_id: current_consul.embassy.mission_ids)
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago, reward_id: reward_ids).count
+            else
+              count = model.where(created_at: (time_ago+1).weeks.ago..(time_ago).weeks.ago).count
+            end
+          end
         end
         graph_range << count
       end
       graph_range.reverse.join(",")
     end
+
     def growth_perc model, day_range, type
       return "N/A" unless model.count > 0
       pair = range_for_graph(model, day_range, type).split(",")
