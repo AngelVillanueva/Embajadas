@@ -86,6 +86,11 @@ class Ambassador < ActiveRecord::Base
       clean_posts("facebook", slogan_id)
     end
   end
+  def fb_get_picture(type = 'large')
+    facebook_sizes_array = [ 'small', 'normal', 'large', 'square' ]
+    type = 'large' unless facebook_sizes_array.include? type
+    facebook { |fb| fb.get_picture( "me", { type: type } ) }
+  end
   ## end of FACEBOOK METHODS
 
   ## Managing POSTS methods

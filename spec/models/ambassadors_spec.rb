@@ -29,6 +29,7 @@ describe "Ambassadors" do
     it { should respond_to :fb_slogan_search }
     it { should respond_to :fb_permissions }
     it { should respond_to :fb_read_permission? }
+    it { should respond_to :fb_get_picture }
     it { should be_valid }
   end
   describe "with with a mandatory attribute name" do
@@ -132,5 +133,5 @@ describe "Ambassadors" do
     subject { ambassador_f }
 
     its(:assigned_slogans) { should have(1).item }
-    end
+  end
 end
