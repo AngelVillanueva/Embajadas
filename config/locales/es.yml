@@ -237,7 +237,7 @@ es:
         other: "Topics"
     errors:
       <<: *errors
-  Brandname: "Incitatus"
+  Brandname: "Incitatvs"
   Brandtag: "Alea jacta est"
   site_description: "Incitatus, un mundo de Embajadores de Marca"
   Sign in: "Acceso"

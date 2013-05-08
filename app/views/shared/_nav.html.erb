@@ -1,0 +1,24 @@
+<div class="navbar-inner">
+  <div class="container">
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <%= link_to t("Brandname"), root_path, class: 'brand' %>
+    <div class="nav-collapse collapse" id="main-menu">
+      <ul class="nav pull-right" id="main-menu-right">
+        <li><%= link_to t("How it works"), '#' %></li>
+        <li><%= link_to t("Plans & Pricing"), '#' %></li>
+        <li class="current-menu-item">
+          <% if current_ambassador %>
+            <% current_ambassador.oauth_token? ? amclass = 'fbker' : amclass = '' %>
+            <%= link_to t("Sign out"), destroy_ambassador_session_path, method: "delete", id: 'sign_out', rel: 'tooltip', 'data-original-title' => t("Sign out"), class: amclass %>
+          <% else %>
+            <%= link_to t("Sign in"), new_ambassador_session_path, rel: 'tooltip', 'data-original-title' => t("Sign in") %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

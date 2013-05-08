@@ -1,6 +1,6 @@
-@import "variables";
+@import "frontend/spacelab/variables";
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
-@import "bootswatch";
-@import "spacelab";
+@import "frontend/spacelab/bootswatch";
+@import "frontend/spacelab/spacelab";

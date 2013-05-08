@@ -1,0 +1,136 @@
+body {
+  background-color: #f5f5f5;
+  color: #555e58;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+ul, ol {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #ffa300;
+}
+.container, .navbar-fixed-top .container {
+  text-align: left;
+  margin: 0 auto;
+  width: 960px;
+  position: relative;
+}
+
+/** HEADER **/
+#top-area {
+  padding: 50px 0 100px;
+}
+.logo {
+  padding-left: 44px;
+  font-size: 29px;
+  letter-spacing: 3px;
+  color: white;
+  text-indent: -9999em;
+  display: inline;
+  display: inline-block;
+  height: 77px;
+  width: 139px;
+  background: url(/assets/fast-horse-logo-a974eedd71a9f544bb8e1613951dff39.png) 0 0 no-repeat;
+  background: url(/assets/letters-logo-db765a672020a4b0ba53c799f531fece.png) 0 0 no-repeat;
+  zoom: 1;
+}
+#top-menu {
+  float: right;
+  margin-top: 3px;
+}
+#top-menu li {
+  display: inline-block;
+}
+#top-menu a, a.mobile_nav {
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  padding: 9px 13px;
+  display: block;
+}
+#menu-pages {
+  margin: 0;
+}
+ul.nav>li.current-menu-item>a, a.mobile_nav {
+  background: #d15d3f;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #b74425;
+  -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  -moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  font-weight: 800;
+}
+#page-name {
+  text-align: center;
+}
+#page-name h1, #page-name h3 {
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+  padding-bottom: 5px;
+  letter-spacing: -2px;
+  line-height: 1em;
+}
+#page-name h1{
+  font-size: 72px;
+  font-weight: 800;
+  padding-bottom: 15px;
+  letter-spacing: -4px
+}
+#page-name h3{
+  font-size: 36px;
+  font-weight: 300;
+}
+/** MAIN **/
+#main-header {
+  background: #f16c49;
+  background: -moz-linear-gradient(top, #f16c49 0%, #e66847 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f16c49), color-stop(100%, #e66847));
+  background: -webkit-linear-gradient(top, #f16c49 0%, #e66847 100%);
+  background: -o-linear-gradient(top, #f16c49 0%, #e66847 100%);
+  background: -ms-linear-gradient(top, #f16c49 0%, #e66847 100%);
+  background: linear-gradient(to bottom, #f16c49 0%, #e66847 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f16c49', endColorstr='#e66847',GradientType=0 );
+}
+#main-area {
+  background-color: #fff;
+  border-bottom: 1px solid #e0dddd;
+  padding: 76px 0 104px;
+}
+.welcome_info {
+  float: right;
+  margin-top: -20px;
+}
+/** FOOTER **/
+footer {
+  padding-top: 20px;
+  -webkit-box-shadow: inset 0px -1px 0px #fff;
+  -moz-box-shadow: inset 0px -1px 0px #fff;
+  box-shadow: inset 0px 1px 0px #ffffff;
+}
+.footer_links {
+  height: 40px;
+}
+.footer_links ul {
+  float: right;
+  list-style: none;
+}
+.footer_links ul li {
+  display: inline-block;
+  padding-right: 5px;
+}
+.footer_links li a {
+  color: #555e58;
+  font-weight: 800;
+}
+
+
+/** MISCELANEOUS **/
+[class^="icon-"], [class*=" icon-"] {
+  background-image: image_url('glyphicons-halflings.png');
+}

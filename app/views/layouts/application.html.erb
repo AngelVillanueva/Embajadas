@@ -17,8 +17,16 @@
   <%= render 'shared/shim-respond-modernizr' %>
 </head>
 <body>
+    <div class="navbar navbar-fixed-top" id="top-nav">
+      <%= render 'shared/nav' %>
+    </div><!-- end of navbar -->
     <header id="main-header">
-      <%= render 'shared/header', h1: yield(:h1), h3: yield(:h3) %>
+      <div class="container">
+        <div id="page-name">
+          <h1><%= yield(:h1) %></h1>
+          <h3><%= yield(:h3) %></h3>
+        </div>
+      </div>
     </header>
     <div id="main-area" role="main">
       <div class="container">
@@ -27,7 +35,9 @@
         <%= yield %>
       </div>
     </div><!-- end of main-area -->
-    <footer id="main-footer"><%= render 'shared/footer' %></footer>
+    <footer id="footer">
+      <%= render 'shared/footer' %>
+    </footer><!-- end of footer -->
 
     <% unless Rails.env.production? %>
     <a href="#" class="debug">debug<b></b></a>

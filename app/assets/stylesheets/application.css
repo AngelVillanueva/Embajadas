@@ -9,8 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require frontend/style
- *= require frontend/shortcodes
- *= require frontend/customization
+ *= require frontend_base
+ *= require frontend_customization
  *= require z-development
  */
