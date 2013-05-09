@@ -2,7 +2,7 @@ class EmbassiesController < ApplicationController
   # devise filter
   before_filter :authenticate_ambassador!, only: [:show]
   # check and renew facebook oauth token if an Ambassador is logged
-  before_filter :check_facebook_token!, only: [:show]
+  before_filter :check_facebook_token!
   # check facebook reads_permission
   before_filter :check_read_permission!, only: [:show]
   # cancan filter

@@ -39,10 +39,9 @@ class ApplicationController < ActionController::Base
       true
     else
       if current_ambassador
-        #check if oauth_token is valid; @oauth will be nil if oauth_token is not valid or expired
-        @oauth = Koala::Facebook::OAuth.new(FACEBOOK_CONFIG['app_id'], FACEBOOK_CONFIG['app_secret'])
-        #if not signs out and forces to request a new token
-        if @oauth.get_user_info_from_cookies(cookies).nil?
+        #check if oauth_token is still valid, if not signs out and forces to request a new token
+        expiration = current_ambassador.oauth_expires_at.to_date
+        if Date.today > expiration
           flash[:error] = I18n.t("flash.Facebook reconnect needed")
           sign_out current_ambassador
           redirect_to root_path
