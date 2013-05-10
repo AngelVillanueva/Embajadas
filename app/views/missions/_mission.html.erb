@@ -1,23 +1,35 @@
 <% tracking_URL = "http://" + mission.tracking_url + "?ambassador=" + current_ambassador.tracking_id %>
 <% assignment = mission.assignments.where(ambassador_id: current_ambassador.id) %>
 
-<li class="mission">
+<li class="span3">
+<div class="mission_block thumbnail">
+  <p class="mission_points"><%= current_ambassador.points.where(mission_id: mission.id).count %><span>Pts</span></p>
   <article>
-    <hgroup>
       <h1><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></h1>
-      <h2><%= mission.short_description %></h2>
-    </hgroup>
+      <p class="mission_description"><%= mission.short_description %></p>
     <% unless assignment.empty? %>
-      <p>Short: <%= link_to assignment.first.short_url, assignment.first.short_url %></p>
+      <div class="sharing">
+        <p class="short_url"><%= link_to assignment.first.short_url, assignment.first.short_url %></p>
+        <div class="sharing_icons">
+          <a href="mailto:&subject=this"><i class="icon-envelope" rel="tooltip" data-original-title="<%= "help" %>"></i></a>
+          <i class="icon-facebook"></i>
+          <i class="icon-google-plus"></i>
+          <i class="icon-twitter"></i>
+          <i class="icon-pinterest"></i>
+        </div>
+      </div>
     <% end %>
-    <ul>
+    <ul class="rewards">
       <h4><%= Reward.model_name.human.pluralize %>:</h4>
       <%= render mission.rewards %>
     </ul>
+    <% unless mission.slogans.empty? %>
     <ul>
-      <h4><%= Post.model_name.human.pluralize %>:</h4>
+      <h3><%= Post.model_name.human.pluralize %>:</h3>
       <%= render mission.slogans %>
     </ul>
+    <% end %>
     <%= render 'missions/accept_form', mission: mission, assignment: assignment %>
   </article>
+</div>
 </li>

@@ -1,4 +1,13 @@
 <% target = reward.target_points %>
 <% achieved = current_ambassador.points.where(mission_id: reward.mission.id).count %>
+<% if achieved < target %>
+  <% icon_class = 'icon-bookmark-empty' %>
+  <% li_class = "reward" %>
+<% else %>
+  <% icon_class = 'icon-bookmark' %>
+  <% li_class = "reward achieved" %>
+<% end %>
 
-<li><%= reward.name %>: <%= achieved %>/<%= target %></li>
+<li class="<%= li_class %>">
+  <i rel="tooltip" data-original-title="<%= reward.name %>" class="<%= icon_class %>"><span><%= target %></span></i>
+</li>

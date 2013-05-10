@@ -1,0 +1,79 @@
+@import "frontend/incitatus_variables_n_mixins";
+
+.mission_block {
+  text-align: center;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding-top: 10px;
+  box-shadow: 0 10px 10px 8px $lightGreyBg;
+}
+.mission_block:hover {
+  // background-color: $lightGreyBg;
+  //border: 1px solid grey;
+
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  // -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  // -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  //box-shadow: 0 10px 10px 8px $lightGreyBg;
+}
+.mission_block, .mission_block ul {
+  list-style: none;
+  margin: 0;
+}
+.mission_block article {
+  border-top: 1px solid $lightGreyBg;
+}
+.mission_block h4 {
+  color: $almostGreyColor;
+  font-weight: bold;
+}
+.mission_points {
+  color: $almostGreyColor;
+  font-size: 4em;
+  padding: 10px 0;
+  text-align: center;
+}
+.mission_points span {
+  color: $mediumGreyBg;
+  font-size: 0.2em;
+}
+.sharing {
+  padding: 10px 0;
+}
+.mission_description {
+  text-align: center;
+}
+.sharing_icons {
+  text-align: center;
+}
+
+.rewards {
+  padding-bottom: 10px;
+  box-shadow: 0px 8px 6px -6px $lightGreyBg;
+}
+
+.rewards i {
+  font-size: 4em;
+  position: relative;
+}
+.rewards i span {
+  font-size: 0.3em;
+  position: absolute;
+  top: 18%;
+  left: 45%;
+}
+
+.reward {
+  display: inline-block;
+}
+
+.achieved i {
+  color: $corporativeColor;
+}
+.achieved span {
+  color: white;
+}
