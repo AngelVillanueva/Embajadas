@@ -1,6 +1,7 @@
 <% provide :title, t("Welcome to the Embassy of brand", brand: @embassy.name) %>
 <% provide :h1, @embassy.name %>
 <% provide :h3, t("Welcome to the Embassy of brand", brand: @embassy.name) %>
+<% provide :panel_show, true %>
 
 <ul class="thumbnails">
   <%= render @missions %>

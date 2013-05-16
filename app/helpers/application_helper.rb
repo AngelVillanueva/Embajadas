@@ -8,6 +8,10 @@ module ApplicationHelper
        "#{page_title} | #{base_title}"                 # String interpolation
      end
    end
+  # Returns a hidden class for the instructions panel unless explicity called
+  def instructions_panel_class(page_panel_flag)
+    page_panel_flag.empty? && "hidden" || ""
+  end
   # Prepends locale to url in link if not english, useful if routing-filter not works (=rails_admin)
    def locale_url_for(*args)
     unless !locale || locale == 'en'
