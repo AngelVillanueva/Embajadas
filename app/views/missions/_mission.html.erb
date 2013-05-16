@@ -9,7 +9,7 @@
       <p class="mission_description"><%= mission.short_description %></p>
     <% unless assignment.empty? %>
       <div class="sharing">
-        <h4><%= t("ambassador_area.Link to share") %>:</h4>
+        <h4><%= t("ambassador_area.Link to share") %>:<i class="icon-question-sign instructions_mini_toggle"></i></h4>
         <p class="short_url"><%= link_to assignment.first.short_url, assignment.first.short_url %></p>
         <div class="sharing_icons">
           <a href="mailto:&subject=this"><i class="icon-envelope" rel="tooltip" data-original-title="<%= "help" %>"></i></a>
@@ -21,12 +21,12 @@
       </div>
     <% end %>
     <ul class="rewards">
-      <h4><%= Reward.model_name.human.pluralize %>:</h4>
+      <h4><%= Reward.model_name.human.pluralize %>:<i class="icon-question-sign instructions_mini_toggle"></i></h4>
       <%= render mission.rewards %>
     </ul>
     <% unless mission.slogans.empty? %>
     <ul>
-      <h3><%= Post.model_name.human.pluralize %>:</h3>
+      <h3><%= Post.model_name.human.pluralize %>:<i class="icon-question-sign instructions_mini_toggle"></i></h3>
       <%= render mission.slogans %>
     </ul>
     <% end %>

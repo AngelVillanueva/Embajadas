@@ -21,8 +21,12 @@
 }
 .mission_block h4 {
   color: $almostGreyColor;
+  font-size: 1.3em;
   i {
-    color: $coolBlue;
+    font-size: 0.7em;
+    color: #ddd;
+    float: right;
+    cursor: pointer;
   }
 }
 .mission_block a i {
