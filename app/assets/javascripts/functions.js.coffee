@@ -12,3 +12,6 @@ $(document).ready ->
   # init tooltips
   $('a[rel*="tooltip"]').tooltip({ 'placement': 'bottom' })
   $('i[rel="tooltip"]').tooltip()
+  # instructions panel
+  $( '.instructions_toggle_button, .instructions_mini_toggle' ).click ->
+      $( 'body' ).toggleClass( 'instructions_open' )

@@ -117,3 +117,4 @@ en:
       loading: "Loading..."
   ambassador_area:
     hello: "Hello, %{name}"
+    Link to share: "This is the link to share"

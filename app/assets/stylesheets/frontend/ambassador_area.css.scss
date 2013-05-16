@@ -21,7 +21,16 @@
 }
 .mission_block h4 {
   color: $almostGreyColor;
-  font-weight: bold;
+  i {
+    color: $coolBlue;
+  }
+}
+.mission_block a i {
+  color: $almostGreyColor;
+  &:hover {
+    font-size: 1.5em;
+    text-decoration: none;
+  }
 }
 .mission_points {
   color: $almostGreyColor;
@@ -48,19 +57,18 @@
   box-shadow: 0px 8px 6px -6px $lightGreyBg;
 }
 
-.rewards i {
+.reward {
+  display: inline-block;
+}
+.reward i {
   font-size: 4em;
   position: relative;
 }
-.rewards i span {
+.reward i span {
   font-size: 0.3em;
   position: absolute;
   top: 18%;
   left: 45%;
-}
-
-.reward {
-  display: inline-block;
 }
 
 .achieved i {
@@ -69,3 +77,4 @@
 .achieved span {
   color: white;
 }
+

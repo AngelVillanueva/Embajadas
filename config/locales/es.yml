@@ -313,4 +313,5 @@ es:
     home:
       loading: "Cargando..."
   ambassador_area:
-    hello: "Hola, %{name}" 
+    hello: "Hola, %{name}"
+    Link to share: "Enlace a compartir"
