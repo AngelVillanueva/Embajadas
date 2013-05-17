@@ -1,4 +1,4 @@
-<% mindex = @missions.index(mission) %>
+<% mindex = @missions.nil? && 0 || @missions.index(mission) %>
 
 <% if mission.rewards.count > 3 %>
   <div id="rewards_carousel_<%= mindex =%>" class="carousel slide mini_carousel">
