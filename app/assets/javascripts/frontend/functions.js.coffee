@@ -33,4 +33,16 @@ $(document).ready ->
     $( this ).parent( ).trunk8( { lines: 3 } )
   $( ' .mission_description ').on 'click', '.read_less', ->
     $( this ).parent( ).trunk8( { lines: 3 } )
-  
+
+  # hide or show carousel controls if there are or not more elements to show by side
+  $( '.carousel' ).carousel( interval: false ) # disable autocycling in carousel
+  $( '.carousel-control.right' ).click ->
+    $( this ).prev( ).removeClass( 'hidden' )
+    if( !$( this ).prev( ).prev( '.carousel-inner' ).children( '.item:last' ).hasClass( 'active' ) )
+      $( this ).addClass( 'hidden' )
+    event.stopPropagation
+  $( '.carousel-control.left' ).click ->
+    $( this ).next( ).removeClass( 'hidden' )
+    if( !$( this ).prev( ).prev( '.carousel-inner' ).children( '.item:first' ).hasClass( 'active' ) )
+      $( this ).addClass( 'hidden' )
+    event.stopPropagation
