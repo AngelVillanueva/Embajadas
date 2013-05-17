@@ -3,7 +3,9 @@
 
 <li class="span3">
 <div class="mission_block thumbnail">
-  <div class="mission_points"><%= current_ambassador.points.where(mission_id: mission.id).count %><span>Pts</span></div>
+  <div class="mission_points">
+    <%= current_ambassador.points.where(mission_id: mission.id).count %><span>Pts</span>
+  </div>
   <article>
       <div class="header_wrapper">
         <h1><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></h1>
@@ -26,7 +28,7 @@
     <% end %>
     <ul class="rewards">
       <h4><%= Reward.model_name.human.pluralize %>:<i class="icon-question-sign instructions_mini_toggle"></i></h4>
-      <%= render mission.rewards %>
+      <%= render 'rewards/rewards_carousel', mission: mission %>
     </ul>
     <% unless mission.slogans.empty? %>
     <ul>

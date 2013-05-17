@@ -1,0 +1,15 @@
+<div id="rewards_carousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <% mission.rewards.in_groups_of(3, false).each_with_index do |row_rewards, index| %>
+    <div class="<%= index == 0 && 'active item' || 'item' %>">
+      <ul class="rewards">
+            <%= render row_rewards %>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#rewards_carousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#rewards_carousel" data-slide="next">&rsaquo;</a>
+</div>

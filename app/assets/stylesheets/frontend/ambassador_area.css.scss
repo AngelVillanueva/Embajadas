@@ -97,3 +97,16 @@
 .achieved span {
   color: white;
 }
+
+.rewards .carousel-control {
+  font-size: 12px;
+  @include border-radius(15px);
+  width: 15px;
+  height: 15px;
+  line-height: 12px;
+  top: 50%;
+  opacity: 0.2;
+}
+.rewards .carousel-control:hover {
+  opacity: 0.9;
+}
