@@ -24,6 +24,33 @@ body {
 .ambassador {
   font-weight: bold;
 }
+
+/** AVATAR **/
+
+.navbar .nav > li > a.avatar {
+  padding: 0;
+}
+
+.avatar {
+        border: 1px solid $corporativeColor;
+        @include border-radius(40px);
+        @include box-shadow(0px, 1px, 1px, 1px, $corporativeColor);
+        display: block;
+        height: 54px;
+        width: 54px;
+        background: rgba(0, 0, 0, 0.2);
+}
+
+.avatar img {
+        margin: 2px;
+        @include border-radius(40px); /* must be width + border */
+        width: 50px;
+        height: 50px;
+}
+
+/** end of AVATAR **/
+
+
 /******* HEADER *******/
 #main-header { padding: 60px 0;}
 #page-name {
