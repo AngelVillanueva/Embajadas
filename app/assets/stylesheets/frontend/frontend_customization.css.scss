@@ -21,6 +21,9 @@ body {
 @media (max-width: 979px) {
   .navbar-fixed-top { margin-bottom: 0;}
 }
+.ambassador {
+  font-weight: bold;
+}
 /******* HEADER *******/
 #main-header { padding: 80px 0;}
 #page-name {
@@ -187,10 +190,6 @@ h1 a { color: #ffa300;}
   h4 { letter-spacing: 0; }
   form.partial {
     margin-top: 20px;
-  }
-  .welcome_info {
-    float: right;
-    margin-top: -20px;
   }
   .btn, .btn:hover {
   display: inline-block;

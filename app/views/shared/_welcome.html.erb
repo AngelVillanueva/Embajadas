@@ -1,3 +1,6 @@
-<p class="welcome_info">
-  <%= t("ambassador_area.hello", name: current_ambassador.name) if current_ambassador %>
-</p>
+<li class="ambassador">
+  <%= link_to t("ambassador_area.hello", name: current_ambassador.name), ambassador_path %>
+</li>
+<li class="picture">
+  <%= link_to image_tag(current_ambassador.fb_get_picture('small')), ambassador_path %>
+</li>
