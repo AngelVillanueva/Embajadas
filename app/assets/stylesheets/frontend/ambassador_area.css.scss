@@ -12,7 +12,7 @@
   @include box-shadow(0px, 10px, 10px, 8px, $lightGreyBg);
 }
 .header_wrapper {
-  min-height: 120px; // 3 lines * 40 line-height
+  min-height: 80px; // 2 lines * 40 line-height
 }
 .mission_block, .mission_block ul {
   list-style: none;
@@ -60,7 +60,7 @@
   padding: 10px 0 15px;
 }
 .description_wrapper {
-  min-height: 63px; // 3 lines * 21 line-height
+  min-height: 42px; // 2 lines * 21 line-height
   margin-bottom: 15px;
 }
 .mission_description {
@@ -110,7 +110,7 @@
   line-height: 12px;
   top: 50%;
   background-color: $coolBlue;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 .mini_carousel .carousel-control:hover {
   opacity: 0.9;

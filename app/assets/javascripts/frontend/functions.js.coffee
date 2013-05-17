@@ -22,17 +22,17 @@ $(document).ready ->
 
   # truncate mission header and description
   $( '.mission_block h1' ).trunk8
-    lines: 3,
+    lines: 2,
     fill: '... <a class="read_more" href="#">&raquo;</a> '
   $( '.mission_description' ).trunk8
-    lines: 3,
+    lines: 2,
     fill: '... <a class="read_more" href="#">&raquo;</a> '
   $( ' .mission_block h1, .mission_description ').on 'click', '.read_more', ->
     $( this ).parent( ).trunk8( 'revert' ).append(' <a class="read_less" href="#">&laquo;</a>' )
   $( ' .mission_block h1 ').on 'click', '.read_less', ->
-    $( this ).parent( ).trunk8( { lines: 3 } )
+    $( this ).parent( ).trunk8( { lines: 2 } )
   $( ' .mission_description ').on 'click', '.read_less', ->
-    $( this ).parent( ).trunk8( { lines: 3 } )
+    $( this ).parent( ).trunk8( { lines: 2 } )
 
   # hide or show carousel controls if there are or not more elements to show by side
   $( '.carousel' ).carousel( interval: false ) # disable autocycling in carousel
