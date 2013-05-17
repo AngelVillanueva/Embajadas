@@ -10,7 +10,9 @@
 .mission_block:hover {
   @include border-radius(4px);
   @include box-shadow(0px, 10px, 10px, 8px, $lightGreyBg);
-  //box-shadow: 0 10px 10px 8px $lightGreyBg;
+}
+.header_wrapper {
+  min-height: 120px; // 3 lines * 40 line-height
 }
 .mission_block, .mission_block ul {
   list-style: none;
@@ -22,17 +24,25 @@
 .mission_block h4 {
   color: $almostGreyColor;
   font-size: 1.3em;
+  position: relative;
   i {
     font-size: 0.7em;
+    position: absolute;
+    right: 0;
     color: #ddd;
     float: right;
     cursor: pointer;
+    &:hover {
+      font-size: 0.8em;
+    }
   }
 }
 .mission_block a i {
   color: $almostGreyColor;
+  padding: 0 0.3em;
   &:hover {
     font-size: 1.5em;
+    padding: 0;
     text-decoration: none;
   }
 }
@@ -47,13 +57,19 @@
   font-size: 0.2em;
 }
 .sharing {
-  padding: 10px 0;
+  padding: 10px 0 15px;
+}
+.description_wrapper {
+  min-height: 63px; // 3 lines * 21 line-height
+  margin-bottom: 15px;
 }
 .mission_description {
   text-align: center;
 }
 .sharing_icons {
+  line-height: 1.9em;
   text-align: center;
+  margin-top: -5px;
 }
 
 .rewards {
@@ -81,4 +97,3 @@
 .achieved span {
   color: white;
 }
-

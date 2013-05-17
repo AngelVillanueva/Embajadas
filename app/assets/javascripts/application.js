@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require facebook
 //= require bootstrap
+//= require shared/trunk8
 //= require functions

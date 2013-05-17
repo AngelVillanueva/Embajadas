@@ -15,3 +15,19 @@ $(document).ready ->
   # instructions panel
   $( '.instructions_toggle_button, .instructions_mini_toggle' ).click ->
       $( 'body' ).toggleClass( 'instructions_open' )
+
+
+
+$( '.mission_block h1' ).trunk8
+  lines: 3,
+  fill: '... <a class="read_more" href="#">&raquo;</a> '
+$( '.mission_description' ).trunk8
+  lines: 3,
+  fill: '... <a class="read_more" href="#">&raquo;</a> '
+$( ' .mission_block h1, .mission_description ').on 'click', '.read_more', ->
+  $( this ).parent( ).trunk8( 'revert' ).append(' <a class="read_less" href="#">&laquo;</a>' )
+$( ' .mission_block h1 ').on 'click', '.read_less', ->
+  $( this ).parent( ).trunk8( { lines: 3 } )
+$( ' .mission_description ').on 'click', '.read_less', ->
+  $( this ).parent( ).trunk8( { lines: 3 } )
+  

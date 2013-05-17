@@ -3,10 +3,14 @@
 
 <li class="span3">
 <div class="mission_block thumbnail">
-  <p class="mission_points"><%= current_ambassador.points.where(mission_id: mission.id).count %><span>Pts</span></p>
+  <div class="mission_points"><%= current_ambassador.points.where(mission_id: mission.id).count %><span>Pts</span></div>
   <article>
-      <h1><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></h1>
-      <p class="mission_description"><%= mission.short_description %></p>
+      <div class="header_wrapper">
+        <h1><%= link_to mission.name, embassy_mission_path(mission.embassy_id, mission.id) %></h1>
+      </div>
+      <div class="description_wrapper">
+        <p class="mission_description"><%= mission.short_description %></p>
+      </div>
     <% unless assignment.empty? %>
       <div class="sharing">
         <h4><%= t("ambassador_area.Link to share") %>:<i class="icon-question-sign instructions_mini_toggle"></i></h4>
