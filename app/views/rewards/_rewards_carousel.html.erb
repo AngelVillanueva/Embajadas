@@ -6,7 +6,7 @@
     <div class="carousel-inner">
       <% mission.rewards.in_groups_of(3, false).each_with_index do |row_rewards, index| %>
       <div class="<%= index == 0 && 'active item' || 'item' %>">
-        <ul class="rewards">
+        <ul class="rewards_slider">
               <%= render row_rewards %>
         </ul>
       </div>

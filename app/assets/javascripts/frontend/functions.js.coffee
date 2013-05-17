@@ -21,17 +21,12 @@ $(document).ready ->
       $( 'body' ).toggleClass( 'instructions_open' )
 
   # truncate mission header and description
-  $( '.mission_block h1' ).trunk8
-    lines: 2,
-    fill: '... <a class="read_more" href="#">&raquo;</a> '
-  $( '.mission_description' ).trunk8
+  $( '.mission_block h1, .mission_description' ).trunk8
     lines: 2,
     fill: '... <a class="read_more" href="#">&raquo;</a> '
   $( ' .mission_block h1, .mission_description ').on 'click', '.read_more', ->
     $( this ).parent( ).trunk8( 'revert' ).append(' <a class="read_less" href="#">&laquo;</a>' )
-  $( ' .mission_block h1 ').on 'click', '.read_less', ->
-    $( this ).parent( ).trunk8( { lines: 2 } )
-  $( ' .mission_description ').on 'click', '.read_less', ->
+  $( ' .mission_block h1, .mission_description ').on 'click', '.read_less', ->
     $( this ).parent( ).trunk8( { lines: 2 } )
 
   # hide or show carousel controls if there are or not more elements to show by side
