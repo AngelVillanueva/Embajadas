@@ -1,8 +1,10 @@
+@import "frontend/incitatus_variables_n_mixins";
+
 // styling the button
 .instructions_toggle_button {
   position: fixed;
   top: 50%;
-  left: 0px;
+  right: 0px;
   display: block;
   width: 44px;
   height: 54px;
@@ -10,13 +12,12 @@
   border: 1px solid rgba( 0, 0, 0, 0.2 );
   margin-top: -27px;
   background: #f5f5f5 none no-repeat 10px 17px;
-  border-left: none;
+  border-right: none;
   -moz-box-shadow: inset -1px 1px 0 #fff, 3px 0 3px rgba(0,0,0,0.2);
   -webkit-box-shadow: inset -1px 1px 0 #fff, 3px 0 3px rgba(0,0,0,0.2);
   box-shadow: inset -1px 1px 0 #fff, 3px 0 3px rgba(0,0,0,0.2);
-  -moz-border-radius: 0 5px 5px 0;
-  -webkit-border-radius: 0 5px 5px 0;
-  border-radius: 0 5px 5px 0;
+  box-shadow: inset 1px 1px 0 #fff, -3px 0 3px rgba(0,0,0,0.2);
+  @include border-radius(5px 0 0 5px);
   z-index: 500010;
 
   i {
@@ -43,15 +44,15 @@
   font-family: Arial, sans-serif;
   color: #333;
   font-size: 12px;
-  left: -301px;
+  right: -301px;
 }
 
 // toggle position on toggle classes
 .instructions_open .instructions_toggle_button {
-  left: 300px;
+  right: 300px;
 }
 .instructions_open .instructions_panel {
-  left: 0;
+  right: 0;
 }
 
 // toggle animation
