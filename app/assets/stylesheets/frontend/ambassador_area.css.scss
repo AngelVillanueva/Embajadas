@@ -117,3 +117,15 @@
 .mini_carousel .carousel-control:hover {
   opacity: 0.9;
 }
+
+// slogans
+.slogans h4 {
+  font-size: 1em;
+  color: $mediumGreyBg;
+  color: $coolBlue;
+}
+
+.slogans .carousel-control {
+  top: 70%;
+  opacity: 0.2;
+}

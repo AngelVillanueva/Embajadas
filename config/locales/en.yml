@@ -118,3 +118,4 @@ en:
   ambassador_area:
     hello: "Hello, %{name}"
     Link to share: "This is the link to share"
+    Tags to use: "What tags should I use?"

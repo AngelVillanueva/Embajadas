@@ -315,3 +315,4 @@ es:
   ambassador_area:
     hello: "Hola, %{name}"
     Link to share: "Enlace a compartir"
+    Tags to use: "¿Qué palabras me darán puntos?"

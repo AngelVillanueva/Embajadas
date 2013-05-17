@@ -31,12 +31,12 @@
       <%= render 'rewards/rewards_carousel', mission: mission %>
     </ul>
     <% unless mission.slogans.empty? %>
-    <ul>
-      <h3><%= Post.model_name.human.pluralize %>:<i class="icon-question-sign instructions_mini_toggle"></i></h3>
-      <%= render mission.slogans %>
+    <ul class="slogans">
+      <h4><%= t("ambassador_area.Tags to use") %>:</h4>
+      <%= render 'slogans/slogans_carousel', mission: mission %>
     </ul>
     <% end %>
-    <%= render 'missions/accept_form', mission: mission, assignment: assignment %>
+    <%= render 'missions/accept_form', mission: mission, assignment: assignment unless !mission.slogans.empty? %>
   </article>
 </div>
 </li>

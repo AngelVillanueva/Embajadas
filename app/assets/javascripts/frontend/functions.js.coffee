@@ -30,7 +30,7 @@ $(document).ready ->
     $( this ).parent( ).trunk8( { lines: 2 } )
 
   # hide or show carousel controls if there are or not more elements to show by side
-  $( '.carousel' ).carousel( interval: false ) # disable autocycling in carousel
+  $( '.rewards .carousel' ).carousel( interval: false ) # disable autocycling in carousel
   $( '.carousel-control.right' ).click ->
     $( this ).prev( ).removeClass( 'hidden' )
     if( !$( this ).prev( ).prev( '.carousel-inner' ).children( '.item:last' ).hasClass( 'active' ) )
@@ -41,3 +41,7 @@ $(document).ready ->
     if( !$( this ).prev( ).prev( '.carousel-inner' ).children( '.item:first' ).hasClass( 'active' ) )
       $( this ).addClass( 'hidden' )
     event.stopPropagation
+
+   # auto carousel for slogans
+   $( '.slogans .carousel' ).carousel ( interval: 2000) 
+

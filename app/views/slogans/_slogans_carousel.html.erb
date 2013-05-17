@@ -1,0 +1,15 @@
+<% mindex = @missions.nil? && 0 || @missions.index(mission) %>
+
+<div id="slogans_carousel_<%= mindex =%>" class="carousel slide mini_carousel">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <% mission.slogans.each_with_index do |slogan, index| %>
+    <div class="<%= index == 0 && 'active item' || 'item' %>">
+      <ul class="slogans_slider"><%= render slogan %></ul>
+    </div>
+    <% end %>
+  </div>
+  <!-- Carousel nav -->
+    <a class="carousel-control left" href="#slogans_carousel_<%= mindex %>" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#slogans_carousel_<%= mindex %>" data-slide="next">&rsaquo;</a>
+</div>
