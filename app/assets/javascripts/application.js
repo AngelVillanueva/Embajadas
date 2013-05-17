@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require facebook
+//= require frontend/facebook
 //= require bootstrap
 //= require shared/trunk8
-//= require functions
+//= require frontend/functions
