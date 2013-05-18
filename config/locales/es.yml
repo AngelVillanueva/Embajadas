@@ -316,3 +316,5 @@ es:
     hello: "Hola, %{name}"
     Link to share: "Enlace a compartir"
     Tags to use: "¿Qué palabras me darán puntos?"
+    you have: "llevas %{count}"
+    accept to win: "Acepta la misión y empieza a ganar puntos"

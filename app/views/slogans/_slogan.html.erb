@@ -7,4 +7,6 @@ end
 %>
 
 
-<li><%= %Q(#{index+1}.-"#{slogan.search_term.term}" [#{result}]) %></li>
+<li class="slogan">
+  <%= %Q(<span>#{slogan.search_term.term}</span> <em>(#{t('ambassador_area.you have', count: result)})</em>).html_safe %>
+</li>

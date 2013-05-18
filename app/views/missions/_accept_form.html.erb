@@ -4,12 +4,14 @@
   <% the_warning = nil %>  
   <% the_input_id = 'accept_mission' %>
   <% the_input_value = t('Accept Mission') %>
+  <% instructions = "<p><em>#{t('ambassador_area.accept to win')}</em></p>" %>
 <% else %>
   <% the_action = 'destroy' %>
   <% the_method = 'delete' %>
   <% the_warning = t('Are you sure?') %>
   <% the_input_id = 'reject_mission' %>
   <% the_input_value = t("Reject Mission") %>
+  <% instructions = '' %>
 <% end %>
 
 
@@ -21,3 +23,5 @@
   <%= f.button :submit, id: the_input_id, value: the_input_value, confirm: the_warning, class: "btn btn-#{the_action}" %>
   
 <% end%>
+
+<%= instructions.html_safe %>
