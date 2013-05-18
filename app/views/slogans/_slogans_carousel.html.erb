@@ -5,7 +5,7 @@
   <div class="carousel-inner">
     <% mission.slogans.each_with_index do |slogan, index| %>
     <div class="<%= index == 0 && 'active item' || 'item' %>">
-      <ul class="slogans_slider"><%= render slogan %></ul>
+      <ul class="slogans_slider"><%= render slogan, index: index %></ul>
     </div>
     <% end %>
   </div>

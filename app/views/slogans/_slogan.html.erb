@@ -6,4 +6,5 @@ else
 end
 %>
 
-<li><%= slogan.search_term.term %>: <%= result %> (Facebook).</li>
+
+<li><%= %Q(#{index+1}.-"#{slogan.search_term.term}" [#{result}]) %></li>
