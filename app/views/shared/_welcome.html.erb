@@ -1,6 +1,6 @@
 <li class="ambassador">
-  <%= link_to t("ambassador_area.hello", name: current_ambassador.name), ambassador_path %>
+  <%= link_to t("ambassador_area.hello", name: current_ambassador.name), ambassador_path(current_ambassador) %>
 </li>
 <li>
-  <%= link_to image_tag(current_ambassador.fb_get_picture('small')), ambassador_path, class: 'avatar' %>
+  <%= link_to image_tag(current_ambassador.fb_get_picture('small')), ambassador_path(current_ambassador), class: 'avatar' %>
 </li>
