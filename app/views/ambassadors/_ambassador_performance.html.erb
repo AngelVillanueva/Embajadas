@@ -1,0 +1,22 @@
+<% assignments = current_ambassador.assignments.where(mission_id: embassy.mission_ids).count %>
+<% points = current_ambassador.points.where(mission_id: embassy.mission_ids).count %>
+<% slogans = Slogan.where(mission_id: embassy.mission_ids).map(&:id) %>
+<% posts = current_ambassador.posts.where(slogan_id: slogans).count %>
+<% rewards = Reward.where(mission_id: embassy.mission_ids).map(&:id) %>
+<% badges = current_ambassador.badges.where(reward_id: rewards).count %>
+
+<% performance = (assignments * 10) + (points * 100) + (posts * 100) + (badges * 1000) %>
+<% embassy_performance = 
+  (Assignment.where(mission_id: embassy.mission_ids).count * 10) +
+  (Point.where(mission_id: embassy.mission_ids).count * 100) +
+  (Post.where(slogan_id: slogans).count * 100) +
+  (Badge.where(reward_id: rewards).count * 1000)
+%>
+<% rank = embassy_performance %>
+
+<p>Misiones aceptadas: <%= assignments %></p>
+<p>Puntos: <%= points %></p>
+<p>Posts: <%= posts %></p>
+<p>Badges: <%= badges %></p>
+<p>Performance: <%= performance %></p>
+<p>Rank = <%= rank %></p>
