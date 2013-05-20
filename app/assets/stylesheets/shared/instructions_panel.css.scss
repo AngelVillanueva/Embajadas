@@ -69,3 +69,83 @@
   transition-duration: 0.4s;
 }
 
+
+/*********** PANEL *****************/
+.panel_image {
+  width: 150px;
+  height: 300px;
+  margin: 0 auto;
+}
+.missions_block_instructions_image {
+  background: red;
+}
+.accordion-group, .accordion-inner {
+  border: none;
+}
+.accordion-group {
+  border: 1px solid #eee;
+}
+.accordion-inner {
+  margin-bottom: 1em;
+}
+
+ol.instructions {
+  counter-reset: li; /* Initiate a counter */
+  list-style: none; /* Remove default numbering */
+  *list-style: decimal; /* Keep using default numbering for IE6/7 */
+  font: 15px 'trebuchet MS', 'lucida sans';
+  padding: 0;
+  margin-bottom: 4em;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ol.instructions ol {
+  margin: 0 0 0 2em; /* Add some left margin for inner lists */
+}
+.rounded-list a, .rounded-list a.accordion-toggle {
+  position: relative;
+  display: block;
+  padding: .4em .4em .4em 2em;
+  *padding: .4em;
+  margin: .5em 0;
+  // background: #ddd;
+  color: $almostBlackColor;
+  text-decoration: none;
+  border-radius: .3em;
+  transition: all .3s ease-out; 
+}
+
+.rounded-list a span {
+  font-weight: 600;
+}
+.rounded-list a i {
+  float: right;
+}
+
+.rounded-list a:hover {
+  background: #eee;
+}
+
+.rounded-list a:hover:before {
+    transform: rotate(360deg);  
+}
+
+.rounded-list a:before {
+  color: #fff;
+  content: counter(li);
+  counter-increment: li;
+  position: absolute; 
+  left: -1.3em;
+  top: 50%;
+  margin-top: -1.3em;
+  background: $coolBlue;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  border: .3em solid #fff;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 2em;
+  transition: all .3s ease-out;
+}
+

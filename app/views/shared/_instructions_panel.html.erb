@@ -1,8 +1,9 @@
 <div class="<%= instructions_panel_class(yield :panel_show) %>">
-<div class="instructions_toggle_button">
-  <i class="icon-question-sign"></i>
-</div>
+  <div class="instructions_toggle_button">
+    <i class="icon-question-sign"></i>
+  </div>
       
-<div class="instructions_panel">
-</div>
+  <div class="instructions_panel">
+    <%= render 'instructions' if yield(:panel_show) == "true" %>
+  </div>
 </div>
