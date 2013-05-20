@@ -1,8 +1,13 @@
-<li class="embassy">
+<li class="embassy span4">
   <article>
     <hgroup>
-      <h1><%= link_to embassy.name, embassy %></h1>
+      <h1>
+        <%= link_to embassy do %>
+        <% "<i class='icon-flag'></i>#{embassy.name}".html_safe %>
+        <% end %>
+      </h1>
       <h2><%= t("Active Missions") + ": " + embassy.missions.size.to_s %></h2>
     </hgroup>
+    <%= render 'ambassadors/ambassador_performance', embassy: embassy %>
   </article>
 </li>
