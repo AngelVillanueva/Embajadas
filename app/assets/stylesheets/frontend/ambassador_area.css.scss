@@ -61,6 +61,27 @@ li.mission {
 /**** EMBASSIES ****/
 
 .embassy h1 i { display: inline-block; padding-right: 10px; }
+.performance {
+  margin: auto;
+}
+.performance li {
+  list-style: none;
+  display: inline-block;
+}
+.performance li i, .performance li span, .performance li span em {
+  display: block;
+  text-align: center;
+}
+.performance i {
+  color: $mediumGreyBg;
+}
+.performance em {
+  font-style: normal;
+  color: #000;
+}
+.performance span {
+  color: $mediumGreyBg;
+}
 
 /**** MISSIONS *****/
 

@@ -12,11 +12,14 @@
   (Post.where(slogan_id: slogans).count * 100) +
   (Badge.where(reward_id: rewards).count * 1000)
 %>
-<% rank = embassy_performance %>
+<% rank = ( performance > 0 && rand( 0..100 ) ) || 0 %>
 
-<p>Misiones aceptadas: <%= assignments %></p>
-<p>Puntos: <%= points %></p>
-<p>Posts: <%= posts %></p>
-<p>Badges: <%= badges %></p>
-<p>Performance: <%= performance %></p>
-<p>Rank = <%= rank %></p>
+<ul class="performance">
+  <li>
+    <i class="icon-briefcase icon-3x"></i><span><em><%= assignments %></em>Aceptadas</span></li>
+  <li><i class="icon-thumbs-up icon-3x"></i><span><em><%= points %></em>Puntos</span></li>
+  <li><i class="icon-comment-alt icon-3x"></i><span><em><%= posts %></em>Posts</span></li>
+  <li><i class="icon-bookmark icon-3x"></i><span><em><%= badges %></em>Badges</span></li>
+  <li><i class="icon-bar-chart icon-3x"></i><span><em>Top <%= rank %>%</em>Rank</span></li>
+</ul>
+</li>
