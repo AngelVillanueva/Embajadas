@@ -121,3 +121,22 @@ en:
     Tags to use: "What tags should I use?"
     you have: "you have %{count}"
     accept to win: "Accept the mission to start gaining points"
+    instructions:
+      Points: "Points"
+      Points_detail: "These are the Mission points you have till now."
+      Name: "Name"
+      Name_detail: "This is the name of the Mission."
+      Description: "Description"
+      Link: "Link to share"
+      Link_detail: "This is the link that your friends should follow for you to gain points."
+      Description_detail: "This is the Missin description."
+      Buttons: "Quick links"
+      Buttons_detail: "You can use these buttons to quickly share the link with your friends"
+      Rewards: "Rewards"
+      Rewards_detail: "These are the Mission Rewards"
+      Accept: "Accept Mission"
+      Accept_detail: "This is the button to Accept the Mission. You need to accept the Mission to start gaining points."
+      Slogans: "Words to spread"
+      Slogans_detail: "Which words let you gain points."
+
+
