@@ -1,4 +1,4 @@
-<li class="embassy span4">
+<li class="embassy span4 offset<%= ( embassies_count > 1 && 0) || 1 %>">
   <article>
     <hgroup>
       <h1>
@@ -10,3 +10,4 @@
     </hgroup>
     <%= render 'ambassadors/ambassador_performance', embassy: embassy %>
   </article>
+</li>

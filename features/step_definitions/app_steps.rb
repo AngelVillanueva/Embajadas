@@ -500,7 +500,7 @@ end
 
 Then /^I should see the full list of my Embassies$/ do
   my_embassies_count = Ambassador.first.embassies.size
-  page.all('#embassies li').count.should == my_embassies_count
+  page.all('li.embassy').count.should == my_embassies_count
 end
 
 When /^I access the Ambassador area of other Ambassador$/ do

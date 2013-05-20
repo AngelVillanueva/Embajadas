@@ -3,5 +3,5 @@
 <h1><%= t("List of Embassies") %></h1>
 
 <ul>
-<%= render @embassies %>
+<%= render @embassies, embassies_count: @embassies.count %>
 </ul>
