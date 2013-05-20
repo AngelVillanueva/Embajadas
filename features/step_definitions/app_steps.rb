@@ -238,20 +238,20 @@ Then /^I should see the Mission name$/ do
 end
 
 Then /^I should see the Mission Rewards$/ do
-  page.should have_content("Reward 1 for Mission 1")
+  page.all("li.reward i[data-original-title='Reward 1 for Mission 1']").count.should == 1
 end
 
 Then /^I should see the available Rewards for each Mission$/ do
-  page.should have_content("Reward 1 for Mission 1")
-  page.should have_content("Reward 2 for Mission 1")
+  page.all('li.reward').count.should == 2
 end
 
 Then /^I should see the target points for a given Reward$/ do
-  page.should have_content("/1")
+  page.all("li.reward i[data-original-title='Reward 1 for Mission 1']").count.should == 1
+  page.find("li.reward i").should have_content("1")
 end
 
 Then /^I should see how many points I have won for that Reward$/ do
-  page.should have_content("0/")
+  page.all('li.reward.achieved').count.should == 0
 end
 
 Then /^I should see the Pixel for each available Mission$/ do
