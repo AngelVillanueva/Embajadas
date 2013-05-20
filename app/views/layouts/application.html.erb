@@ -17,27 +17,28 @@
   <%= render 'shared/shim-respond-modernizr' %>
 </head>
 <body>
-    <div class="navbar navbar-fixed-top" id="top-nav">
-      <%= render 'shared/nav' %>
-    </div><!-- end of navbar -->
-    <header id="main-header">
-      <div class="container">
-        <div id="page-name">
-          <h1><%= yield(:h1) %></h1>
-          <h3><%= yield(:h3) %></h3>
+  <div class="overlay"></div>
+      <div class="navbar navbar-fixed-top" id="top-nav">
+        <%= render 'shared/nav' %>
+      </div><!-- end of navbar -->
+      <header id="main-header">
+        <div class="container">
+          <div id="page-name">
+            <h1><%= yield(:h1) %></h1>
+            <h3><%= yield(:h3) %></h3>
+          </div>
         </div>
-      </div>
-    </header>
-    <div id="main-area" role="main">
-      <div class="container">
-        <div class="row"><%= render 'shared/flash', flash: flash %></div>
-        <div class="row"><%= yield %></div>
-      </div>
-      <%= render 'shared/instructions_panel' %>
-    </div><!-- end of main-area -->
-    <footer id="footer">
-      <%= render 'shared/footer' %>
-    </footer><!-- end of footer -->
+      </header>
+      <div id="main-area" role="main">
+        <div class="container">
+          <div class="row"><%= render 'shared/flash', flash: flash %></div>
+          <div class="row"><%= yield %></div>
+        </div>
+        <%= render 'shared/instructions_panel' %>
+      </div><!-- end of main-area -->
+      <footer id="footer">
+        <%= render 'shared/footer' %>
+      </footer><!-- end of footer -->
 
     <% unless Rails.env.production? %>
     <a href="#" class="debug">debug<b></b></a>

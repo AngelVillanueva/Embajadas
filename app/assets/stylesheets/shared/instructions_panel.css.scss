@@ -71,6 +71,17 @@
 
 
 /*********** PANEL *****************/
+.instructions_open .overlay {
+  background-color: #000;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  filter: alpha(opacity = 50); /* IE7 & 8 */
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2000;
+}
 .panel_image {
   width: 150px;
   height: 300px;
