@@ -23,11 +23,13 @@
   i {
     font-size: 2em;
     color: #0099dd;
+    color: $almostBlackColor;
     position: absolute;
     top: 18%;
     left: 20%;
     &:hover {
       font-size: 2.2em;
+      color: $coolBlue;
     }
   }
 }
@@ -84,11 +86,11 @@
 }
 .panel_image {
   width: 150px;
-  height: 300px;
+  height: 346px;
   margin: 0 auto;
 }
 .missions_block_instructions_image {
-  background: red;
+  background: image_url('frontend/instructions/panel_ambassador.jpg');
 }
 .accordion-group, .accordion-inner {
   border: none;
