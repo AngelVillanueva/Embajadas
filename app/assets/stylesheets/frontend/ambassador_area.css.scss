@@ -63,7 +63,10 @@ li.mission {
   background: none;
   border: none;
   box-shadow: none;
-  padding-top: 10px;
+  padding: 10px;
+  border:1px solid;
+  border-color: $lightGreyBg;
+  @include border-radius( 10px );
 }
 .mission_block:hover {
   @include border-radius(4px);
