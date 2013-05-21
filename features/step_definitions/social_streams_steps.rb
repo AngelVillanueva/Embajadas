@@ -14,6 +14,7 @@ end
 
 When /^the next Facebook search cycle comes$/ do
   ambassador = Ambassador.first
+  ambassador.points.count.should == 0
   slogan_id = Slogan.first.id
   slogan = Slogan.first.search_term.term
   matches = ambassador.fb_slogan_search(slogan_id)
@@ -30,7 +31,8 @@ end
 
 Then /^the points of the related Missions should be increased$/ do
   delete_Facebook(Ambassador.last.uid).should == "true"
-  #Ambassador.last.uid.should == "pepe"
+  ambassador = Ambassador.first
+  ambassador.points.count.should == 1
 end
 
 Then /^I should be noticed that the permission is needed$/ do

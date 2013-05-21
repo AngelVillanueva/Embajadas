@@ -103,6 +103,9 @@ class Ambassador < ActiveRecord::Base
         post.created_time = Time.at(match["created_time"])
         post.ambassador_id = self.id
         post.slogan_id = slogan_id
+        if post.point_id.nil?
+          post.point_id = update_points(self.id, slogan_id).id
+        end
         post.save!
       end
     end
@@ -112,6 +115,14 @@ class Ambassador < ActiveRecord::Base
     if old_posts = Post.where(ambassador_id: self.id, provider: provider, slogan_id: slogan_id)
       old_posts.delete_all
     end
+  end
+  def update_points(ambassador_id, slogan_id)
+    mission = Slogan.find(slogan_id).mission
+    point = Point.new
+    point.ambassador_id = ambassador_id
+    point.mission = mission
+    point.save!
+    point
   end
   ## End of Managing POSTS methods
   

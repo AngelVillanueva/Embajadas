@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418164655) do
+ActiveRecord::Schema.define(:version => 20130521122400) do
 
   create_table "ambassadors", :force => true do |t|
     t.string   "name"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20130418164655) do
     t.datetime "updated_at",    :null => false
     t.integer  "ambassador_id"
     t.integer  "slogan_id"
+    t.integer  "point_id"
   end
 
   add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
