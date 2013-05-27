@@ -17,7 +17,7 @@
 class Post < ActiveRecord::Base
   belongs_to :ambassador
   belongs_to :slogan
-  has_one :point
+  belongs_to :point
 
   validates :provider, :uid, :message, :created_time, :ambassador_id, :slogan_id, presence: true
 end
