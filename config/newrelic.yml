@@ -219,6 +219,8 @@ production:
   monitor_mode: true
 production_demo:
   <<: *default_settings
+  license_key: 'e5840c58e5f79f34c5fdfdd62e8a04a275c48658'
+  app_name: My Application (Demo)
   monitor_mode: true
 
 # Many applications have a staging environment which behaves
