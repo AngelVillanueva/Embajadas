@@ -4,6 +4,9 @@ development:
 test:
   consumer_key: HkShJOE3T3ZXFjZLuhV9Q
   consumer_secret: 8U0JtBuzzNT44ylIyVUbIefiqtfUeMET8jTtwqWRqE
+staging:
+  consumer_key: HkShJOE3T3ZXFjZLuhV9Q
+  consumer_secret: 8U0JtBuzzNT44ylIyVUbIefiqtfUeMET8jTtwqWRqE
 production:
   consumer_key: HkShJOE3T3ZXFjZLuhV9Q
   consumer_secret: 8U0JtBuzzNT44ylIyVUbIefiqtfUeMET8jTtwqWRqE

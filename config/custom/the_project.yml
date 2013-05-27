@@ -4,6 +4,9 @@ development:
 test:
   host_ip: 'http://127.0.0.1:3000'
   host: 'http://localhost:3000'
+staging:
+  host: 'http://staging.incitatus.me'
+  host_ip: 'http://staging.incitatus.me'
 production:
   host: 'http://demo.incitatus.me'
   host_ip: 'http://demo.incitatus.me'
