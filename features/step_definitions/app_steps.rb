@@ -374,7 +374,7 @@ end
 Then /^I should not be at the Brand area dashboard$/ do
   page.should_not have_css('.rails_admin')
   page.should_not have_css('.alert-notice', text: I18n.t("devise.sessions.signed_in"))
-  page.should have_css('.alert-alert', text: I18n.t("devise.failure.invalid"))
+  page.should have_css('.alert-alert', text: I18n.t("devise.failure.consul.not_found_in_database"))
 end
 
 Then /^I should see just data from my Embassy$/ do
