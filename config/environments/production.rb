@@ -68,5 +68,4 @@
 
   # Incitatus, for cookie seeding
   config.custom_config_cookie_host = 'http://demo.incitatus.me'
-  
 end
