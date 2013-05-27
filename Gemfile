@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'pg', '0.12.2'
-gem 'thin'
+gem 'thin', '1.5.1'
 gem 'bootstrap-sass', '2.1.0.1'
 gem 'bcrypt-ruby', '3.0.1'  # crypted passwords
 gem 'jquery-rails', '2.0.2'
