@@ -6,11 +6,11 @@ test:
   app_id: 455185007883513
   app_secret: cb43e6001326b223820ab402bb8ef212
   access_token: 455185007883513|EH-U5a-bdpUe6sMYxEqho1xVhWw
-staging:
-  app_id: 404331726331561
-  app_secret: 2482f1499823d9e90529c706ad42f6c7
-  access_token:
 production:
   app_id: 404331726331561
   app_secret: 2482f1499823d9e90529c706ad42f6c7
-  access_token: 
+  access_token:
+app:
+  app_id: 404331726331561
+  app_secret: 2482f1499823d9e90529c706ad42f6c7
+  access_token:

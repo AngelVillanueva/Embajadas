@@ -72,5 +72,5 @@
   # end
 
   # Incitatus, for cookie seeding
-  config.custom_config_cookie_host = 'http://staging.incitatus.me'
+  config.custom_config_cookie_host = 'http://app.incitatus.me'
 end

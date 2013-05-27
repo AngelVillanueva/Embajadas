@@ -4,9 +4,9 @@ development:
 test:
   user: 'embassyland'
   api_key: 'R_4a3b8272b7634f605382c8e02e809378'
-staging:
+production:
   user: 'embassyland'
   api_key: 'R_4a3b8272b7634f605382c8e02e809378'
-production:
+app:
   user: 'embassyland'
   api_key: 'R_4a3b8272b7634f605382c8e02e809378'
