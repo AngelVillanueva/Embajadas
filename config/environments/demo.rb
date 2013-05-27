@@ -66,6 +66,11 @@
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  # user / pwd protected
+  # config.middleware.insert_after(::Rack::Lock, "::Rack::Auth::Basic", "Embajadas") do |u, p|
+  #   [u, p] == ['embajadas', 'embajadas']
+  # end
+
   # Incitatus, for cookie seeding
   config.custom_config_cookie_host = 'http://demo.incitatus.me'
 end
