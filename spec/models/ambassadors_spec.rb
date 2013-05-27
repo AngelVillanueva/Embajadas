@@ -134,4 +134,20 @@ describe "Ambassadors" do
 
     its(:assigned_slogans) { should have(1).item }
   end
+  describe "with its posts automatically deleted" do
+    let(:post) { Post.new }
+    before do
+      post.provider = "facebook"
+      post.uid = "123456"
+      post.message = "The Embassy is cool"
+      post.created_time = 2.days.ago
+      post.slogan_id = 1
+      post.ambassador = ambassador_f
+      post.save!
+    end
+
+    it "when she is deleted" do
+      expect { ambassador_f.destroy }.to change(Post, :count)
+    end
+  end
 end

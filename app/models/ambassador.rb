@@ -38,7 +38,7 @@ class Ambassador < ActiveRecord::Base
   has_many :assignments, dependent: :destroy
   has_many :badges, dependent: :destroy
   has_many :rewards, through: :badges
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
   before_validation :assign_random_tracking_id
 
