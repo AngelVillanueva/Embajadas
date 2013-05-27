@@ -1,4 +1,4 @@
-FACEBOOK_CONFIG = YAML.load_file("#{::Rails.root}/config/custom/facebook.yml")[::Rails.env]
+require "#{Rails.root}/config/initializers/auth_providers.rb"
 
 namespace :facebook do
   desc "Off-dyno tasks related with Facebook"
