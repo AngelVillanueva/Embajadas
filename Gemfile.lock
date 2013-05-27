@@ -175,6 +175,7 @@ GEM
     multi_xml (0.5.3)
     multipart-post (1.2.0)
     nested_form (0.2.3)
+    newrelic_rpm (3.6.2.96)
     nokogiri (1.5.9)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -350,6 +351,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   koala
   meta_request (= 0.2.1)
+  newrelic_rpm
   omniauth-facebook (= 1.4.0)
   omniauth-twitter
   pg (= 0.12.2)

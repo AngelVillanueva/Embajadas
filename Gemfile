@@ -32,6 +32,8 @@ gem 'koala'
 
 # Locale app
 # gem 'localeapp' # issues with pull-push in dev mode
+
+gem 'newrelic_rpm'
  
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
