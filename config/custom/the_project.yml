@@ -8,8 +8,5 @@ production_demo:
   host: 'http://demo.incitatus.me'
   host_ip: 'http://demo.incitatus.me'
 production:
-  host: 'http://demo.incitatus.me'
-  host_ip: 'http://demo.incitatus.me'
-app:
   host: 'http://app.incitatus.me'
   host_ip: 'http://app.incitatus.me'

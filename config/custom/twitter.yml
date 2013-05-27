@@ -10,6 +10,3 @@ production_demo:
 production:
   consumer_key: HkShJOE3T3ZXFjZLuhV9Q
   consumer_secret: 8U0JtBuzzNT44ylIyVUbIefiqtfUeMET8jTtwqWRqE
-app:
-  consumer_key: HkShJOE3T3ZXFjZLuhV9Q
-  consumer_secret: 8U0JtBuzzNT44ylIyVUbIefiqtfUeMET8jTtwqWRqE
