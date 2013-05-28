@@ -72,7 +72,7 @@ group :test do
   gem 'cucumber-rails', '1.2.1', require: false
   gem 'database_cleaner', '0.7.0'
   gem 'factory_girl_rails', '1.4.0'
-  #gem 'launchy' # method save_and_show_me_the_page for capybara
+  gem 'launchy' # method save_and_open_page for capybara
 end
 
 group :production do

@@ -541,3 +541,7 @@ Then /^I should see just the slogans created for my Missions$/ do
   visit rails_admin.index_path(model_name: :slogan)
   page.all('td.id_field').count.should == 2
 end
+
+Then(/^show me the page$/) do
+  save_and_open_page
+end
