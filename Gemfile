@@ -33,7 +33,8 @@ gem 'koala'
 # Locale app
 # gem 'localeapp' # issues with pull-push in dev mode
 
-gem 'newrelic_rpm'
+gem 'newrelic_rpm' # Add-on on performance statistics
+#gem 'rack-mini-profiller' # View on pages loading speed
  
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
@@ -49,6 +50,10 @@ group :development do
   gem 'binding_of_caller' # cool error info pages in development
   gem 'meta_request', '0.2.1' # rails_panel chrome extension.
   gem 'sextant' # Navigate to 0.0.0.0:3000/rails/routes to see routes in the browser
+  gem 'quiet_assets' # Get rid of loading assets info in development log
+  #gem 'bullet' # Advise on n+1 queries
+  #gem 'lol_dba' # Advise on missing indexes
+  #gem 'railroady' # SVG generator for models and associations
 end
 # Gems used only for assets and not required
 # in production environments by default.
@@ -67,6 +72,7 @@ group :test do
   gem 'cucumber-rails', '1.2.1', require: false
   gem 'database_cleaner', '0.7.0'
   gem 'factory_girl_rails', '1.4.0'
+  #gem 'launchy' # method save_and_show_me_the_page for capybara
 end
 
 group :production do
