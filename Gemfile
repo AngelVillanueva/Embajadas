@@ -51,7 +51,8 @@ group :development do
   gem 'meta_request', '0.2.1' # rails_panel chrome extension.
   gem 'sextant' # Navigate to 0.0.0.0:3000/rails/routes to see routes in the browser
   gem 'quiet_assets' # Get rid of loading assets info in development log
-  #gem 'bullet' # Advise on n+1 queries
+  gem 'ruby_gntp' # Growl with Bullet
+  gem 'bullet' # Advise on n+1 queries
   #gem 'lol_dba' # Advise on missing indexes
   #gem 'railroady' # SVG generator for models and associations
 end
