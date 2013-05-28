@@ -165,6 +165,10 @@ GEM
     launchy (2.3.0)
       addressable (~> 2.3)
     listen (0.7.3)
+    lol_dba (1.5.0)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      railties (>= 3.0)
     lumberjack (1.0.3)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -359,6 +363,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   koala
   launchy
+  lol_dba
   meta_request (= 0.2.1)
   newrelic_rpm
   omniauth-facebook (= 1.4.0)

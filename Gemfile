@@ -53,7 +53,7 @@ group :development do
   gem 'quiet_assets' # Get rid of loading assets info in development log
   gem 'ruby_gntp' # Growl with Bullet
   gem 'bullet' # Advise on n+1 queries
-  #gem 'lol_dba' # Advise on missing indexes
+  gem 'lol_dba' # Advise on missing indexes
   #gem 'railroady' # SVG generator for models and associations
 end
 # Gems used only for assets and not required

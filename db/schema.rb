@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521122400) do
+ActiveRecord::Schema.define(:version => 20130528080343) do
 
   create_table "ambassadors", :force => true do |t|
     t.string   "name"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.integer "embassy_id"
   end
 
+  add_index "ambassadors_embassies", ["ambassador_id", "embassy_id"], :name => "index_ambassadors_embassies_on_ambassador_id_and_embassy_id"
+  add_index "ambassadors_embassies", ["embassy_id", "ambassador_id"], :name => "index_ambassadors_embassies_on_embassy_id_and_ambassador_id"
+
   create_table "assignments", :force => true do |t|
     t.string   "code"
     t.text     "tracking_url"
@@ -53,6 +56,9 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "assignments", ["ambassador_id"], :name => "index_assignments_on_ambassador_id"
+  add_index "assignments", ["mission_id"], :name => "index_assignments_on_mission_id"
+
   create_table "badges", :force => true do |t|
     t.integer  "ambassador_id"
     t.integer  "reward_id"
@@ -60,7 +66,10 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "badges", ["ambassador_id", "reward_id"], :name => "index_badges_on_ambassador_id_and_reward_id"
+  add_index "badges", ["ambassador_id"], :name => "index_badges_on_ambassador_id"
   add_index "badges", ["created_at"], :name => "index_badges_on_created_at"
+  add_index "badges", ["reward_id"], :name => "index_badges_on_reward_id"
 
   create_table "consuls", :force => true do |t|
     t.string   "name"
@@ -81,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
   end
 
   add_index "consuls", ["email"], :name => "index_consuls_on_email", :unique => true
+  add_index "consuls", ["embassy_id"], :name => "index_consuls_on_embassy_id"
   add_index "consuls", ["reset_password_token"], :name => "index_consuls_on_reset_password_token", :unique => true
 
   create_table "embassies", :force => true do |t|
@@ -99,6 +109,8 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "mailing_codes", ["embassy_id"], :name => "index_mailing_codes_on_embassy_id"
+
   create_table "missions", :force => true do |t|
     t.string   "name"
     t.integer  "embassy_id"
@@ -109,6 +121,8 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.text     "tracking_url"
   end
 
+  add_index "missions", ["embassy_id"], :name => "index_missions_on_embassy_id"
+
   create_table "points", :force => true do |t|
     t.integer  "mission_id"
     t.integer  "ambassador_id"
@@ -116,7 +130,9 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "points", ["ambassador_id"], :name => "index_points_on_ambassador_id"
   add_index "points", ["created_at"], :name => "index_points_on_created_at"
+  add_index "points", ["mission_id"], :name => "index_points_on_mission_id"
 
   create_table "posts", :force => true do |t|
     t.string   "provider"
@@ -130,7 +146,10 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.integer  "point_id"
   end
 
+  add_index "posts", ["ambassador_id"], :name => "index_posts_on_ambassador_id"
   add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
+  add_index "posts", ["point_id"], :name => "index_posts_on_point_id"
+  add_index "posts", ["slogan_id"], :name => "index_posts_on_slogan_id"
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -153,6 +172,8 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.integer  "target_points"
   end
 
+  add_index "rewards", ["mission_id"], :name => "index_rewards_on_mission_id"
+
   create_table "search_terms", :force => true do |t|
     t.string   "term"
     t.datetime "created_at", :null => false
@@ -160,11 +181,16 @@ ActiveRecord::Schema.define(:version => 20130521122400) do
     t.integer  "consul_id"
   end
 
+  add_index "search_terms", ["consul_id"], :name => "index_search_terms_on_consul_id"
+
   create_table "slogans", :force => true do |t|
     t.integer  "mission_id"
     t.integer  "search_term_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  add_index "slogans", ["mission_id"], :name => "index_slogans_on_mission_id"
+  add_index "slogans", ["search_term_id"], :name => "index_slogans_on_search_term_id"
 
 end
