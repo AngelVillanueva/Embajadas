@@ -247,7 +247,9 @@ end
 
 Then /^I should see the target points for a given Reward$/ do
   page.all("li.reward i[data-original-title='Reward 1 for Mission 1']").count.should == 1
-  page.find("li.reward i").should have_content("1")
+  page.find("li.reward i[data-original-title='Reward 1 for Mission 1']").should have_content("1")
+  page.all("li.reward i[data-original-title='Reward 2 for Mission 1']").count.should == 1
+  page.find("li.reward i[data-original-title='Reward 2 for Mission 1']").should have_content("2")
 end
 
 Then /^I should see how many points I have won for that Reward$/ do
